@@ -1,0 +1,9 @@
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\Content\tileset1.xnb
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\SokoboX.exe
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\SokoboX.pdb
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\obj\x86\Debug\SokoboX.exe
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\obj\x86\Debug\SokoboX.pdb
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\Content\player.xnb
+C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\Content\2tiles.xnb
