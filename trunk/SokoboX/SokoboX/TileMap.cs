@@ -49,6 +49,8 @@ namespace SokoboX
                     {
                         boxList.Add(new Box());
                         boxList.Last().tileCoordinates = new Vector2(column, row);
+                        boxList.Last().position.X = boxList.Last().tileCoordinates.X * 32;
+                        boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
                         Rows[row].Columns[column].TileID = 3;
                     }
                 }
