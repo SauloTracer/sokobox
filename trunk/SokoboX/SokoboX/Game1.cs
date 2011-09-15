@@ -35,6 +35,7 @@ namespace SokoboX
             MapArrays.mapListInit();
             map1 = new TileMap();
             map1.initializeMap();
+            
             base.Initialize();
         }
 
@@ -43,7 +44,6 @@ namespace SokoboX
             spriteBatch = new SpriteBatch(GraphicsDevice);
             tileSet.texture = Content.Load<Texture2D>("2tiles");
             Player.texture = Content.Load<Texture2D>("player");
-
             foreach (Box box in map1.boxList)
             {
                 box.boxTexture = Content.Load<Texture2D>("box");
@@ -61,6 +61,8 @@ namespace SokoboX
             KeyboardState keyboardState = Keyboard.GetState();
 
             Player.updatePlayer();
+
+            if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
             if (keyboardState.IsKeyDown(Keys.Up))
             {
