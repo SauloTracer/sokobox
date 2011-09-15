@@ -54,6 +54,15 @@ namespace SokoboX
                 }
             }
         }
+
+        public int getTileId(Vector2 posicao)
+        {
+            int x, y;
+            x = (int)posicao.X / 32;
+            y = (int)posicao.Y / 32;
+            return this.Map[y, x];
+        }
+
     }
 
     class MapRow

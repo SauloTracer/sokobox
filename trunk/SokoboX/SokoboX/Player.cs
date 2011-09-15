@@ -42,7 +42,16 @@ namespace SokoboX
             tileCoordinates.X = (int)(position.X / 32);
             tileCoordinates.Y = (int)(position.Y / 32);
 
-
         }
+
+        /*protected bool colisao(int[,] Matriz, facing direcao)
+        {
+            switch(direcao)
+            {
+                case facing.DOWN:
+
+                    break;
+            }
+        }*/
     }
 }
