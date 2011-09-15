@@ -16,7 +16,7 @@ namespace SokoboX
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        TileMap map1 = new TileMap();
+        TileMap map1;
         Tile tileSet = new Tile();
         int squaresAcross = 20;
         int squaresDown = 15;
@@ -32,7 +32,9 @@ namespace SokoboX
 
         protected override void Initialize()
         {
-
+            MapArrays.mapListInit();
+            map1 = new TileMap();
+            map1.initializeMap();
             base.Initialize();
         }
 
@@ -52,6 +54,27 @@ namespace SokoboX
         {
 
             KeyboardState keyboardState = Keyboard.GetState();
+
+            if (keyboardState.IsKeyDown(Keys.Up))
+            {
+                Player.position.Y -= 2;
+                Player.playerFacing = Player.facing.UP;
+            }
+            if (keyboardState.IsKeyDown(Keys.Down))
+            {
+                Player.position.Y += 2;
+                Player.playerFacing = Player.facing.DOWN;
+            }
+            if (keyboardState.IsKeyDown(Keys.Left))
+            {
+                Player.position.X -= 2;
+                Player.playerFacing = Player.facing.LEFT;
+            }
+            if (keyboardState.IsKeyDown(Keys.Right))
+            {
+                Player.position.X += 2;
+                Player.playerFacing = Player.facing.RIGHT;
+            }
 
             Player.updatePlayer();
 
