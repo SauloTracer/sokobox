@@ -14,7 +14,7 @@ namespace SokoboX
         static public Vector2 tileCoordinates = Vector2.Zero;
         static public facing playerFacing = facing.DOWN;
         static public Point upLeft, upRight, downLeft, downRight = new Point();
-        static public bool upLeftCollision, upRighCollision, downLeftCollision, downRightCollision;
+        static public bool upCollision, downCollision, leftCollision, rightCollision;
         static public Rectangle playerBoundaries;
         public enum facing { UP, DOWN, LEFT, RIGHT };
 
@@ -44,14 +44,28 @@ namespace SokoboX
 
         }
 
-        /*protected bool colisao(int[,] Matriz, facing direcao)
+        protected bool colisao(TileMap map, facing direcao)
         {
             switch(direcao)
             {
                 case facing.DOWN:
-
-                    break;
+                    downCollision = (map.getTileId(downLeft) == 3);
+                    downCollision = (downCollision || (map.getTileId(downRight) == 3));
+                    return downCollision;
+                case facing.UP:
+                    upCollision = (map.getTileId(upLeft) == 3);
+                    upCollision = (upCollision || (map.getTileId(upRight) == 3));
+                    return upCollision;
+                case facing.LEFT:
+                    leftCollision = (map.getTileId(downLeft) == 3);
+                    leftCollision = (leftCollision || (map.getTileId(upLeft) == 3));
+                    return leftCollision;
+                case facing.RIGHT:
+                    rightCollision = (map.getTileId(downRight) == 3);
+                    rightCollision = (rightCollision || (map.getTileId(upRight) == 3));
+                    return rightCollision;
             }
-        }*/
+            return false;
+        }
     }
 }
