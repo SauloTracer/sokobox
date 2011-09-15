@@ -44,9 +44,9 @@ namespace SokoboX
 
         }
 
-        protected bool colisao(TileMap map, facing direcao)
+        static public bool colisao(TileMap map)
         {
-            switch(direcao)
+            switch(playerFacing)
             {
                 case facing.DOWN:
                     downCollision = (map.getTileId(downLeft) == 3);
