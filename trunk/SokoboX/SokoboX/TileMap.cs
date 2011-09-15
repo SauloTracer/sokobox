@@ -36,48 +36,7 @@ namespace SokoboX
                     Rows[row].Columns[column].TileID = Map[row, column];
                 }
             }
-            //// Create Sample Map Data
-            //Rows[0].Columns[3].TileID = 22;
-            //Rows[0].Columns[4].TileID = 22;
-            //Rows[0].Columns[5].TileID = 22;
-            //Rows[0].Columns[6].TileID = 22;
-            //Rows[0].Columns[7].TileID = 1;
-
-            //Rows[1].Columns[3].TileID = 3;
-            //Rows[1].Columns[4].TileID = 1;
-            //Rows[1].Columns[5].TileID = 1;
-            //Rows[1].Columns[6].TileID = 1;
-            //Rows[1].Columns[7].TileID = 1;
-
-            //Rows[2].Columns[2].TileID = 3;
-            //Rows[2].Columns[3].TileID = 1;
-            //Rows[2].Columns[4].TileID = 1;
-            //Rows[2].Columns[5].TileID = 1;
-            //Rows[2].Columns[6].TileID = 1;
-            //Rows[2].Columns[7].TileID = 1;
-
-            //Rows[3].Columns[2].TileID = 3;
-            //Rows[3].Columns[3].TileID = 1;
-            //Rows[3].Columns[4].TileID = 1;
-            //Rows[3].Columns[5].TileID = 2;
-            //Rows[3].Columns[6].TileID = 2;
-            //Rows[3].Columns[7].TileID = 2;
-
-            //Rows[4].Columns[0].TileID = 3;
-            //Rows[4].Columns[3].TileID = 1;
-            //Rows[4].Columns[4].TileID = 1;
-            //Rows[4].Columns[5].TileID = 2;
-            //Rows[4].Columns[6].TileID = 2;
-            //Rows[4].Columns[7].TileID = 2;
-
-            //Rows[5].Columns[2].TileID = 3;
-            //Rows[5].Columns[3].TileID = 1;
-            //Rows[5].Columns[4].TileID = 1;
-            //Rows[5].Columns[5].TileID = 2;
-            //Rows[5].Columns[6].TileID = 2;
-            //Rows[5].Columns[7].TileID = 2;
-
-            //// End Create Sample Map Data
+            
         }
 
         public void initializeMap()
