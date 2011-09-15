@@ -12,6 +12,8 @@ namespace SokoboX
         static public Texture2D texture;
         static public Vector2 position = new Vector2(96,128);
         static public Vector2 tileCoordinates = Vector2.Zero;
+        static public facing playerFacing = facing.DOWN;
+        public enum facing { UP, DOWN, LEFT, RIGHT };
 
         static public void drawPlayer(SpriteBatch spriteBatch)
         {

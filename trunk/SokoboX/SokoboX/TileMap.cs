@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SokoboX
 {
     class TileMap
     {
         public List<MapRow> Rows = new List<MapRow>();
+        public List<Box> boxList = new List<Box>();
         public int MapWidth = 20;
         public int MapHeight = 15;
         public int[,] Map = new int[15, 20];
@@ -24,38 +27,7 @@ namespace SokoboX
                 Rows.Add(thisRow);
             }
 
-            Map = new int[15,20] {
-{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-3, 3, 3, 3 },
-{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-3, 3, 3, 3 },
-{ 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 
-2, 2, 2, 3 },
-{ 3, 2, 3, 3, 3, 2, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 
-3, 3, 2, 3 },
-{ 3, 2, 3, 3, 1, 2, 3, 3, 3, 1, 3, 3, 3, 1, 1, 3, 
-3, 3, 2, 3 },
-{ 3, 2, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 
-3, 3, 2, 3 },
-{ 3, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 
-2, 2, 2, 3 },
-{ 3, 2, 3, 3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 
-4, 4, 2, 3 },
-{ 3, 2, 3, 3, 3, 2, 3, 3, 1, 3, 3, 3, 1, 3, 2, 3, 
-4, 4, 2, 3 },
-{ 3, 2, 3, 3, 3, 2, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 
-4, 4, 2, 3 },
-{ 3, 2, 3, 3, 3, 2, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 
-4, 4, 2, 3 },
-{ 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 
-2, 2, 2, 3 },
-{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-3, 3, 3, 3 },
-{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-3, 3, 3, 3 },
-{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-3, 3, 3, 3 }
-};
+            Map = MapArrays.getMap(1);
 
             for (int row = 0; row < Map.GetLength(0); row++)
             {
@@ -106,6 +78,22 @@ namespace SokoboX
             //Rows[5].Columns[7].TileID = 2;
 
             //// End Create Sample Map Data
+        }
+
+        public void initializeMap()
+        {
+            for (int row = 0; row < Rows.Count(); row++)
+            {
+                for (int column = 0; column < Rows[row].Columns.Count(); column++)
+                {
+                    if (Rows[row].Columns[column].TileID == 1)
+                    {
+                        boxList.Add(new Box());
+                        boxList.Last().tileCoordinates = new Vector2(column, row);
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                }
+            }
         }
     }
 
