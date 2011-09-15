@@ -14,7 +14,6 @@ namespace SokoboX
     
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        //COMENTÁRIO ALEATÓRIO PRA TESTAR O SVN - By Marcos
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         TileMap map1;
