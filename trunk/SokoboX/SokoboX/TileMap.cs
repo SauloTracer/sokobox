@@ -55,7 +55,7 @@ namespace SokoboX
             }
         }
 
-        public int getTileId(Vector2 posicao)
+        public int getTileId(Point posicao)
         {
             int x, y;
             x = (int)posicao.X / 32;

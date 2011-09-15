@@ -55,32 +55,28 @@ namespace SokoboX
 
             KeyboardState keyboardState = Keyboard.GetState();
 
+            Player.updatePlayer();
+
             if (keyboardState.IsKeyDown(Keys.Up))
             {
                 Player.playerFacing = Player.facing.UP;
-                Player.position.Y -= 2;
+                if (!Player.colisao(map1)) Player.position.Y -= 2;
             }
             if (keyboardState.IsKeyDown(Keys.Down))
             {
                 Player.playerFacing = Player.facing.DOWN;
-                Player.position.Y += 2;
+                if (!Player.colisao(map1)) Player.position.Y += 2;
             }
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 Player.playerFacing = Player.facing.LEFT;
-                Player.position.X -= 2;
+                if (!Player.colisao(map1)) Player.position.X -= 2;
             }
             if (keyboardState.IsKeyDown(Keys.Right))
             {
                 Player.playerFacing = Player.facing.RIGHT;
-                Player.position.X += 2;
-            }
-
-            Player.updatePlayer();
-            int teste;
-            Vector2 vetorTeste = new Vector2(160.0f, 96.0f);
-            teste = map1.getTileId(vetorTeste);
-
+                if (!Player.colisao(map1)) Player.position.X += 2;
+            }         
 
             base.Update(gameTime);
         }
