@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Este comentário foi feito por Gleyson e inteiramente por ele.
 namespace SokoboX
 {
     static class Player
