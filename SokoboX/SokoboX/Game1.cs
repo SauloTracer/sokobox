@@ -44,6 +44,11 @@ namespace SokoboX
             tileSet.texture = Content.Load<Texture2D>("2tiles");
             Player.texture = Content.Load<Texture2D>("player");
 
+            foreach (Box box in map1.boxList)
+            {
+                box.boxTexture = Content.Load<Texture2D>("box");
+            }
+
         }
 
         protected override void UnloadContent()
@@ -110,6 +115,11 @@ namespace SokoboX
             }
 
             #endregion
+
+            foreach (Box box in map1.boxList)
+            {
+                box.Draw(spriteBatch);
+            }
 
             Player.drawPlayer(spriteBatch);
             spriteBatch.End();
