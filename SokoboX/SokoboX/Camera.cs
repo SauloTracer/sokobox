@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
+
+/* Hell Oh World! */
 namespace SokoboX
 {
     static class Camera
