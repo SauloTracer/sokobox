@@ -46,23 +46,40 @@ namespace SokoboX
 
         static public bool colisao(TileMap map)
         {
+            Point ponto = new Point();
             switch(playerFacing)
             {
                 case facing.DOWN:
-                    downCollision = (map.getTileId(downLeft) == 2);
-                    downCollision = (downCollision || (map.getTileId(downRight) == 2));
+                    ponto = downLeft;
+                    ponto.Y += 2;
+                    downCollision = (map.getTileId(ponto) == 2);
+                    ponto = downRight;
+                    ponto.Y += 2;
+                    downCollision = (downCollision || (map.getTileId(ponto) == 2));
                     return downCollision;
                 case facing.UP:
-                    upCollision = (map.getTileId(upLeft) == 2);
-                    upCollision = (upCollision || (map.getTileId(upRight) == 2));
+                    ponto = upLeft;
+                    ponto.Y -= 2;
+                    upCollision = (map.getTileId(ponto) == 2);
+                    ponto = upRight;
+                    ponto.Y -= 2;
+                    upCollision = (upCollision || (map.getTileId(ponto) == 2));
                     return upCollision;
                 case facing.LEFT:
-                    leftCollision = (map.getTileId(downLeft) == 2);
-                    leftCollision = (leftCollision || (map.getTileId(upLeft) == 2));
+                    ponto = downLeft;
+                    ponto.X -= 2;
+                    leftCollision = (map.getTileId(ponto) == 2);
+                    ponto = upLeft;
+                    ponto.X -= 2;
+                    leftCollision = (leftCollision || (map.getTileId(ponto) == 2));
                     return leftCollision;
                 case facing.RIGHT:
-                    rightCollision = (map.getTileId(downRight) == 2);
-                    rightCollision = (rightCollision && (map.getTileId(upRight) == 2));
+                    ponto = downRight;
+                    ponto.X += 2;
+                    rightCollision = (map.getTileId(ponto) == 2);
+                    ponto = upRight;
+                    ponto.X += 2;
+                    rightCollision = (rightCollision || (map.getTileId(ponto) == 2));
                     return rightCollision;
             }
             return false;
