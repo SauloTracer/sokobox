@@ -102,10 +102,10 @@ namespace SokoboX
                 for (int x = 0; x < squaresAcross; x++)
                 {
                     spriteBatch.Draw(
-                        tileSet.texture,
-                        new Rectangle((x * 32) - offsetX, (y * 32) - offsetY, 32, 32),
-                        tileSet.GetSourceRectangle(map1.Rows[y + firstY].Columns[x + firstX].TileID),
-                        Color.White);
+                    tileSet.texture,
+                    new Rectangle((x * 32) - offsetX, (y * 32) - offsetY, 32, 32),
+                    tileSet.GetSourceRectangle(map1.Rows[y + firstY].Columns[x + firstX].TileID),
+                    Color.White);
                 }
             }
 
