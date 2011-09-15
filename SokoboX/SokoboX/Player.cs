@@ -10,7 +10,7 @@ namespace SokoboX
     static class Player
     {
         static public Texture2D texture;
-        static public Vector2 position = new Vector2(96,128);
+        static public Vector2 position = new Vector2(160,160);
         static public Vector2 tileCoordinates = Vector2.Zero;
         static public facing playerFacing = facing.DOWN;
         static public Point upLeft, upRight, downLeft, downRight = new Point();
@@ -27,17 +27,17 @@ namespace SokoboX
         {
             playerBoundaries = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
 
-            upLeft.X = playerBoundaries.Left;
-            upLeft.Y = playerBoundaries.Top;
+            upLeft.X = playerBoundaries.Left + 2;
+            upLeft.Y = playerBoundaries.Top + 2;
 
-            upRight.X = playerBoundaries.Right;
-            upRight.Y = playerBoundaries.Top;
+            upRight.X = playerBoundaries.Right - 2;
+            upRight.Y = playerBoundaries.Top + 2;
 
-            downLeft.X = playerBoundaries.Left;
-            downLeft.Y = playerBoundaries.Bottom;
+            downLeft.X = playerBoundaries.Left + 2;
+            downLeft.Y = playerBoundaries.Bottom - 2;
 
-            downRight.X = playerBoundaries.Right;
-            downRight.Y = playerBoundaries.Bottom;
+            downRight.X = playerBoundaries.Right - 2;
+            downRight.Y = playerBoundaries.Bottom - 2;
 
             tileCoordinates.X = (int)(position.X / 32);
             tileCoordinates.Y = (int)(position.Y / 32);
