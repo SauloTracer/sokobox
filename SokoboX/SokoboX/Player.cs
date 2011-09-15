@@ -49,20 +49,20 @@ namespace SokoboX
             switch(playerFacing)
             {
                 case facing.DOWN:
-                    downCollision = (map.getTileId(downLeft) == 3);
-                    downCollision = (downCollision || (map.getTileId(downRight) == 3));
+                    downCollision = (map.getTileId(downLeft) == 2);
+                    downCollision = (downCollision || (map.getTileId(downRight) == 2));
                     return downCollision;
                 case facing.UP:
-                    upCollision = (map.getTileId(upLeft) == 3);
-                    upCollision = (upCollision || (map.getTileId(upRight) == 3));
+                    upCollision = (map.getTileId(upLeft) == 2);
+                    upCollision = (upCollision || (map.getTileId(upRight) == 2));
                     return upCollision;
                 case facing.LEFT:
-                    leftCollision = (map.getTileId(downLeft) == 3);
-                    leftCollision = (leftCollision || (map.getTileId(upLeft) == 3));
+                    leftCollision = (map.getTileId(downLeft) == 2);
+                    leftCollision = (leftCollision || (map.getTileId(upLeft) == 2));
                     return leftCollision;
                 case facing.RIGHT:
-                    rightCollision = (map.getTileId(downRight) == 3);
-                    rightCollision = (rightCollision || (map.getTileId(upRight) == 3));
+                    rightCollision = (map.getTileId(downRight) == 2);
+                    rightCollision = (rightCollision && (map.getTileId(upRight) == 2));
                     return rightCollision;
             }
             return false;
