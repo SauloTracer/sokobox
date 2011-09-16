@@ -66,10 +66,11 @@ namespace SokoboX
 
             if (!Player.caixa)
             {
+                Player.intervalo = 10.0f;
                 if (keyboardState.IsKeyDown(Keys.Up))
                 {
                     Player.playerFacing = Player.facing.UP;
-                    if (!Player.colisao(map1,gameTime, spriteBatch)) Player.position.Y -= 2;
+                    if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.Y -= 2;
                 }
                 if (keyboardState.IsKeyDown(Keys.Down))
                 {
@@ -85,6 +86,28 @@ namespace SokoboX
                 {
                     Player.playerFacing = Player.facing.RIGHT;
                     if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.X += 2;
+                }
+            }
+            else
+            {
+                int i = 0;
+                if (Player.intervalo > 0)
+                {
+                    while (Player.intervalo > 0) Player.intervalo -= gameTime.ElapsedGameTime.TotalSeconds;
+                }
+                else
+                {
+                    Player.caixaAtual.position.X += 2;
+                    Player.caixaAtual.area.X += 2;
+                    i += 2;
+                    spriteBatch.Begin();
+                    Player.caixaAtual.Draw(spriteBatch);
+                    spriteBatch.End();
+                    Player.intervalo = 10.0f;
+                    if (i >= 32)
+                    {
+                        Player.caixa = false;
+                    }
                 }
             }
 

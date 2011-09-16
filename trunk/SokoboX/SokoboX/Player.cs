@@ -46,7 +46,7 @@ namespace SokoboX
 
         }
 
-        static public bool colisao(TileMap map, GameTime tempo, SpriteBatch spriteBatch)
+        static public bool colisao(TileMap map)
         {
             Point ponto = new Point();
             bool retorno = false;
@@ -98,31 +98,6 @@ namespace SokoboX
                     break;
             }
 
-            if (caixa)
-            {
-                int i = 0;
-                intervalo = 1.0f;
-                do
-                {
-                    if (intervalo > 0)
-                    {
-                        while (intervalo > 0) intervalo -= tempo.ElapsedGameTime.TotalSeconds;
-                    }
-                    else
-                    {
-                        caixaAtual.position.X += 2;
-                        caixaAtual.area.X += 2;
-                        i += 2;
-                        spriteBatch.Begin();
-                        caixaAtual.Draw(spriteBatch);
-                        spriteBatch.End();
-                        intervalo = 1.0f;
-                    }
-
-                } while (i < 32);
-                caixa = false;
-            }
-            
             return retorno;
         }
 
