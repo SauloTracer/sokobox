@@ -70,22 +70,27 @@ namespace SokoboX
                 if (keyboardState.IsKeyDown(Keys.Up))
                 {
                     Player.playerFacing = Player.facing.UP;
-                    if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.Y -= 2;
+                    if (!Player.colisao(map1)) Player.position.Y -= 2;
                 }
                 if (keyboardState.IsKeyDown(Keys.Down))
                 {
                     Player.playerFacing = Player.facing.DOWN;
-                    if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.Y += 2;
+                    if (!Player.colisao(map1)) Player.position.Y += 2;
                 }
                 if (keyboardState.IsKeyDown(Keys.Left))
                 {
                     Player.playerFacing = Player.facing.LEFT;
-                    if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.X -= 2;
+                    if (!Player.colisao(map1)) Player.position.X -= 2;
                 }
                 if (keyboardState.IsKeyDown(Keys.Right))
                 {
                     Player.playerFacing = Player.facing.RIGHT;
-                    if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.X += 2;
+                    if (!Player.colisao(map1)) Player.position.X += 2;
+                }
+
+                if (keyboardState.IsKeyDown(Keys.Space))
+                { 
+                
                 }
             }
             else
@@ -97,16 +102,69 @@ namespace SokoboX
                 }
                 else
                 {
-                    Player.caixaAtual.position.X += 2;
-                    Player.caixaAtual.area.X += 2;
+
+                    if (Player.position.Y < Player.caixaAtual.position.Y)
+                    {
+                    Player.caixaAtual.position.Y += 2;
+                    Player.caixaAtual.area.Y += 2;
+                    Player.position.Y += 2;
                     i += 2;
                     spriteBatch.Begin();
                     Player.caixaAtual.Draw(spriteBatch);
                     spriteBatch.End();
                     Player.intervalo = 10.0f;
-                    if (i >= 32)
+                    if ((Player.caixaAtual.position.Y % 32) == 0)
                     {
                         Player.caixa = false;
+                    }
+                    }
+                    else if (Player.position.Y > Player.caixaAtual.position.Y)
+                    {
+                        Player.caixaAtual.position.Y -= 2;
+                        Player.caixaAtual.area.Y -= 2;
+                        Player.position.Y -= 2;
+                        i += 2;
+                        spriteBatch.Begin();
+                        Player.caixaAtual.Draw(spriteBatch);
+                        spriteBatch.End();
+                        Player.intervalo = 10.0f;
+                        if ((Player.caixaAtual.position.Y % 32) == 0)
+                        {
+                            Player.caixa = false;
+                        }
+
+                    }
+                    else if (Player.position.X > Player.caixaAtual.position.X)
+                    {
+                        Player.caixaAtual.position.X -= 2;
+                        Player.caixaAtual.area.X -= 2;
+                        Player.position.X -= 2;
+                        i += 2;
+                        spriteBatch.Begin();
+                        Player.caixaAtual.Draw(spriteBatch);
+                        spriteBatch.End();
+                        Player.intervalo = 10.0f;
+                        if ((Player.caixaAtual.position.X % 32) == 0)
+                        {
+                            Player.caixa = false;
+                        }
+
+                    }
+                    else if (Player.position.X < Player.caixaAtual.position.X)
+                    {
+                        Player.caixaAtual.position.X += 2;
+                        Player.caixaAtual.area.X += 2;
+                        Player.position.X += 2;
+                        i += 2;
+                        spriteBatch.Begin();
+                        Player.caixaAtual.Draw(spriteBatch);
+                        spriteBatch.End();
+                        Player.intervalo = 10.0f;
+                        if ((Player.caixaAtual.position.X % 32) == 0)
+                        {
+                            Player.caixa = false;
+                        }
+
                     }
                 }
             }
