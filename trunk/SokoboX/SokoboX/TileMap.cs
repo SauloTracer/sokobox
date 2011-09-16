@@ -66,6 +66,16 @@ namespace SokoboX
             return this.Map[y, x];
         }
 
+        public Box getCaixaAtPonto(Point ponto)
+        {
+            Rectangle posicaoXY = new Rectangle(ponto.X, ponto.Y, 1, 1);
+            foreach (Box caixa in boxList)
+            {
+                if (caixa.area.Intersects(posicaoXY)) return caixa;
+            }
+            return null;
+        }
+
     }
 
     class MapRow

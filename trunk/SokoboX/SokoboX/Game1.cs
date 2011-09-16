@@ -95,41 +95,92 @@ namespace SokoboX
             {
                 if ((Player.playerFacing == Player.facing.RIGHT) && ((map1.getTileId(new Point(((int)Player.caixaAtual.position.X/32) + 1,(int)Player.caixaAtual.position.Y/32)) == 3) || pushingRight))
                 {
-                    pushingRight = true;
-                    Player.caixaAtual.position.X += 2;
-                    Player.position.X += 2;
-                    Player.caixaAtual.area.X += 2;
-                    spriteBatch.Begin();
-                    Player.caixaAtual.Draw(spriteBatch);
-                    spriteBatch.End();
-                    if ((Player.caixaAtual.position.X % 32) == 0)
+
+                    if (podeMoverCaixa())
                     {
-                        pushingRight = false;
-                        Player.caixa = false;
-                        
+                        pushingRight = true;
+                        Player.caixaAtual.position.X += 2;
+                        Player.position.X += 2;
+                        Player.caixaAtual.area.X += 2;
+                        spriteBatch.Begin();
+                        Player.caixaAtual.Draw(spriteBatch);
+                        spriteBatch.End();
+                        if ((Player.caixaAtual.position.X % 32) == 0)
+                        {
+                            pushingRight = false;
+                            Player.caixa = false;
+
+                        }
+                    }
+                    else
+                    {
+                        finalizaMovimentoCaixa();
                     }
                  
                 }
                 if (((Player.playerFacing == Player.facing.DOWN) && (map1.getTileId(new Point(((int)Player.caixaAtual.position.X / 32), (int)(Player.caixaAtual.position.Y/32) + 1))) == 3) || pushingDown)
                 {
-                    pushingDown = true;
-                    Player.caixaAtual.position.Y += 2;
-                    Player.position.Y += 2;
-                    Player.caixaAtual.area.Y += 2;
-                    spriteBatch.Begin();
-                    Player.caixaAtual.Draw(spriteBatch);
-                    spriteBatch.End();
-                    if ((Player.caixaAtual.position.Y % 32) == 0)
+                    
+
+                    if (podeMoverCaixa())
                     {
-                        pushingDown = false;
-                        Player.caixa = false;
+                        pushingDown = true;
 
+                        Player.caixaAtual.position.Y += 2;
+                        Player.position.Y += 2;
+                        Player.caixaAtual.area.Y += 2;
+
+                        spriteBatch.Begin();
+                        Player.caixaAtual.Draw(spriteBatch);
+                        spriteBatch.End();
+                        
+                        if ((Player.caixaAtual.position.Y % 32) == 0)
+                        {
+                            finalizaMovimentoCaixa();
+                        }
                     }
-
+                    else
+                    {
+                        finalizaMovimentoCaixa();
+                    }
                 }
             }
 
             base.Update(gameTime);
+        }
+
+        protected void finalizaMovimentoCaixa()
+        {
+            pushingDown = pushingLeft = pushingUp = pushingRight = false;
+            Player.caixa = false;
+        }
+
+        protected bool podeMoverCaixa()
+        {
+            Point ponto = new Point();
+
+            switch (Player.playerFacing)
+            {
+                case Player.facing.DOWN:
+                    ponto.Y += 32;
+                    break;
+                case Player.facing.UP:
+                    ponto.Y -= 32;
+                    break;
+                case Player.facing.LEFT:
+                    ponto.X -= 32;
+                    break;
+                case Player.facing.RIGHT:
+                    ponto.X += 32;
+                    break;
+            }
+
+            ponto.X += (int)Player.caixaAtual.position.X;
+            ponto.Y += (int)Player.caixaAtual.position.Y;
+
+            Box caixaSeguinte = map1.getCaixaAtPonto(ponto);
+
+            return ((map1.getTileId(ponto) != 2) && (caixaSeguinte == null));
         }
 
         protected override void Draw(GameTime gameTime)
