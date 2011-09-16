@@ -64,26 +64,29 @@ namespace SokoboX
 
             if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
-            if (keyboardState.IsKeyDown(Keys.Up))
+            if (!Player.caixa)
             {
-                Player.playerFacing = Player.facing.UP;
-                if (!Player.colisao(map1)) Player.position.Y -= 2;
+                if (keyboardState.IsKeyDown(Keys.Up))
+                {
+                    Player.playerFacing = Player.facing.UP;
+                    if (!Player.colisao(map1,gameTime, spriteBatch)) Player.position.Y -= 2;
+                }
+                if (keyboardState.IsKeyDown(Keys.Down))
+                {
+                    Player.playerFacing = Player.facing.DOWN;
+                    if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.Y += 2;
+                }
+                if (keyboardState.IsKeyDown(Keys.Left))
+                {
+                    Player.playerFacing = Player.facing.LEFT;
+                    if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.X -= 2;
+                }
+                if (keyboardState.IsKeyDown(Keys.Right))
+                {
+                    Player.playerFacing = Player.facing.RIGHT;
+                    if (!Player.colisao(map1, gameTime, spriteBatch)) Player.position.X += 2;
+                }
             }
-            if (keyboardState.IsKeyDown(Keys.Down))
-            {
-                Player.playerFacing = Player.facing.DOWN;
-                if (!Player.colisao(map1)) Player.position.Y += 2;
-            }
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                Player.playerFacing = Player.facing.LEFT;
-                if (!Player.colisao(map1)) Player.position.X -= 2;
-            }
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                Player.playerFacing = Player.facing.RIGHT;
-                if (!Player.colisao(map1)) Player.position.X += 2;
-            }         
 
             base.Update(gameTime);
         }

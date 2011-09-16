@@ -11,6 +11,7 @@ namespace SokoboX
     {
         public Vector2 position, tileCoordinates, offset = Vector2.Zero;
         public Texture2D boxTexture;
+        public Rectangle area;
 
         public void Draw(SpriteBatch spriteBatch)
         {

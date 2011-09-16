@@ -14,9 +14,11 @@ namespace SokoboX
         static public Vector2 tileCoordinates = Vector2.Zero;
         static public facing playerFacing = facing.DOWN;
         static public Point upLeft, upRight, downLeft, downRight = new Point();
-        static public bool upCollision, downCollision, leftCollision, rightCollision;
+        static public bool upCollision, downCollision, leftCollision, rightCollision, caixa;
         static public Rectangle playerBoundaries;
         public enum facing { UP, DOWN, LEFT, RIGHT };
+        static public Box caixaAtual;
+        static public double intervalo;
 
         static public void drawPlayer(SpriteBatch spriteBatch)
         {
@@ -44,45 +46,98 @@ namespace SokoboX
 
         }
 
-        static public bool colisao(TileMap map)
+        static public bool colisao(TileMap map, GameTime tempo, SpriteBatch spriteBatch)
         {
             Point ponto = new Point();
+            bool retorno = false;
             switch(playerFacing)
             {
                 case facing.DOWN:
                     ponto = downLeft;
                     ponto.Y += 2;
                     downCollision = (map.getTileId(ponto) == 2);
+                    caixa = colisaoCaixa(map, ponto);
                     ponto = downRight;
                     ponto.Y += 2;
                     downCollision = (downCollision || (map.getTileId(ponto) == 2));
-                    return downCollision;
+                    caixa = (caixa || colisaoCaixa(map, ponto));
+                    retorno = downCollision;
+                    break;
                 case facing.UP:
                     ponto = upLeft;
                     ponto.Y -= 2;
                     upCollision = (map.getTileId(ponto) == 2);
+                    caixa = colisaoCaixa(map, ponto);
                     ponto = upRight;
                     ponto.Y -= 2;
                     upCollision = (upCollision || (map.getTileId(ponto) == 2));
-                    return upCollision;
+                    caixa = (caixa || colisaoCaixa(map, ponto));
+                    retorno = upCollision;
+                    break;
                 case facing.LEFT:
                     ponto = downLeft;
                     ponto.X -= 2;
                     leftCollision = (map.getTileId(ponto) == 2);
+                    caixa = colisaoCaixa(map, ponto);
                     ponto = upLeft;
                     ponto.X -= 2;
                     leftCollision = (leftCollision || (map.getTileId(ponto) == 2));
-                    return leftCollision;
+                    caixa = (caixa || colisaoCaixa(map, ponto));
+                    retorno = leftCollision;
+                    break;
                 case facing.RIGHT:
                     ponto = downRight;
                     ponto.X += 2;
                     rightCollision = (map.getTileId(ponto) == 2);
+                    caixa = colisaoCaixa(map, ponto);
                     ponto = upRight;
                     ponto.X += 2;
                     rightCollision = (rightCollision || (map.getTileId(ponto) == 2));
-                    return rightCollision;
+                    caixa = (caixa || colisaoCaixa(map, ponto));
+                    retorno = rightCollision;
+                    break;
+            }
+
+            if (caixa)
+            {
+                int i = 0;
+                intervalo = 1.0f;
+                do
+                {
+                    if (intervalo > 0)
+                    {
+                        while (intervalo > 0) intervalo -= tempo.ElapsedGameTime.TotalSeconds;
+                    }
+                    else
+                    {
+                        caixaAtual.position.X += 2;
+                        caixaAtual.area.X += 2;
+                        i += 2;
+                        spriteBatch.Begin();
+                        caixaAtual.Draw(spriteBatch);
+                        spriteBatch.End();
+                        intervalo = 1.0f;
+                    }
+
+                } while (i < 32);
+                caixa = false;
+            }
+            
+            return retorno;
+        }
+
+        static public bool colisaoCaixa(TileMap map, Point ponto)
+        {
+            foreach (Box caixa in map.boxList)
+            {
+                if (caixa.area.Intersects(new Rectangle(ponto.X, ponto.Y, 1, 1)))
+                {
+                    caixaAtual = caixa;
+                    return true;
+                } 
             }
             return false;
         }
+
     }
 }

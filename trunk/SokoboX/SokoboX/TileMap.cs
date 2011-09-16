@@ -51,6 +51,7 @@ namespace SokoboX
                         boxList.Last().tileCoordinates = new Vector2(column, row);
                         boxList.Last().position.X = boxList.Last().tileCoordinates.X * 32;
                         boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
+                        boxList.Last().area = new Rectangle((int)boxList.Last().position.X, (int)boxList.Last().position.Y, 32, 32);
                         Rows[row].Columns[column].TileID = 3;
                     }
                 }
