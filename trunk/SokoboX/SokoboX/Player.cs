@@ -59,7 +59,7 @@ namespace SokoboX
                     caixa = colisaoCaixa(map, ponto);
                     ponto = downRight;
                     ponto.Y += 2;
-                    downCollision = (downCollision || (map.getTileId(ponto) == 2));
+                    downCollision = (downCollision || (map.getTileId(ponto) == 2) || (colisaoCaixa(map,ponto)));
                     caixa = (caixa || colisaoCaixa(map, ponto));
                     retorno = downCollision;
                     break;
@@ -70,7 +70,7 @@ namespace SokoboX
                     caixa = colisaoCaixa(map, ponto);
                     ponto = upRight;
                     ponto.Y -= 2;
-                    upCollision = (upCollision || (map.getTileId(ponto) == 2));
+                    upCollision = (upCollision || (map.getTileId(ponto) == 2) || (colisaoCaixa(map, ponto)));
                     caixa = (caixa || colisaoCaixa(map, ponto));
                     retorno = upCollision;
                     break;
@@ -81,7 +81,7 @@ namespace SokoboX
                     caixa = colisaoCaixa(map, ponto);
                     ponto = upLeft;
                     ponto.X -= 2;
-                    leftCollision = (leftCollision || (map.getTileId(ponto) == 2));
+                    leftCollision = (leftCollision || (map.getTileId(ponto) == 2) || (colisaoCaixa(map, ponto)));
                     caixa = (caixa || colisaoCaixa(map, ponto));
                     retorno = leftCollision;
                     break;
@@ -92,7 +92,7 @@ namespace SokoboX
                     caixa = colisaoCaixa(map, ponto);
                     ponto = upRight;
                     ponto.X += 2;
-                    rightCollision = (rightCollision || (map.getTileId(ponto) == 2));
+                    rightCollision = (rightCollision || (map.getTileId(ponto) == 2) || (colisaoCaixa(map, ponto)));
                     caixa = (caixa || colisaoCaixa(map, ponto));
                     retorno = rightCollision;
                     break;
