@@ -27,7 +27,7 @@ namespace SokoboX
                 Rows.Add(thisRow);
             }
 
-            Map = MapArrays.getMap(1);
+            Map = MapArrays.getMap(2);
 
             for (int row = 0; row < Map.GetLength(0); row++)
             {
@@ -53,6 +53,15 @@ namespace SokoboX
                         boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
                         boxList.Last().area = new Rectangle((int)boxList.Last().position.X, (int)boxList.Last().position.Y, 32, 32);
                         Rows[row].Columns[column].TileID = 3;
+                    }
+                    else
+                    {
+                        if (Rows[row].Columns[column].TileID == 5)
+                        {
+                            Player.position.X = column * 32;
+                            Player.position.Y = row * 32;
+                            Rows[row].Columns[column].TileID = 3;
+                        }
                     }
                 }
             }
