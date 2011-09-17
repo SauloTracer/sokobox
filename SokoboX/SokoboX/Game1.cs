@@ -109,7 +109,12 @@ namespace SokoboX
                     Player.caixaAtual.Draw(spriteBatch);
                     spriteBatch.End();
                 }
+                else
+                {
+                    Player.caixa = false;
+                }
             }
+            
 
             base.Update(gameTime);
         }
