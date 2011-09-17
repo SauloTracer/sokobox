@@ -61,6 +61,11 @@ namespace SokoboX
 
             if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
+            if (Player.caixaAtual != null)
+            {
+                if (Player.caixaAtual.verificaFimDeJogo(map1)) this.Exit();
+            }
+
             if (!Player.caixa)
             {
                 if (Player.movendo)
