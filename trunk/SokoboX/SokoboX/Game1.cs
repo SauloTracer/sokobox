@@ -17,7 +17,6 @@ namespace SokoboX
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         TileMap map1;
-        bool pushingDown, pushingLeft, pushingUp, pushingRight = false;
         Tile tileSet = new Tile();
         int squaresAcross = 20;
         int squaresDown = 15;
@@ -58,125 +57,80 @@ namespace SokoboX
 
         protected override void Update(GameTime gameTime)
         {
-
             KeyboardState keyboardState = Keyboard.GetState();
-            
-
-            Player.updatePlayer();
 
             if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
-            if (!pushingDown && !pushingUp && !pushingLeft && !pushingRight)
+            if (!Player.caixa)
             {
-                Player.intervalo = 10.0f;
-                if (keyboardState.IsKeyDown(Keys.Up))
+                if (Player.movendo)
                 {
-                    Player.playerFacing = Player.facing.UP;
-                    if (!Player.colisao(map1)) Player.position.Y -= 2;
+                    switch (Player.playerFacing)
+                    {
+                        case Player.facing.LEFT:  Player.moveLeft(map1);  break;
+                        case Player.facing.RIGHT: Player.moveRight(map1); break;
+                        case Player.facing.UP:    Player.moveUp(map1);    break;
+                        case Player.facing.DOWN:  Player.moveDown(map1);  break;
+                    }
                 }
-                if (keyboardState.IsKeyDown(Keys.Down))
+                else
                 {
-                    Player.playerFacing = Player.facing.DOWN;
-                    if (!Player.colisao(map1)) Player.position.Y += 2;
-                }
-                if (keyboardState.IsKeyDown(Keys.Left))
-                {
-                    Player.playerFacing = Player.facing.LEFT;
-                    if (!Player.colisao(map1)) Player.position.X -= 2;
-                }
-                if (keyboardState.IsKeyDown(Keys.Right))
-                {
-                    Player.playerFacing = Player.facing.RIGHT;
-                    if (!Player.colisao(map1)) Player.position.X += 2;
+                    if (keyboardState.IsKeyDown(Keys.Up))    { Player.moveUp(map1);    Player.movendo = true; } else
+                    if (keyboardState.IsKeyDown(Keys.Down))  { Player.moveDown(map1);  Player.movendo = true; } else 
+                    if (keyboardState.IsKeyDown(Keys.Left))  { Player.moveLeft(map1);  Player.movendo = true; } else
+                    if (keyboardState.IsKeyDown(Keys.Right)) { Player.moveRight(map1); Player.movendo = true; }
                 }
             }
-
-            if (((keyboardState.IsKeyDown(Keys.Space)) || pushingRight || pushingLeft || pushingUp || pushingDown) && (Player.caixa))
+            else
             {
-                if ((Player.playerFacing == Player.facing.RIGHT) && ((map1.getTileId(new Point(((int)Player.caixaAtual.position.X/32) + 1,(int)Player.caixaAtual.position.Y/32)) == 3) || pushingRight))
+                if (podeMoverCaixa())
                 {
-
-                    if (podeMoverCaixa())
+                    switch (Player.playerFacing)
                     {
-                        pushingRight = true;
-                        Player.caixaAtual.position.X += 2;
-                        Player.position.X += 2;
-                        Player.caixaAtual.area.X += 2;
-                        spriteBatch.Begin();
-                        Player.caixaAtual.Draw(spriteBatch);
-                        spriteBatch.End();
-                        if ((Player.caixaAtual.position.X % 32) == 0)
-                        {
-                            pushingRight = false;
-                            Player.caixa = false;
-
-                        }
+                        case Player.facing.LEFT:
+                            Player.caixaAtual.moveLeft(map1);
+                            Player.moveLeft(map1);
+                            break;
+                        case Player.facing.RIGHT:
+                            Player.caixaAtual.moveRight(map1);
+                            Player.moveDown(map1);
+                            break;
+                        case Player.facing.UP:
+                            Player.caixaAtual.moveUp(map1);
+                            Player.moveUp(map1);
+                            break;
+                        case Player.facing.DOWN:
+                            Player.caixaAtual.moveDown(map1);
+                            Player.moveDown(map1);
+                            break;
                     }
-                    else
-                    {
-                        finalizaMovimentoCaixa();
-                    }
-                 
-                }
-                if (((Player.playerFacing == Player.facing.DOWN) && (map1.getTileId(new Point(((int)Player.caixaAtual.position.X / 32), (int)(Player.caixaAtual.position.Y/32) + 1))) == 3) || pushingDown)
-                {
-                    
 
-                    if (podeMoverCaixa())
-                    {
-                        pushingDown = true;
-
-                        Player.caixaAtual.position.Y += 2;
-                        Player.position.Y += 2;
-                        Player.caixaAtual.area.Y += 2;
-
-                        spriteBatch.Begin();
-                        Player.caixaAtual.Draw(spriteBatch);
-                        spriteBatch.End();
-                        
-                        if ((Player.caixaAtual.position.Y % 32) == 0)
-                        {
-                            finalizaMovimentoCaixa();
-                        }
-                    }
-                    else
-                    {
-                        finalizaMovimentoCaixa();
-                    }
+                    spriteBatch.Begin();
+                    Player.caixaAtual.Draw(spriteBatch);
+                    spriteBatch.End();
                 }
             }
 
             base.Update(gameTime);
         }
 
-        protected void finalizaMovimentoCaixa()
-        {
-            pushingDown = pushingLeft = pushingUp = pushingRight = false;
-            Player.caixa = false;
-        }
-
         protected bool podeMoverCaixa()
         {
-            Point ponto = new Point();
+            if (((Player.caixaAtual.position.X % 32) != 0) || ((Player.caixaAtual.position.Y % 32) != 0)) return true;
 
-            switch (Player.playerFacing)
-            {
-                case Player.facing.DOWN:
-                    ponto.Y += 32;
-                    break;
-                case Player.facing.UP:
-                    ponto.Y -= 32;
-                    break;
-                case Player.facing.LEFT:
-                    ponto.X -= 32;
-                    break;
-                case Player.facing.RIGHT:
-                    ponto.X += 32;
-                    break;
-            }
+            Point ponto = new Point();
+            ponto = Point.Zero;
 
             ponto.X += (int)Player.caixaAtual.position.X;
             ponto.Y += (int)Player.caixaAtual.position.Y;
+
+            switch (Player.playerFacing)
+            {
+                case Player.facing.DOWN:  ponto.Y += 32; break;
+                case Player.facing.UP:    ponto.Y -= 32; break;
+                case Player.facing.LEFT:  ponto.X -= 32; break;
+                case Player.facing.RIGHT: ponto.X += 32; break;
+            }
 
             Box caixaSeguinte = map1.getCaixaAtPonto(ponto);
 
