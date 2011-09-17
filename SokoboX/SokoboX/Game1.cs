@@ -93,7 +93,7 @@ namespace SokoboX
                             break;
                         case Player.facing.RIGHT:
                             Player.caixaAtual.moveRight(map1);
-                            Player.moveDown(map1);
+                            Player.moveRight(map1);
                             break;
                         case Player.facing.UP:
                             Player.caixaAtual.moveUp(map1);
@@ -126,9 +126,9 @@ namespace SokoboX
 
             switch (Player.playerFacing)
             {
-                case Player.facing.DOWN:  ponto.Y += 32; break;
                 case Player.facing.UP:    ponto.Y -= 32; break;
                 case Player.facing.LEFT:  ponto.X -= 32; break;
+                case Player.facing.DOWN: ponto.Y += 32; break;
                 case Player.facing.RIGHT: ponto.X += 32; break;
             }
 

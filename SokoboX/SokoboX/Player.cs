@@ -84,7 +84,7 @@ namespace SokoboX
         static public void moveDown(TileMap map)
         {
             playerFacing = facing.DOWN;
-            Point ponto = new Point((int)position.X, (int)position.Y+2);
+            Point ponto = new Point((int)position.X, (int)position.Y+33);
             if ((!caixa) && (colisaoCaixa(map, ponto)))
             {
                 caixa = true;
@@ -116,7 +116,7 @@ namespace SokoboX
         static public void moveRight(TileMap map)
         {
             playerFacing = facing.RIGHT;
-            Point ponto = new Point((int)position.X+2, (int)position.Y);
+            Point ponto = new Point((int)position.X+33, (int)position.Y);
             if ((!caixa) && (colisaoCaixa(map, ponto)))
             {
                 caixa = true;
