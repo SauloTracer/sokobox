@@ -17,9 +17,11 @@ namespace SokoboX
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         TileMap map1;
+        float rotate = 0;
         Tile tileSet = new Tile();
         int squaresAcross = 20;
         int squaresDown = 15;
+        SpriteFont font;
 
         public Game1()
         {
@@ -44,6 +46,7 @@ namespace SokoboX
             spriteBatch = new SpriteBatch(GraphicsDevice);
             tileSet.texture = Content.Load<Texture2D>("2tiles");
             Player.texture = Content.Load<Texture2D>("player");
+            font = Content.Load<SpriteFont>("SpriteFont1");
             foreach (Box box in map1.boxList)
             {
                 box.boxTexture = Content.Load<Texture2D>("box");
@@ -61,10 +64,7 @@ namespace SokoboX
 
             if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
-            if (Player.caixaAtual != null)
-            {
-                if (Player.caixaAtual.verificaFimDeJogo(map1)) this.Exit();
-            }
+
 
             if (!Player.caixa)
             {
@@ -183,6 +183,13 @@ namespace SokoboX
             }
 
             Player.drawPlayer(spriteBatch);
+
+            if (Player.caixaAtual != null)
+            {
+             if (Player.caixaAtual.verificaFimDeJogo(map1))
+            spriteBatch.DrawString(font, "VOCE VENCEU! HERP DERP!", new Vector2(((GraphicsDevice.Viewport.Width - (font.MeasureString("VOCE VENCEU! HERP DERP!").X)) / 2), GraphicsDevice.Viewport.Height / 2), Color.Black);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
