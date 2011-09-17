@@ -13,89 +13,40 @@ namespace SokoboX
         static public Vector2 position = new Vector2(160,160);
         static public Vector2 tileCoordinates = Vector2.Zero;
         static public facing playerFacing = facing.DOWN;
-        static public Point upLeft, upRight, downLeft, downRight = new Point();
-        static public bool upCollision, downCollision, leftCollision, rightCollision, caixa;
-        static public Rectangle playerBoundaries;
+        static public bool caixa, movendo;
         public enum facing { UP, DOWN, LEFT, RIGHT };
         static public Box caixaAtual;
-        static public double intervalo;
 
         static public void drawPlayer(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, Color.White);
         }
 
-        static public void updatePlayer()
+        static public bool colisaoParede(TileMap map)
         {
-            playerBoundaries = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            if (((Player.position.X % 32) != 0) || ((Player.position.Y % 32) != 0)) return false;
 
-            upLeft.X = playerBoundaries.Left + 2;
-            upLeft.Y = playerBoundaries.Top + 2;
-
-            upRight.X = playerBoundaries.Right - 2;
-            upRight.Y = playerBoundaries.Top + 2;
-
-            downLeft.X = playerBoundaries.Left + 2;
-            downLeft.Y = playerBoundaries.Bottom - 2;
-
-            downRight.X = playerBoundaries.Right - 2;
-            downRight.Y = playerBoundaries.Bottom - 2;
-
-            tileCoordinates.X = (int)(position.X / 32);
-            tileCoordinates.Y = (int)(position.Y / 32);
-
-        }
-
-        static public bool colisao(TileMap map)
-        {
             Point ponto = new Point();
             bool retorno = false;
+
             switch(playerFacing)
             {
                 case facing.DOWN:
-                    ponto = downLeft;
-                    ponto.Y += 2;
-                    downCollision = (map.getTileId(ponto) == 2);
-                    caixa = colisaoCaixa(map, ponto);
-                    ponto = downRight;
-                    ponto.Y += 2;
-                    downCollision = (downCollision || (map.getTileId(ponto) == 2) || (colisaoCaixa(map,ponto)));
-                    caixa = (caixa || colisaoCaixa(map, ponto));
-                    retorno = downCollision;
-                    break;
+                    ponto.X = (int)position.X;
+                    ponto.Y = (int)position.Y + 32;
+                    return (map.getTileId(ponto) == 2);
                 case facing.UP:
-                    ponto = upLeft;
-                    ponto.Y -= 2;
-                    upCollision = (map.getTileId(ponto) == 2);
-                    caixa = colisaoCaixa(map, ponto);
-                    ponto = upRight;
-                    ponto.Y -= 2;
-                    upCollision = (upCollision || (map.getTileId(ponto) == 2) || (colisaoCaixa(map, ponto)));
-                    caixa = (caixa || colisaoCaixa(map, ponto));
-                    retorno = upCollision;
-                    break;
+                    ponto.X = (int)position.X;
+                    ponto.Y = (int)position.Y - 32;
+                    return (map.getTileId(ponto) == 2);
                 case facing.LEFT:
-                    ponto = downLeft;
-                    ponto.X -= 2;
-                    leftCollision = (map.getTileId(ponto) == 2);
-                    caixa = colisaoCaixa(map, ponto);
-                    ponto = upLeft;
-                    ponto.X -= 2;
-                    leftCollision = (leftCollision || (map.getTileId(ponto) == 2) || (colisaoCaixa(map, ponto)));
-                    caixa = (caixa || colisaoCaixa(map, ponto));
-                    retorno = leftCollision;
-                    break;
+                    ponto.X = (int)position.X - 32;
+                    ponto.Y = (int)position.Y;
+                    return (map.getTileId(ponto) == 2);
                 case facing.RIGHT:
-                    ponto = downRight;
-                    ponto.X += 2;
-                    rightCollision = (map.getTileId(ponto) == 2);
-                    caixa = colisaoCaixa(map, ponto);
-                    ponto = upRight;
-                    ponto.X += 2;
-                    rightCollision = (rightCollision || (map.getTileId(ponto) == 2) || (colisaoCaixa(map, ponto)));
-                    caixa = (caixa || colisaoCaixa(map, ponto));
-                    retorno = rightCollision;
-                    break;
+                    ponto.X = (int)position.X + 32;
+                    ponto.Y = (int)position.Y;
+                    return (map.getTileId(ponto) == 2);
             }
 
             return retorno;
@@ -112,6 +63,82 @@ namespace SokoboX
                 } 
             }
             return false;
+        }
+
+        static public void moveUp(TileMap map)
+        {
+            playerFacing = facing.UP;
+            Point ponto = new Point((int)position.X, (int)position.Y-2);
+            if((!caixa) && (colisaoCaixa(map, ponto)))
+            {
+                caixa = true;
+                movendo = false;
+            } 
+            else 
+            {
+                if (!colisaoParede(map)) position.Y -= 2;
+            }
+            finalizaMovimento();
+        }
+
+        static public void moveDown(TileMap map)
+        {
+            playerFacing = facing.DOWN;
+            Point ponto = new Point((int)position.X, (int)position.Y+2);
+            if ((!caixa) && (colisaoCaixa(map, ponto)))
+            {
+                caixa = true;
+                movendo = false;
+            }
+            else
+            {
+                if (!Player.colisaoParede(map)) position.Y += 2;
+            }
+            finalizaMovimento();
+        }
+
+        static public void moveLeft(TileMap map)
+        {
+            playerFacing = facing.LEFT;
+            Point ponto = new Point((int)position.X-2, (int)position.Y);
+            if ((!caixa) && (colisaoCaixa(map, ponto)))
+            {
+                caixa = true;
+                movendo = false;
+            }
+            else
+            {
+                if (!Player.colisaoParede(map)) position.X -= 2;
+            }
+            finalizaMovimento();
+        }
+
+        static public void moveRight(TileMap map)
+        {
+            playerFacing = facing.RIGHT;
+            Point ponto = new Point((int)position.X+2, (int)position.Y);
+            if ((!caixa) && (colisaoCaixa(map, ponto)))
+            {
+                caixa = true;
+                movendo = false;
+            }
+            else
+            {
+                if (!colisaoParede(map)) position.X += 2;
+            }
+            finalizaMovimento();
+        }
+
+        static public void finalizaMovimento()
+        {
+            if (caixa)
+            {
+                movendo = false;
+            }
+            else
+            {
+                movendo = (((position.X % 32) != 0) || ((position.Y % 32) != 0));
+            }
         }
 
     }
