@@ -10,7 +10,7 @@ namespace SokoboX
     static class Player
     {
         static public Texture2D texture;
-        static public Vector2 position = new Vector2(160,160);
+        static public Vector2 position;
         static public Vector2 tileCoordinates = Vector2.Zero;
         static public facing playerFacing = facing.DOWN;
         static public bool caixa, movendo;
