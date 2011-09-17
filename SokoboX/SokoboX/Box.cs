@@ -51,28 +51,17 @@ namespace SokoboX
             Player.caixa = (((position.X % 32) != 0) || ((position.Y % 32) != 0));
         }
 
-       /* public bool colisao(TileMap map)
+        public bool verificaFimDeJogo(TileMap map)
         {
-            if (((Player.caixaAtual.position.X % 32) != 0) || ((Player.caixaAtual.position.Y % 32) != 0)) return true;
-
             Point ponto = new Point();
-            ponto = Point.Zero;
-
-            ponto.X += (int)Player.caixaAtual.position.X;
-            ponto.Y += (int)Player.caixaAtual.position.Y;
-
-            switch (Player.playerFacing)
+            foreach(Box caixa in map.boxList)
             {
-                case Player.facing.DOWN: ponto.Y += 32; break;
-                case Player.facing.UP: ponto.Y -= 32; break;
-                case Player.facing.LEFT: ponto.X -= 32; break;
-                case Player.facing.RIGHT: ponto.X += 32; break;
+                ponto.X = (int)caixa.position.X;
+                ponto.Y = (int)caixa.position.Y;
+                if (map.getTileId(ponto) != 4) return false;
             }
-
-            Box caixaSeguinte = map.getCaixaAtPonto(ponto);
-
-            return ((map.getTileId(ponto) == 2) || (caixaSeguinte != null));
-        }*/
+            return true;
+        }
 
     }
 }
