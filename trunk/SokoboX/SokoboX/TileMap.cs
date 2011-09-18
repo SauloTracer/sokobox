@@ -15,7 +15,7 @@ namespace SokoboX
         public int MapHeight = 15;
         public int[,] Map = new int[15, 20];
 
-        public TileMap()
+        public TileMap(int mapa)
         {
             for (int y = 0; y < MapHeight; y++)
             {
@@ -27,7 +27,7 @@ namespace SokoboX
                 Rows.Add(thisRow);
             }
 
-            Map = MapArrays.getMap(0);
+            Map = MapArrays.getMap(mapa);
 
             for (int row = 0; row < Map.GetLength(0); row++)
             {

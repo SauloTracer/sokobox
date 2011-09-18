@@ -109,5 +109,10 @@ namespace SokoboX
             return Maplist[i];
         }
 
+        public static int limite()
+        {
+            return Maplist.Count-1;
+        }
+
     }
 }
