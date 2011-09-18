@@ -17,10 +17,10 @@ namespace SokoboX
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         TileMap map1;
-        float rotate = 0;
         Tile tileSet = new Tile();
         int squaresAcross = 20;
         int squaresDown = 15;
+        int currentMap = 0;
         SpriteFont font;
 
         public Game1()
@@ -63,6 +63,11 @@ namespace SokoboX
             KeyboardState keyboardState = Keyboard.GetState();
 
             if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
+
+            //if (keyboardState.IsKeyDown(Keys.R))
+            //{
+            //    initializeMap();
+            //}
 
 
 
@@ -147,6 +152,14 @@ namespace SokoboX
             return ((map1.getTileId(ponto) != 2) && (caixaSeguinte == null));
         }
 
+        //protected void initializeMap()
+        //{
+        //    map1.Map = new int[15, 20];
+        //    map1.Rows.Clear();
+        //    map1.Map = MapArrays.getMap(currentMap);
+        //    map1.initializeMap();
+        //}
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -186,8 +199,12 @@ namespace SokoboX
 
             if (Player.caixaAtual != null)
             {
-             if (Player.caixaAtual.verificaFimDeJogo(map1))
-            spriteBatch.DrawString(font, "VOCE VENCEU! HERP DERP!", new Vector2(((GraphicsDevice.Viewport.Width - (font.MeasureString("VOCE VENCEU! HERP DERP!").X)) / 2), GraphicsDevice.Viewport.Height / 2), Color.Black);
+                if (Player.caixaAtual.verificaFimDeJogo(map1))
+                {
+                    //currentMap++;
+                    //initializeMap();
+                }
+
             }
 
             spriteBatch.End();

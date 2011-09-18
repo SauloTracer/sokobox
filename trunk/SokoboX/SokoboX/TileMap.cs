@@ -27,7 +27,7 @@ namespace SokoboX
                 Rows.Add(thisRow);
             }
 
-            Map = MapArrays.getMap(2);
+            Map = MapArrays.getMap(0);
 
             for (int row = 0; row < Map.GetLength(0); row++)
             {
