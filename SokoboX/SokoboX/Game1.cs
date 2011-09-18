@@ -34,11 +34,20 @@ namespace SokoboX
 
         protected override void Initialize()
         {
+            currentMap = 0;
             MapArrays.mapListInit();
-            map1 = new TileMap();
+            map1 = new TileMap(currentMap);
             map1.initializeMap();
             
             base.Initialize();
+        }
+
+        protected void carregaTexturaCaixas()
+        {
+            foreach (Box box in map1.boxList)
+            {
+                box.boxTexture = Content.Load<Texture2D>("box");
+            }
         }
 
         protected override void LoadContent()
@@ -47,11 +56,7 @@ namespace SokoboX
             tileSet.texture = Content.Load<Texture2D>("2tiles");
             Player.texture = Content.Load<Texture2D>("player");
             font = Content.Load<SpriteFont>("SpriteFont1");
-            foreach (Box box in map1.boxList)
-            {
-                box.boxTexture = Content.Load<Texture2D>("box");
-            }
-
+            carregaTexturaCaixas();
         }
 
         protected override void UnloadContent()
@@ -64,12 +69,12 @@ namespace SokoboX
 
             if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
-            //if (keyboardState.IsKeyDown(Keys.R))
-            //{
-            //    initializeMap();
-            //}
-
-
+            if (keyboardState.IsKeyDown(Keys.R)) 
+            {
+                map1 = new TileMap(currentMap);
+                map1.initializeMap();
+                carregaTexturaCaixas();
+            }
 
             if (!Player.caixa)
             {
@@ -152,14 +157,6 @@ namespace SokoboX
             return ((map1.getTileId(ponto) != 2) && (caixaSeguinte == null));
         }
 
-        //protected void initializeMap()
-        //{
-        //    map1.Map = new int[15, 20];
-        //    map1.Rows.Clear();
-        //    map1.Map = MapArrays.getMap(currentMap);
-        //    map1.initializeMap();
-        //}
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -192,7 +189,7 @@ namespace SokoboX
 
             foreach (Box box in map1.boxList)
             {
-                box.Draw(spriteBatch);
+                if (box.boxTexture != null) box.Draw(spriteBatch);
             }
 
             Player.drawPlayer(spriteBatch);
@@ -201,8 +198,10 @@ namespace SokoboX
             {
                 if (Player.caixaAtual.verificaFimDeJogo(map1))
                 {
-                    //currentMap++;
-                    //initializeMap();
+                    currentMap++;
+                    map1 = new TileMap(currentMap);
+                    map1.initializeMap();
+                    carregaTexturaCaixas();
                 }
 
             }
