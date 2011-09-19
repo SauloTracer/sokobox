@@ -199,9 +199,12 @@ namespace SokoboX
                 if (Player.caixaAtual.verificaFimDeJogo(map1))
                 {
                     currentMap++;
-                    map1 = new TileMap(currentMap);
-                    map1.initializeMap();
-                    carregaTexturaCaixas();
+                    if (currentMap <= MapArrays.limite())
+                    {
+                        map1 = new TileMap(currentMap);
+                        map1.initializeMap();
+                        carregaTexturaCaixas();
+                    }
                 }
 
             }
