@@ -22,6 +22,7 @@ namespace SokoboX
         int squaresDown = 15;
         int currentMap = 0;
         SpriteFont font;
+        SoundEffect soundEffect;
         KeyboardState keyboardState, previousState;
 
         public Game1()
@@ -56,6 +57,7 @@ namespace SokoboX
             spriteBatch = new SpriteBatch(GraphicsDevice);
             tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
             Player.texture = Content.Load<Texture2D>("player");
+            soundEffect = Content.Load<SoundEffect>("Sounds/Forest/grass_drag");
             font = Content.Load<SpriteFont>("SpriteFont1");
             carregaTexturaCaixas();
         }
@@ -184,7 +186,12 @@ namespace SokoboX
 
             Box caixaSeguinte = map1.getCaixaAtPonto(ponto);
 
-            return ((map1.getTileId(ponto) != 2) && (caixaSeguinte == null));
+            bool retorno = ((map1.getTileId(ponto) != 2) && (caixaSeguinte == null));
+            if (retorno)
+            {
+                soundEffect.Play();
+            }
+            return retorno; 
         }
 
         protected override void Draw(GameTime gameTime)
@@ -237,7 +244,7 @@ namespace SokoboX
                         carregaTexturaCaixas();
                         if (currentMap > 3)  //TESTE
                         {
-                            tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tiles");
+                            tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
                             foreach (Box box in map1.boxList)
                             {
                                 box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
