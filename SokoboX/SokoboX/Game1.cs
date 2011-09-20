@@ -198,6 +198,7 @@ namespace SokoboX
             {
                 if (Player.caixaAtual.verificaFimDeJogo(map1))
                 {
+                    delay(3);
                     currentMap++;
                     if (currentMap <= MapArrays.limite())
                     {
@@ -213,5 +214,12 @@ namespace SokoboX
 
             base.Draw(gameTime);
         }
+
+        public void delay(int segundos)
+        {
+            int time = Environment.TickCount;
+            while(true) if(Environment.TickCount - time >= (segundos * 1000)) break;            
+        }
+
     }
 }
