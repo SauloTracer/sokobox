@@ -24,6 +24,7 @@ namespace SokoboX
         SpriteFont font;
         SoundEffect soundEffect;
         KeyboardState keyboardState, previousState;
+        Texture2D pullMag, pushMag;
 
         public Game1()
         {
@@ -32,7 +33,6 @@ namespace SokoboX
             graphics.PreferredBackBufferWidth = 640;
             Content.RootDirectory = "Content";
         }
-
 
         protected override void Initialize()
         {
@@ -50,6 +50,18 @@ namespace SokoboX
             {
                 box.boxTexture = Content.Load<Texture2D>("Graphics/Forest/box");
             }
+
+            foreach (Magnet magnet in map1.magnetList)
+            {
+                if (magnet.pushing)
+                {
+                    magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Push");
+                }
+                else
+                {
+                    magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Pull");
+                }
+            }
         }
 
         protected override void LoadContent()
@@ -59,6 +71,8 @@ namespace SokoboX
             Player.texture = Content.Load<Texture2D>("player");
             soundEffect = Content.Load<SoundEffect>("Sounds/Forest/grass_drag");
             font = Content.Load<SpriteFont>("SpriteFont1");
+            pushMag = Content.Load<Texture2D>("Graphics/General/Magnet_Push");
+            pullMag = Content.Load<Texture2D>("Graphics/General/Magnet_Pull");
             carregaTexturaCaixas();
         }
 
@@ -84,11 +98,11 @@ namespace SokoboX
                     {
                         box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
                     }
-
+                    soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
                 }
             }
 
-            if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N))) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
+            if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N)) && (currentMap < MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
             {
                 currentMap++;
                 map1 = new TileMap(currentMap);
@@ -161,6 +175,11 @@ namespace SokoboX
                 }
             }
 
+            foreach (Magnet magnet in map1.magnetList)
+            {
+                magnet.UpdateMagnet(map1);
+            }
+
             previousState = keyboardState;
 
             base.Update(gameTime);
@@ -229,6 +248,11 @@ namespace SokoboX
                 if (box.boxTexture != null) box.Draw(spriteBatch);
             }
 
+            foreach (Magnet magnet in map1.magnetList)
+            {
+                if (magnet.texture != null) magnet.Draw(spriteBatch);
+            }
+
             Player.drawPlayer(spriteBatch);
 
             if (Player.caixaAtual != null)
@@ -237,7 +261,7 @@ namespace SokoboX
                 {
                     delay(3);
                     currentMap++;
-                    if (currentMap <= MapArrays.limite())
+                    if (currentMap < MapArrays.limite())
                     {
                         map1 = new TileMap(currentMap);
                         map1.initializeMap();

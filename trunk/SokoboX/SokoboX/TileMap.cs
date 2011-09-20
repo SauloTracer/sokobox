@@ -11,6 +11,7 @@ namespace SokoboX
     {
         public List<MapRow> Rows = new List<MapRow>();
         public List<Box> boxList = new List<Box>();
+        public List<Magnet> magnetList = new List<Magnet>();
         public int MapWidth = 20;
         public int MapHeight = 15;
         public int[,] Map = new int[15, 20];
@@ -62,6 +63,22 @@ namespace SokoboX
                             Player.position.Y = row * 32;
                             Rows[row].Columns[column].TileID = 3;
                         }
+                    }
+                    if (Rows[row].Columns[column].TileID == 8)
+                    {
+                        magnetList.Add(new Magnet(false, Magnet.Facing.LEFT));
+                        magnetList.Last().tilePosition = new Vector2(column, row);
+                        magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
+                        magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                    if (Rows[row].Columns[column].TileID == 11)
+                    {
+                        magnetList.Add(new Magnet(true, Magnet.Facing.UP));
+                        magnetList.Last().tilePosition = new Vector2(column, row);
+                        magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
+                        magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
                     }
                 }
             }
