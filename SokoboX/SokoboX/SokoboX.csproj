@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="Box.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Magnet.cs" />
     <Compile Include="MapArrays.cs" />
     <Compile Include="MapCell.cs" />
     <Compile Include="Player.cs" />

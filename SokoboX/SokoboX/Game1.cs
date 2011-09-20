@@ -22,6 +22,7 @@ namespace SokoboX
         int squaresDown = 15;
         int currentMap = 0;
         SpriteFont font;
+        KeyboardState keyboardState, previousState;
 
         public Game1()
         {
@@ -46,14 +47,14 @@ namespace SokoboX
         {
             foreach (Box box in map1.boxList)
             {
-                box.boxTexture = Content.Load<Texture2D>("box");
+                box.boxTexture = Content.Load<Texture2D>("Graphics/Forest/box");
             }
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            tileSet.texture = Content.Load<Texture2D>("2tiles");
+            tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
             Player.texture = Content.Load<Texture2D>("player");
             font = Content.Load<SpriteFont>("SpriteFont1");
             carregaTexturaCaixas();
@@ -65,16 +66,44 @@ namespace SokoboX
 
         protected override void Update(GameTime gameTime)
         {
-            KeyboardState keyboardState = Keyboard.GetState();
+            keyboardState = Keyboard.GetState();
 
             if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
-            if (keyboardState.IsKeyDown(Keys.R)) 
+            if ((keyboardState.IsKeyDown(Keys.R)) && (previousState.IsKeyUp(Keys.R))) 
             {
                 map1 = new TileMap(currentMap);
                 map1.initializeMap();
                 carregaTexturaCaixas();
+                if (currentMap > 3)  //TESTE
+                {
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
+                    foreach (Box box in map1.boxList)
+                    {
+                        box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
+                    }
+
+                }
             }
+
+            if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N))) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
+            {
+                currentMap++;
+                map1 = new TileMap(currentMap);
+                map1.initializeMap();
+                carregaTexturaCaixas();
+                if (currentMap > 3)  //TESTE
+                {
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
+                    foreach (Box box in map1.boxList)
+                    {
+                        box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
+                    }
+
+                }
+            }
+
+
 
             if (!Player.caixa)
             {
@@ -129,7 +158,8 @@ namespace SokoboX
                     Player.caixa = false;
                 }
             }
-            
+
+            previousState = keyboardState;
 
             base.Update(gameTime);
         }
@@ -205,6 +235,15 @@ namespace SokoboX
                         map1 = new TileMap(currentMap);
                         map1.initializeMap();
                         carregaTexturaCaixas();
+                        if (currentMap > 3)  //TESTE
+                        {
+                            tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tiles");
+                            foreach (Box box in map1.boxList)
+                            {
+                                box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
+                            }
+
+                        }
                     }
                 }
 
