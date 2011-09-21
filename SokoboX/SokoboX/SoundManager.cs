@@ -15,6 +15,8 @@ namespace SokoboX
     class SoundManager
     {
         SoundEffect soundEffect;
+        Song themeSong;
+        public Boolean playing = true;
         public Game1 game;
 
         public SoundManager(Game1 game)
@@ -24,12 +26,21 @@ namespace SokoboX
 
         public void soundLoad(string url)
         {
-           soundEffect = game.Content.Load<SoundEffect>("Sounds/"+url+"_drag");
+           soundEffect = game.Content.Load<SoundEffect>("Sounds/Effects/"+url+"_drag");
+           themeSong = game.Content.Load<Song>("Sounds/Music/" + url + "_theme");
         }
-
         public void playSound()
         {
             soundEffect.Play();
+        }
+
+        public void playSong()
+        {
+                MediaPlayer.Play(themeSong);
+                if (playing == false)
+                {
+                    MediaPlayer.Pause();
+                }
         }
     }
 }
