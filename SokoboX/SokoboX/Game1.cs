@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace SokoboX
 {
-    
+   
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
@@ -22,9 +22,10 @@ namespace SokoboX
         int squaresDown = 15;
         int currentMap = 0;
         SpriteFont font;
-        SoundEffect soundEffect;
         KeyboardState keyboardState, previousState;
         Texture2D pullMag, pushMag;
+        SoundManager sound = new SoundManager();
+        string World = "normal";
 
         public Game1()
         {
@@ -68,8 +69,8 @@ namespace SokoboX
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
+            sound.soundLoad(World);
             Player.texture = Content.Load<Texture2D>("player");
-            soundEffect = Content.Load<SoundEffect>("Sounds/Forest/grass_drag");
             font = Content.Load<SpriteFont>("SpriteFont1");
             pushMag = Content.Load<Texture2D>("Graphics/General/Magnet_Push");
             pullMag = Content.Load<Texture2D>("Graphics/General/Magnet_Pull");
@@ -98,7 +99,6 @@ namespace SokoboX
                     {
                         box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
                     }
-                    soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
                 }
             }
 
@@ -208,7 +208,7 @@ namespace SokoboX
             bool retorno = ((map1.getTileId(ponto) != 2) && (caixaSeguinte == null));
             if (retorno)
             {
-                soundEffect.Play();
+                sound.playSound();
             }
             return retorno; 
         }
