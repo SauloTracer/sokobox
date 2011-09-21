@@ -96,21 +96,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\Forest\grass_drag.wav">
+    <Compile Include="Sounds\grass_drag.wav">
       <Name>grass_drag</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\Industrial\metal_drag.wav">
+    <Compile Include="Sounds\metal_drag.wav">
       <Name>metal_drag</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\General\normal_drag.wav">
+    <Compile Include="Sounds\normal_drag.wav">
       <Name>normal_drag</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
