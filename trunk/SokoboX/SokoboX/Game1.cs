@@ -24,7 +24,7 @@ namespace SokoboX
         SpriteFont font;
         KeyboardState keyboardState, previousState;
         Texture2D pullMag, pushMag;
-        SoundManager sound = new SoundManager();
+        SoundManager sound;
         string World = "normal";
 
         public Game1()
@@ -33,6 +33,7 @@ namespace SokoboX
             graphics.PreferredBackBufferHeight = 480;
             graphics.PreferredBackBufferWidth = 640;
             Content.RootDirectory = "Content";
+            sound = new SoundManager(this);
         }
 
         protected override void Initialize()
@@ -94,6 +95,8 @@ namespace SokoboX
                 carregaTexturaCaixas();
                 if (currentMap > 3)  //TESTE
                 {
+                    //soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
+                    sound.soundLoad("metal");
                     tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
                     foreach (Box box in map1.boxList)
                     {
@@ -105,21 +108,24 @@ namespace SokoboX
             if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N)) && (currentMap < MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
             {
                 currentMap++;
-                map1 = new TileMap(currentMap);
-                map1.initializeMap();
-                carregaTexturaCaixas();
-                if (currentMap > 3)  //TESTE
+                if (currentMap <= MapArrays.limite())
                 {
-                    tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
-                    foreach (Box box in map1.boxList)
+                    map1 = new TileMap(currentMap);
+                    map1.initializeMap();
+                    carregaTexturaCaixas();
+                    if (currentMap > 3) 
                     {
-                        box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
-                    }
+                        //soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
+                        sound.soundLoad("metal");
+                        tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
+                        foreach (Box box in map1.boxList)
+                        {
+                            box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
+                        }
 
+                    }
                 }
             }
-
-
 
             if (!Player.caixa)
             {
@@ -268,6 +274,7 @@ namespace SokoboX
                         carregaTexturaCaixas();
                         if (currentMap > 3)  //TESTE
                         {
+                            //soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
                             tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
                             foreach (Box box in map1.boxList)
                             {
