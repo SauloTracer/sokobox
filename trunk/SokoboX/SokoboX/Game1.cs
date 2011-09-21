@@ -25,7 +25,7 @@ namespace SokoboX
         KeyboardState keyboardState, previousState;
         Texture2D pullMag, pushMag;
         SoundManager sound;
-        string World = "normal";
+        string World = "grass";
 
         public Game1()
         {
@@ -42,7 +42,6 @@ namespace SokoboX
             MapArrays.mapListInit();
             map1 = new TileMap(currentMap);
             map1.initializeMap();
-            
             base.Initialize();
         }
 
@@ -76,6 +75,7 @@ namespace SokoboX
             pushMag = Content.Load<Texture2D>("Graphics/General/Magnet_Push");
             pullMag = Content.Load<Texture2D>("Graphics/General/Magnet_Pull");
             carregaTexturaCaixas();
+            sound.playSong();
         }
 
         protected override void UnloadContent()
@@ -88,6 +88,17 @@ namespace SokoboX
 
             if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
+            if (keyboardState.IsKeyDown(Keys.M))
+            {
+                if (sound.playing != true)
+                {
+                    sound.playing = true;
+                }
+                else
+                { sound.playing = false; }
+                sound.playSong();
+            }
+
             if ((keyboardState.IsKeyDown(Keys.R)) && (previousState.IsKeyUp(Keys.R))) 
             {
                 map1 = new TileMap(currentMap);
@@ -95,8 +106,7 @@ namespace SokoboX
                 carregaTexturaCaixas();
                 if (currentMap > 3)  //TESTE
                 {
-                    //soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
-                    sound.soundLoad("metal");
+                    World = "metal";
                     tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
                     foreach (Box box in map1.boxList)
                     {
