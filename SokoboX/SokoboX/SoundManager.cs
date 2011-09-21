@@ -15,11 +15,16 @@ namespace SokoboX
     class SoundManager
     {
         SoundEffect soundEffect;
-        public ContentManager content;
+        public Game1 game;
+
+        public SoundManager(Game1 game)
+        {
+            this.game = game;
+        }
 
         public void soundLoad(string url)
         {
-           soundEffect = content.Load<SoundEffect>("Sounds/"+url);
+           soundEffect = game.Content.Load<SoundEffect>("Sounds/"+url+"_drag");
         }
 
         public void playSound()
