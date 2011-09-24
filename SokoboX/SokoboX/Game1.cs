@@ -113,7 +113,7 @@ namespace SokoboX
                     map1 = new TileMap(currentMap);
                     map1.initializeMap();
                     carregaTexturaCaixas();
-                    if (currentMap > 3)  //TESTE
+                    if (currentMap > 9)  //TESTE
                     {
                         World = "metal";
                         tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
@@ -127,12 +127,12 @@ namespace SokoboX
                 if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N)) && (currentMap < MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
                 {
                     currentMap++;
-                    if (currentMap <= MapArrays.limite())
+                    if (currentMap < MapArrays.limite())
                     {
                         map1 = new TileMap(currentMap);
                         map1.initializeMap();
                         carregaTexturaCaixas();
-                        if (currentMap > 3)
+                        if (currentMap > 9)
                         {
                             sound.soundLoad("metal");
                             tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
@@ -299,7 +299,7 @@ namespace SokoboX
                             map1 = new TileMap(currentMap);
                             map1.initializeMap();
                             carregaTexturaCaixas();
-                            if (currentMap > 3)  //TESTE
+                            if (currentMap > 9)  //TESTE
                             {
                                 //soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
                                 tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
