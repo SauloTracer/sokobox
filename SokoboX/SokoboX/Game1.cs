@@ -134,7 +134,6 @@ namespace SokoboX
                         carregaTexturaCaixas();
                         if (currentMap > 3)
                         {
-                            //soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
                             sound.soundLoad("metal");
                             tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
                             foreach (Box box in map1.boxList)
@@ -171,8 +170,10 @@ namespace SokoboX
                 }
                 else
                 {
-                    if (podeMoverCaixa(Player.caixaAtual))
+                    if (Player.caixaAtual.podeMoverCaixa(map1))
                     {
+
+                        if (!Player.caixaAtual.movendo) sound.playSound();
                         switch (Player.playerFacing)
                         {
                             case Player.facing.LEFT:
@@ -239,34 +240,6 @@ namespace SokoboX
 
             
             base.Update(gameTime);
-        }
-
-        private bool podeMoverCaixa(Box caixa)
-        {
-            if (((caixa.position.X % 32) != 0) || ((caixa.position.Y % 32) != 0)) return true;
-
-            Point ponto = new Point();
-            ponto = Point.Zero;
-
-            ponto.X += (int)caixa.position.X;
-            ponto.Y += (int)caixa.position.Y;
-
-            switch (Player.playerFacing)
-            {
-                case Player.facing.UP:    ponto.Y -= 32; break;
-                case Player.facing.LEFT:  ponto.X -= 32; break;
-                case Player.facing.DOWN: ponto.Y += 32; break;
-                case Player.facing.RIGHT: ponto.X += 32; break;
-            }
-
-            Box caixaSeguinte = map1.getCaixaAtPonto(ponto);
-
-            bool retorno = ((map1.getTileId(ponto) != 2) && (caixaSeguinte == null));
-            if (retorno)
-            {
-                sound.playSound();
-            }
-            return retorno; 
         }
 
         protected override void Draw(GameTime gameTime)

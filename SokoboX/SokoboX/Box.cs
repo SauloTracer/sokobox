@@ -70,5 +70,30 @@ namespace SokoboX
             return true;
         }
 
+        public bool podeMoverCaixa(TileMap map)
+        {
+            if (((position.X % 32) != 0) || ((position.Y % 32) != 0)) return true;
+
+            Point ponto = new Point();
+            ponto = Point.Zero;
+
+            ponto.X += (int)position.X;
+            ponto.Y += (int)position.Y;
+
+            switch (Player.playerFacing)
+            {
+                case Player.facing.UP: ponto.Y -= 32; break;
+                case Player.facing.LEFT: ponto.X -= 32; break;
+                case Player.facing.DOWN: ponto.Y += 32; break;
+                case Player.facing.RIGHT: ponto.X += 32; break;
+            }
+
+            Box caixaSeguinte = map.getCaixaAtPonto(ponto);
+
+            bool retorno = ((map.getTileId(ponto) != 2) && (caixaSeguinte == null));
+
+            return retorno;
+        }
+
     }
 }
