@@ -213,10 +213,22 @@ namespace SokoboX
             if (currentScreen == Screens.MENU)
             {
                 menu.Update(keyboardState, previousState);
-                if (menu.Selected == Menu.Selection.START)
+                switch (menu.Selected)
                 {
-                    currentScreen = Screens.GAME;
-                }
+
+                    case Menu.Selection.START:
+                        currentScreen = Screens.GAME;
+                        break;
+                    case Menu.Selection.OPTIONS:
+                        currentScreen = Screens.OPTIONS;
+                        break;
+                    case Menu.Selection.EXIT:
+                        this.Exit();
+                        break;
+                    case Menu.Selection.NONE:
+                        break;
+                
+            }
             }
             previousState = keyboardState;
 
