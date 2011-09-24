@@ -42,8 +42,10 @@ namespace SokoboX
                     if (keyboardState.IsKeyDown(Keys.Enter) && (previousState.IsKeyUp(Keys.Enter))) { Selected = Selection.START; }
                     break;
                 case Selection.OPTIONS:
+                    if (keyboardState.IsKeyDown(Keys.Enter) && (previousState.IsKeyUp(Keys.Enter))) { Selected = Selection.OPTIONS; }
                     break;
                 case Selection.EXIT:
+                    if (keyboardState.IsKeyDown(Keys.Enter) && (previousState.IsKeyUp(Keys.Enter))) { Selected = Selection.EXIT; }
                     break;
 
             }
