@@ -170,9 +170,19 @@ namespace SokoboX
                 }
                 else
                 {
-                    if (Player.caixaAtual.podeMoverCaixa(map1))
+                    char dir;
+                    dir = ' ';
+                    switch (Player.playerFacing)
                     {
-
+                        case Player.facing.LEFT: dir = 'L'; break;
+                        case Player.facing.RIGHT: dir = 'O'; break;
+                        case Player.facing.UP: dir = 'N'; break;
+                        case Player.facing.DOWN: dir = 'S'; break;
+                    }
+                    
+                    if (Player.caixaAtual.podeMoverCaixa(map1,dir))
+                    {
+                        
                         if (!Player.caixaAtual.movendo) sound.playSound();
                         switch (Player.playerFacing)
                         {
