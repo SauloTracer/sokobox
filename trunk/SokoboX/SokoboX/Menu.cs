@@ -61,7 +61,7 @@ namespace SokoboX
                     arrowSelectionIndex--;
                 else arrowSelectionIndex = strings.Count() - 1;
             }
-            arrowPosition = new Vector2(360, menuStartY + (32 * arrowSelectionIndex));
+            arrowPosition = new Vector2(200, menuStartY + (32 * arrowSelectionIndex));
             switch (arrowSelectionIndex)
             {
                 case 0:
@@ -81,7 +81,7 @@ namespace SokoboX
             spriteBatch.Draw(background, Vector2.Zero, Color.White);
             for (int i = 0; i < strings.Count(); i++)
             {
-                spriteBatch.DrawString(spriteFont, strings[i], new Vector2(400, menuStartY + (i * 32)), Color.White);
+                spriteBatch.DrawString(spriteFont, strings[i], new Vector2(240, menuStartY + (i * 32)), Color.White);
             }
             spriteBatch.Draw(arrowTexture, arrowPosition, Color.White);
         }
