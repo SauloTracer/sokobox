@@ -55,7 +55,7 @@ namespace SokoboX
 
         public void finalizaMovimento()
         {
-            movendo = (((position.X % 32) != 0) || ((position.Y % 32) != 0));
+            movendo = ((((position.X % 32) != 0) || ((position.Y % 32) != 0))||(slide));
         }
 
         public bool verificaFimDeJogo(TileMap map)
