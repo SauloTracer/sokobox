@@ -64,6 +64,22 @@ namespace SokoboX
                             Rows[row].Columns[column].TileID = 3;
                         }
                     }
+                    if (Rows[row].Columns[column].TileID == 6)
+                    {
+                        magnetList.Add(new Magnet(false, Magnet.Facing.RIGHT));
+                        magnetList.Last().tilePosition = new Vector2(column, row);
+                        magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
+                        magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                    if (Rows[row].Columns[column].TileID == 7)
+                    {
+                        magnetList.Add(new Magnet(false, Magnet.Facing.UP));
+                        magnetList.Last().tilePosition = new Vector2(column, row);
+                        magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
+                        magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
                     if (Rows[row].Columns[column].TileID == 8)
                     {
                         magnetList.Add(new Magnet(false, Magnet.Facing.LEFT));
@@ -72,9 +88,41 @@ namespace SokoboX
                         magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
                         Rows[row].Columns[column].TileID = 3;
                     }
+                    if (Rows[row].Columns[column].TileID == 9)
+                    {
+                        magnetList.Add(new Magnet(false, Magnet.Facing.DOWN));
+                        magnetList.Last().tilePosition = new Vector2(column, row);
+                        magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
+                        magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                    if (Rows[row].Columns[column].TileID == 10)
+                    {
+                        magnetList.Add(new Magnet(true, Magnet.Facing.RIGHT));
+                        magnetList.Last().tilePosition = new Vector2(column, row);
+                        magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
+                        magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
                     if (Rows[row].Columns[column].TileID == 11)
                     {
                         magnetList.Add(new Magnet(true, Magnet.Facing.UP));
+                        magnetList.Last().tilePosition = new Vector2(column, row);
+                        magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
+                        magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                    if (Rows[row].Columns[column].TileID == 12)
+                    {
+                        magnetList.Add(new Magnet(true, Magnet.Facing.LEFT));
+                        magnetList.Last().tilePosition = new Vector2(column, row);
+                        magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
+                        magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                    if (Rows[row].Columns[column].TileID == 13)
+                    {
+                        magnetList.Add(new Magnet(true, Magnet.Facing.DOWN));
                         magnetList.Last().tilePosition = new Vector2(column, row);
                         magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
                         magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;

@@ -28,7 +28,7 @@ namespace SokoboX
                 case Facing.RIGHT:
                     foreach (Box box in map1.boxList)
                     {
-                        if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) > tilePosition.X))
+                        if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) > tilePosition.X) && (Player.movendo == false))
                         {
                             if (pushing) 
                             {
@@ -62,7 +62,7 @@ namespace SokoboX
                 case Facing.UP:
                     foreach (Box box in map1.boxList)
                     {
-                        if (((box.position.Y / 32) > tilePosition.Y) && ((box.position.X / 32) == tilePosition.X))
+                        if (((box.position.Y / 32) < tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
                         {
                             if (pushing) 
                             {
@@ -79,7 +79,7 @@ namespace SokoboX
                 case Facing.DOWN:
                     foreach (Box box in map1.boxList)
                     {
-                        if (((box.position.Y / 32) < tilePosition.Y) && ((box.position.X / 32) == tilePosition.X))
+                        if (((box.position.Y / 32) > tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
                         {
                             if (!pushing)
                             {
