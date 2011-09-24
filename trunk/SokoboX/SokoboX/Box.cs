@@ -12,6 +12,13 @@ namespace SokoboX
         public Vector2 position, tileCoordinates, offset = Vector2.Zero;
         public Texture2D boxTexture;
         public Rectangle area;
+        public bool movendo, slide;
+
+        public Box(bool slide = false)
+        {
+            movendo = false;
+            this.slide = slide;
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -48,7 +55,7 @@ namespace SokoboX
 
         public void finalizaMovimento()
         {
-            Player.caixa = (((position.X % 32) != 0) || ((position.Y % 32) != 0));
+            movendo = (((position.X % 32) != 0) || ((position.Y % 32) != 0));
         }
 
         public bool verificaFimDeJogo(TileMap map)
