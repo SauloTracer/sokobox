@@ -143,6 +143,10 @@ namespace SokoboX
 
                         }
                     }
+                    else
+                    {
+                        currentMap--;
+                    }
                 }
 
                 if (!Player.caixa)
@@ -319,6 +323,10 @@ namespace SokoboX
                                 }
 
                             }
+                        }
+                        else 
+                        { 
+                            currentMap--; 
                         }
                     }
 

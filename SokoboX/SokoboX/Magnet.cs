@@ -30,10 +30,13 @@ namespace SokoboX
                     {
                         if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) > tilePosition.X))
                         {
-                            if (box.podeMoverCaixa(map1,'O'))
+                            if (pushing) 
                             {
-                                if (pushing) box.moveRight(map1);
-                                else box.moveLeft(map1);
+                                if (box.podeMoverCaixa(map1,'O')) box.moveRight(map1);
+                            }
+                            else
+                            {
+                                if (box.podeMoverCaixa(map1,'L')) box.moveLeft(map1);
                             }
                         }
                     }
@@ -44,10 +47,13 @@ namespace SokoboX
                     {
                         if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) < tilePosition.X) && (Player.movendo == false))
                         {
-                            if (box.podeMoverCaixa(map1,'L'))
+                            if (!pushing) 
                             {
-                                if (!pushing) box.moveRight(map1);
-                                else box.moveLeft(map1);
+                                if (box.podeMoverCaixa(map1,'O')) box.moveRight(map1);
+                            }
+                            else 
+                            {
+                                if (box.podeMoverCaixa(map1,'L')) box.moveLeft(map1);
                             }
                         }
                     }
@@ -58,10 +64,13 @@ namespace SokoboX
                     {
                         if (((box.position.Y / 32) > tilePosition.Y) && ((box.position.X / 32) == tilePosition.X))
                         {
-                            if (box.podeMoverCaixa(map1,'N'))
+                            if (pushing) 
                             {
-                                if (pushing) box.moveUp(map1);
-                                else box.moveDown(map1);
+                                if (box.podeMoverCaixa(map1, 'N')) box.moveUp(map1);
+                            }
+                            else
+                            {
+                                if (box.podeMoverCaixa(map1, 'S')) box.moveDown(map1);
                             }
                         }
                     }
@@ -72,10 +81,13 @@ namespace SokoboX
                     {
                         if (((box.position.Y / 32) < tilePosition.Y) && ((box.position.X / 32) == tilePosition.X))
                         {
-                            if (box.podeMoverCaixa(map1,'S'))
+                            if (!pushing)
                             {
-                                if (!pushing) box.moveUp(map1);
-                                else box.moveDown(map1);
+                                if (box.podeMoverCaixa(map1, 'N')) box.moveUp(map1);
+                            }
+                            else
+                            {
+                                if (box.podeMoverCaixa(map1, 'S')) box.moveDown(map1);
                             }
                         }
                     }
