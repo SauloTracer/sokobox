@@ -46,6 +46,7 @@ namespace SokoboX
             map1 = new TileMap(currentMap);
             map1.initializeMap();
             menu.Initialize(this.Content);
+            Player.podeMover = true;
             base.Initialize();
         }
 
@@ -224,6 +225,7 @@ namespace SokoboX
 
                 foreach (Magnet magnet in map1.magnetList)
                 {
+                    Player.podeMover = false;
                     magnet.UpdateMagnet(map1);
                 }
                 #endregion
@@ -234,7 +236,6 @@ namespace SokoboX
                 menu.Update(keyboardState, previousState);
                 switch (menu.Selected)
                 {
-
                     case Menu.Selection.START:
                         currentScreen = Screens.GAME;
                         break;
@@ -246,7 +247,6 @@ namespace SokoboX
                         break;
                     case Menu.Selection.NONE:
                         break;
-                
                 }
             }
 
