@@ -15,6 +15,7 @@ namespace SokoboX
         public enum Facing {UP, LEFT, RIGHT, DOWN};
         public Facing facing;
 
+
         public Magnet(bool _pushing, Facing _facing)
         {
             facing = _facing;
@@ -23,76 +24,111 @@ namespace SokoboX
 
         public void UpdateMagnet(TileMap map1)
         {
-            switch (facing)
+            Player.podeMover = false;
+            bool liberaPlayer = true;
+
+            foreach (Box box in map1.boxList)
             {
-                case Facing.RIGHT:
-                    foreach (Box box in map1.boxList)
-                    {
+                switch (facing)
+                {
+                    case Facing.RIGHT:
+
                         if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) > tilePosition.X) && (Player.movendo == false))
                         {
-                            if (pushing) 
+                            if (pushing)
                             {
-                                if (box.podeMoverCaixa(map1,'O')) box.moveRight(map1);
+                                if (box.podeMoverCaixa(map1, 'O'))
+                                {
+                                    Player.podeMover = liberaPlayer = false;
+                                    box.moveRight(map1);
+                                }
                             }
                             else
                             {
-                                if (box.podeMoverCaixa(map1,'L')) box.moveLeft(map1);
+                                if (box.podeMoverCaixa(map1, 'L'))
+                                {
+                                    Player.podeMover = liberaPlayer = false;
+                                    box.moveLeft(map1);
+                                }
                             }
                         }
-                    }
-                    break;
+                        break;
 
-                case Facing.LEFT:
-                    foreach (Box box in map1.boxList)
-                    {
+                    case Facing.LEFT:
+
                         if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) < tilePosition.X) && (Player.movendo == false))
                         {
-                            if (!pushing) 
+                            if (!pushing)
                             {
-                                if (box.podeMoverCaixa(map1,'O')) box.moveRight(map1);
-                            }
-                            else 
-                            {
-                                if (box.podeMoverCaixa(map1,'L')) box.moveLeft(map1);
-                            }
-                        }
-                    }
-                    break;
-
-                case Facing.UP:
-                    foreach (Box box in map1.boxList)
-                    {
-                        if (((box.position.Y / 32) < tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
-                        {
-                            if (pushing) 
-                            {
-                                if (box.podeMoverCaixa(map1, 'N')) box.moveUp(map1);
+                                if (box.podeMoverCaixa(map1, 'O'))
+                                {
+                                    Player.podeMover = liberaPlayer = false;
+                                    box.moveRight(map1);
+                                }
                             }
                             else
                             {
-                                if (box.podeMoverCaixa(map1, 'S')) box.moveDown(map1);
+                                if (box.podeMoverCaixa(map1, 'L'))
+                                {
+                                    Player.podeMover = liberaPlayer = false;
+                                    box.moveLeft(map1);
+                                }
                             }
                         }
-                    }
-                    break;
 
-                case Facing.DOWN:
-                    foreach (Box box in map1.boxList)
-                    {
+                        break;
+
+                    case Facing.UP:
+
+                        if (((box.position.Y / 32) < tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
+                        {
+                            if (pushing)
+                            {
+                                if (box.podeMoverCaixa(map1, 'N'))
+                                {
+                                    Player.podeMover = liberaPlayer = false;
+                                    box.moveUp(map1);
+                                }
+                            }
+                            else
+                            {
+                                if (box.podeMoverCaixa(map1, 'S'))
+                                {
+                                    Player.podeMover = liberaPlayer = false;
+                                    box.moveDown(map1);
+                                }
+                            }
+                        }
+
+                        break;
+
+                    case Facing.DOWN:
+
                         if (((box.position.Y / 32) > tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
                         {
                             if (!pushing)
                             {
-                                if (box.podeMoverCaixa(map1, 'N')) box.moveUp(map1);
+                                if (box.podeMoverCaixa(map1, 'N'))
+                                {
+                                    Player.podeMover = liberaPlayer = false;
+                                    box.moveUp(map1);
+                                }
                             }
                             else
                             {
-                                if (box.podeMoverCaixa(map1, 'S')) box.moveDown(map1);
+                                if (box.podeMoverCaixa(map1, 'S'))
+                                {
+                                    Player.podeMover = liberaPlayer = false;
+                                    box.moveDown(map1);
+                                }
                             }
                         }
-                    }
-                    break;
+
+                        break;
+                }
             }
+
+            Player.podeMover = liberaPlayer;
         }
 
         public void Draw(SpriteBatch spriteBatch)

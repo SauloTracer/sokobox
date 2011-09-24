@@ -13,7 +13,7 @@ namespace SokoboX
         static public Vector2 position;
         static public Vector2 tileCoordinates = Vector2.Zero;
         static public facing playerFacing = facing.DOWN;
-        static public bool caixa, movendo;
+        static public bool caixa, movendo, podeMover;
         public enum facing { UP, DOWN, LEFT, RIGHT };
         static public Box caixaAtual;
 
@@ -24,6 +24,7 @@ namespace SokoboX
 
         static public bool colisaoParede(TileMap map)
         {
+            if (!podeMover) return true;
             if (((Player.position.X % 32) != 0) || ((Player.position.Y % 32) != 0)) return false;
 
             Point ponto = new Point();
@@ -68,65 +69,77 @@ namespace SokoboX
         static public void moveUp(TileMap map)
         {
             playerFacing = facing.UP;
-            Point ponto = new Point((int)position.X, (int)position.Y-2);
-            if((!caixa) && (colisaoCaixa(map, ponto)))
+            if (podeMover)
             {
-                caixa = true;
-                movendo = false;
-            } 
-            else 
-            {
-                if (!colisaoParede(map)) position.Y -= 2;
+                Point ponto = new Point((int)position.X, (int)position.Y - 2);
+                if ((!caixa) && (colisaoCaixa(map, ponto)))
+                {
+                    caixa = true;
+                    movendo = false;
+                }
+                else
+                {
+                    if (!colisaoParede(map)) position.Y -= 2;
+                }
+                finalizaMovimento();
             }
-            finalizaMovimento();
         }
 
         static public void moveDown(TileMap map)
         {
             playerFacing = facing.DOWN;
-            Point ponto = new Point((int)position.X, (int)position.Y+33);
-            if ((!caixa) && (colisaoCaixa(map, ponto)))
+            if (podeMover)
             {
-                caixa = true;
-                movendo = false;
+                Point ponto = new Point((int)position.X, (int)position.Y + 33);
+                if ((!caixa) && (colisaoCaixa(map, ponto)))
+                {
+                    caixa = true;
+                    movendo = false;
+                }
+                else
+                {
+                    if (!Player.colisaoParede(map)) position.Y += 2;
+                }
+                finalizaMovimento();
             }
-            else
-            {
-                if (!Player.colisaoParede(map)) position.Y += 2;
-            }
-            finalizaMovimento();
         }
 
         static public void moveLeft(TileMap map)
         {
             playerFacing = facing.LEFT;
-            Point ponto = new Point((int)position.X-2, (int)position.Y);
-            if ((!caixa) && (colisaoCaixa(map, ponto)))
+            if (podeMover)
             {
-                caixa = true;
-                movendo = false;
+                Point ponto = new Point((int)position.X - 2, (int)position.Y);
+                if ((!caixa) && (colisaoCaixa(map, ponto)))
+                {
+                    caixa = true;
+                    movendo = false;
+                }
+                else
+                {
+                    if (!Player.colisaoParede(map)) position.X -= 2;
+                }
+                finalizaMovimento();
             }
-            else
-            {
-                if (!Player.colisaoParede(map)) position.X -= 2;
-            }
-            finalizaMovimento();
         }
 
         static public void moveRight(TileMap map)
         {
             playerFacing = facing.RIGHT;
-            Point ponto = new Point((int)position.X+33, (int)position.Y);
-            if ((!caixa) && (colisaoCaixa(map, ponto)))
+            if (podeMover)
             {
-                caixa = true;
-                movendo = false;
+                Point ponto = new Point((int)position.X + 33, (int)position.Y);
+                if ((!caixa) && (colisaoCaixa(map, ponto)))
+                {
+                    caixa = true;
+                    movendo = false;
+                }
+                else
+                {
+                    if (!colisaoParede(map)) position.X += 2;
+                }
+                finalizaMovimento();
             }
-            else
-            {
-                if (!colisaoParede(map)) position.X += 2;
-            }
-            finalizaMovimento();
         }
 
         static public void finalizaMovimento()
