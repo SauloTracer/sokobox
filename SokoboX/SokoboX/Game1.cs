@@ -171,25 +171,29 @@ namespace SokoboX
                 }
                 else
                 {
-                    if (podeMoverCaixa())
+                    if (podeMoverCaixa(Player.caixaAtual))
                     {
                         switch (Player.playerFacing)
                         {
                             case Player.facing.LEFT:
                                 Player.caixaAtual.moveLeft(map1);
                                 Player.moveLeft(map1);
+                                Player.caixa = Player.caixaAtual.movendo;
                                 break;
                             case Player.facing.RIGHT:
                                 Player.caixaAtual.moveRight(map1);
                                 Player.moveRight(map1);
+                                Player.caixa = Player.caixaAtual.movendo;
                                 break;
                             case Player.facing.UP:
                                 Player.caixaAtual.moveUp(map1);
                                 Player.moveUp(map1);
+                                Player.caixa = Player.caixaAtual.movendo;
                                 break;
                             case Player.facing.DOWN:
                                 Player.caixaAtual.moveDown(map1);
                                 Player.moveDown(map1);
+                                Player.caixa = Player.caixaAtual.movendo;
                                 break;
                         }
 
@@ -228,23 +232,24 @@ namespace SokoboX
                     case Menu.Selection.NONE:
                         break;
                 
+                }
             }
-            }
+
             previousState = keyboardState;
 
             
             base.Update(gameTime);
         }
 
-        protected bool podeMoverCaixa()
+        private bool podeMoverCaixa(Box caixa)
         {
-            if (((Player.caixaAtual.position.X % 32) != 0) || ((Player.caixaAtual.position.Y % 32) != 0)) return true;
+            if (((caixa.position.X % 32) != 0) || ((caixa.position.Y % 32) != 0)) return true;
 
             Point ponto = new Point();
             ponto = Point.Zero;
 
-            ponto.X += (int)Player.caixaAtual.position.X;
-            ponto.Y += (int)Player.caixaAtual.position.Y;
+            ponto.X += (int)caixa.position.X;
+            ponto.Y += (int)caixa.position.Y;
 
             switch (Player.playerFacing)
             {
