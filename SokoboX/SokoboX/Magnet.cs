@@ -39,7 +39,7 @@ namespace SokoboX
                 case Facing.LEFT:
                     foreach (Box box in map1.boxList)
                     {
-                        if (((box.position.Y/32) == tilePosition.Y) && ((box.position.X/32) < tilePosition.X))
+                        if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) < tilePosition.X) && (Player.movendo == false))
                         {
                             if (!pushing) box.moveRight(map1);
                             else box.moveLeft(map1);
