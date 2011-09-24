@@ -36,11 +36,14 @@ namespace SokoboX
 
         public void playSong()
         {
+            if (playing == true)
+            {
                 MediaPlayer.Play(themeSong);
-                if (playing == false)
-                {
-                    MediaPlayer.Pause();
-                }
+            }
+            if (playing == false)
+            {
+                 MediaPlayer.Pause();
+            }
         }
     }
 }
