@@ -12,14 +12,16 @@ namespace SokoboX
         public List<MapRow> Rows = new List<MapRow>();
         public List<Box> boxList = new List<Box>();
         public List<Magnet> magnetList = new List<Magnet>();
-        public List<FakeWall> fakeWallList = new List<FakeWall>();
-        public List<Button> buttonList = new List<Button>();
         public int MapWidth = 20;
         public int MapHeight = 15;
         public int[,] Map = new int[15, 20];
+        public int currentMap;
 
         public TileMap(int mapa)
         {
+
+            currentMap = mapa;
+
             for (int y = 0; y < MapHeight; y++)
             {
                 MapRow thisRow = new MapRow();
@@ -42,8 +44,26 @@ namespace SokoboX
             
         }
 
-        public void initializeMap()
+        public void initializeMap(SoundManager sound)
         {
+
+            if (currentMap <= 8)
+            {
+                if (sound.tema != "grass")
+                {
+                    sound.soundLoad("grass");
+                    sound.playSong();
+                }
+            }                
+            if (currentMap >= 9 && currentMap <= 17)
+            {
+                if (sound.tema != "metal")
+                {
+                    sound.soundLoad("metal");
+                    sound.playSong();
+                }
+            }
+            #region Init_Tiles
             for (int row = 0; row < Rows.Count(); row++)
             {
                 for (int column = 0; column < Rows[row].Columns.Count(); column++)
@@ -132,6 +152,7 @@ namespace SokoboX
                     }
                 }
             }
+            #endregion
         }
 
         public int getTileId(Point posicao)
