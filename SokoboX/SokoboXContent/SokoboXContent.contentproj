@@ -129,15 +129,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphics\General\menu_background.jpg">
-      <Name>menu_background</Name>
+    <Compile Include="Graphics\General\arrow.png">
+      <Name>arrow</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphics\General\arrow.png">
-      <Name>arrow</Name>
+    <Compile Include="Graphics\General\menu_background.jpg">
+      <Name>menu_background</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
