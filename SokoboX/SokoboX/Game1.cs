@@ -24,11 +24,10 @@ namespace SokoboX
         int currentMap = 0;
         SpriteFont font;
         KeyboardState keyboardState, previousState;
-        Texture2D pullMag, pushMag, redButton, blueButton;
+        Texture2D pullMag, pushMag;
         SoundManager sound;
         enum Screens { MENU, GAME, OPTIONS };
         Screens currentScreen = Screens.MENU;
-        string World = "grass";
 
         public Game1()
         {
@@ -44,7 +43,7 @@ namespace SokoboX
             currentMap = 0;
             MapArrays.mapListInit();
             map1 = new TileMap(currentMap);
-            map1.initializeMap();
+            map1.initializeMap(sound);
             menu.Initialize(this.Content);
             Player.podeMover = true;
             base.Initialize();
@@ -74,12 +73,12 @@ namespace SokoboX
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
-            sound.soundLoad(World);
             Player.texture = Content.Load<Texture2D>("player");
             font = Content.Load<SpriteFont>("SpriteFont1");
             pushMag = Content.Load<Texture2D>("Graphics/General/Magnet_Push");
             pullMag = Content.Load<Texture2D>("Graphics/General/Magnet_Pull");
             carregaTexturaCaixas();
+            sound.soundLoad("menu");
             sound.playSong();
         }
 
@@ -112,11 +111,10 @@ namespace SokoboX
                 if ((keyboardState.IsKeyDown(Keys.R)) && (previousState.IsKeyUp(Keys.R)))
                 {
                     map1 = new TileMap(currentMap);
-                    map1.initializeMap();
+                    map1.initializeMap(sound);
                     carregaTexturaCaixas();
                     if (currentMap >= 9)  //TESTE
                     {
-                        World = "metal";
                         tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
                         foreach (Box box in map1.boxList)
                         {
@@ -131,11 +129,10 @@ namespace SokoboX
                     if (currentMap <= MapArrays.limite())
                     {
                         map1 = new TileMap(currentMap);
-                        map1.initializeMap();
+                        map1.initializeMap(sound);
                         carregaTexturaCaixas();
                         if (currentMap >= 9)
                         {
-                            sound.soundLoad("metal");
                             tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
                             foreach (Box box in map1.boxList)
                             {
@@ -238,6 +235,8 @@ namespace SokoboX
                 {
                     case Menu.Selection.START:
                         currentScreen = Screens.GAME;
+                        sound.soundLoad("grass");
+                        sound.playSong();
                         break;
                     case Menu.Selection.OPTIONS:
                         currentScreen = Screens.OPTIONS;
@@ -311,7 +310,7 @@ namespace SokoboX
                         if (currentMap <= MapArrays.limite())
                         {
                             map1 = new TileMap(currentMap);
-                            map1.initializeMap();
+                            map1.initializeMap(sound);
                             carregaTexturaCaixas();
                             if (currentMap >= 9)  //TESTE
                             {
