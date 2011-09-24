@@ -12,6 +12,8 @@ namespace SokoboX
         public List<MapRow> Rows = new List<MapRow>();
         public List<Box> boxList = new List<Box>();
         public List<Magnet> magnetList = new List<Magnet>();
+        public List<Button> buttonList = new List<Button>();
+        public List<FakeWall> fakeWallList = new List<FakeWall>();
         public int MapWidth = 20;
         public int MapHeight = 15;
         public int[,] Map = new int[15, 20];
