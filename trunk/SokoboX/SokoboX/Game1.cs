@@ -24,7 +24,7 @@ namespace SokoboX
         int currentMap = 0;
         SpriteFont font;
         KeyboardState keyboardState, previousState;
-        Texture2D pullMag, pushMag;
+        Texture2D pullMag, pushMag, redButton, blueButton;
         SoundManager sound;
         enum Screens { MENU, GAME, OPTIONS };
         Screens currentScreen = Screens.MENU;
