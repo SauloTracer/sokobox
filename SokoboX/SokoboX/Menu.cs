@@ -28,7 +28,7 @@ namespace SokoboX
             strings[0] = "INICIAR JOGO";
 
             //OPTIONS
-            strings[1] = "CONFIGURACOES";
+            strings[1] = "INSTRUCOES";
 
             //EXIT
             strings[2] = "SAIR";

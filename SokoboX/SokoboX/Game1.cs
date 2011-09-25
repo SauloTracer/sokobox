@@ -24,7 +24,6 @@ namespace SokoboX
         int currentMap = 0;
         SpriteFont font;
         KeyboardState keyboardState, previousState;
-        Texture2D pullMag, pushMag;
         SoundManager sound;
         enum Screens { MENU, GAME, OPTIONS };
         Screens currentScreen = Screens.MENU;
@@ -60,11 +59,39 @@ namespace SokoboX
             {
                 if (magnet.pushing)
                 {
-                    magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Push");
+                    switch (magnet.facing)
+                    {
+                        case Magnet.Facing.DOWN:
+                            magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Push_Down");
+                            break;
+                        case Magnet.Facing.LEFT:
+                            magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Push_Left");
+                            break;
+                        case Magnet.Facing.RIGHT:
+                            magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Push_Right");
+                            break;
+                        case Magnet.Facing.UP:
+                            magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Push_Up");
+                            break;
+                    }
                 }
                 else
                 {
-                    magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Pull");
+                    switch (magnet.facing)
+                    {
+                        case Magnet.Facing.DOWN:
+                            magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Pull_Down");
+                            break;
+                        case Magnet.Facing.LEFT:
+                            magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Pull_Left");
+                            break;
+                        case Magnet.Facing.RIGHT:
+                            magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Pull_Right");
+                            break;
+                        case Magnet.Facing.UP:
+                            magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Pull_Up");
+                            break;
+                    }
                 }
             }
         }
@@ -75,8 +102,6 @@ namespace SokoboX
             tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
             Player.texture = Content.Load<Texture2D>("player");
             font = Content.Load<SpriteFont>("SpriteFont1");
-            pushMag = Content.Load<Texture2D>("Graphics/General/Magnet_Push");
-            pullMag = Content.Load<Texture2D>("Graphics/General/Magnet_Pull");
             carregaTexturaCaixas();
             sound.soundLoad("menu");
             sound.playSong();

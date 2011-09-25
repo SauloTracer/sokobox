@@ -84,13 +84,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphics\General\magnet_pull.png">
-      <Name>magnet_pull</Name>
+    <Compile Include="Graphics\General\Magnet_Pull_Up.png">
+      <Name>Magnet_Pull_Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Graphics\General\magnet_push.png">
-      <Name>magnet_push</Name>
+    <Compile Include="Graphics\General\Magnet_Push_Up.png">
+      <Name>Magnet_Push_Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -170,6 +170,38 @@
       <Name>menu_drag</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Graphics\General\Magnet_Pull_Down.png">
+      <Name>Magnet_Pull_Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\General\Magnet_Pull_Left.png">
+      <Name>Magnet_Pull_Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\General\Magnet_Pull_Right.png">
+      <Name>Magnet_Pull_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\General\Magnet_Push_Down.png">
+      <Name>Magnet_Push_Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\General\Magnet_Push_Left.png">
+      <Name>Magnet_Push_Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Graphics\General\Magnet_Push_Right.png">
+      <Name>Magnet_Push_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
