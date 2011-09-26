@@ -66,6 +66,15 @@ namespace SokoboX
                 }
             }
 
+            if (currentMap >= 18 && currentMap <= 25)
+            {
+                if (sound.tema != "desert")
+                {
+                    sound.soundLoad("desert");
+                    sound.playSong();
+                }
+            }
+
             #region Init_Tiles
             for (int row = 0; row < Rows.Count(); row++)
             {
