@@ -16,6 +16,7 @@ namespace SokoboX
     {
         SoundEffect soundEffect;
         Song themeSong;
+        public static bool IsRepeating { get; set; }
         public Boolean playing = true;
         public Game1 game;
         public string tema;
@@ -24,6 +25,7 @@ namespace SokoboX
         {
             this.game = game;
         }
+
 
         public void soundLoad(string url)
         {
@@ -40,7 +42,8 @@ namespace SokoboX
         {
             if (playing == true)
             {
-                MediaPlayer.Play(themeSong);
+                MediaPlayer.IsRepeating = true;
+              MediaPlayer.Play(themeSong);
                 MediaPlayer.IsRepeating = true;
             }
             if (playing == false)
