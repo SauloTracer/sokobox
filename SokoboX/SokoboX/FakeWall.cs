@@ -11,9 +11,9 @@ namespace SokoboX
     {
         public bool isRed, isPassable;
         public Vector2 position, tilePosition;
-        Texture2D texture;
+        public Texture2D texture;
 
-        public FakeWall(bool _isRed, bool _isPassable, Vector2 _position, Texture2D _texture)
+        public FakeWall(bool _isRed, bool _isPassable, Vector2 _position)
         {
             isRed = _isRed;
             isPassable = _isPassable;

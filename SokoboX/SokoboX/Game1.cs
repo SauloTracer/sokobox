@@ -26,6 +26,8 @@ namespace SokoboX
         KeyboardState keyboardState, previousState;
         SoundManager sound;
         enum Screens { MENU, GAME, OPTIONS };
+        enum World { FOREST, DESERT, ICE, CAVERN, INDUSTRY, DUNGEON };
+        World currentWorld;
         Screens currentScreen = Screens.MENU;
 
         public Game1()
@@ -50,10 +52,66 @@ namespace SokoboX
 
         protected void carregaTexturaCaixas()
         {
+            #region DetermineWorld
+            if ((map1.currentMap <= 8) && (currentWorld != World.FOREST))
+            {
+                currentWorld = World.FOREST;
+            }
+            if ((map1.currentMap >= 9) && (map1.currentMap <= 17) && (currentWorld != World.INDUSTRY))
+            {
+                currentWorld = World.INDUSTRY;
+            }
+            if ((map1.currentMap >= 18) && (map1.currentMap <= 26) && (currentWorld != World.DESERT))
+            {
+                currentWorld = World.DESERT;
+            }
+            if ((map1.currentMap >= 27) && (map1.currentMap <= 35) && (currentWorld != World.ICE))
+            {
+                currentWorld = World.ICE;
+            }
+            if ((map1.currentMap >= 36) && (map1.currentMap <= 44) && (currentWorld != World.CAVERN))
+            {
+                currentWorld = World.CAVERN;
+            }
+            if ((map1.currentMap >= 45) && (map1.currentMap <= 53) && (currentWorld != World.DUNGEON))
+            {
+                currentWorld = World.DUNGEON;
+            }
+            #endregion
+
+            switch (currentWorld)
+            {
+                case World.FOREST:
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
+                    break;
+                case World.INDUSTRY:
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
+                    break;
+                case World.DESERT:
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Desert/tileset");
+                    break;
+                case World.ICE:
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
+                    break;
+            }
+
             foreach (Box box in map1.boxList)
             {
-                box.boxTexture = Content.Load<Texture2D>("Graphics/Forest/box");
+                switch (currentWorld)
+                {
+                    case World.FOREST:
+                        box.boxTexture = Content.Load<Texture2D>("Graphics/Forest/box");
+                        break;
+                    case World.INDUSTRY:
+                        box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
+                        break;
+                    case World.DESERT:
+                        box.boxTexture = Content.Load<Texture2D>("Graphics/Desert/box");
+                        break;
+                }
             }
+
+            #region MagnetsLoad
 
             foreach (Magnet magnet in map1.magnetList)
             {
@@ -92,6 +150,25 @@ namespace SokoboX
                             magnet.texture = Content.Load<Texture2D>("Graphics/General/Magnet_Pull_Up");
                             break;
                     }
+                }
+            }
+            #endregion
+
+            foreach (Button button in map1.buttonList)
+            {
+                if (button.isRed) button.texture = Content.Load<Texture2D>("Graphics/General/Button_Red");
+                else button.texture = Content.Load<Texture2D>("Graphics/General/Button_Red");
+            }
+
+            foreach (FakeWall wall in map1.fakeWallList)
+            {
+                switch (currentWorld)
+                {
+                    case World.DESERT:
+                        wall.texture = Content.Load<Texture2D>("Graphics/Desert/wall");
+                        break;
+                    case World.DUNGEON:
+                        break;
                 }
             }
         }
@@ -138,14 +215,6 @@ namespace SokoboX
                     map1 = new TileMap(currentMap);
                     map1.initializeMap(sound);
                     carregaTexturaCaixas();
-                    if (currentMap >= 9)  //TESTE
-                    {
-                        tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
-                        foreach (Box box in map1.boxList)
-                        {
-                            box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
-                        }
-                    }
                 }
 
                 if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N)) && (currentMap <= MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
@@ -156,15 +225,7 @@ namespace SokoboX
                         map1 = new TileMap(currentMap);
                         map1.initializeMap(sound);
                         carregaTexturaCaixas();
-                        if (currentMap >= 9)
-                        {
-                            tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
-                            foreach (Box box in map1.boxList)
-                            {
-                                box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
-                            }
 
-                        }
                     }
                     else
                     {
@@ -250,6 +311,7 @@ namespace SokoboX
                     Player.podeMover = false;
                     magnet.UpdateMagnet(map1);
                 }
+
                 #endregion
             }
 
@@ -314,6 +376,11 @@ namespace SokoboX
 
                 #endregion
 
+                foreach (Button button in map1.buttonList)
+                {
+                    if (button.texture != null) button.Draw(spriteBatch);
+                }
+
                 foreach (Box box in map1.boxList)
                 {
                     if (box.boxTexture != null) box.Draw(spriteBatch);
@@ -322,6 +389,11 @@ namespace SokoboX
                 foreach (Magnet magnet in map1.magnetList)
                 {
                     if (magnet.texture != null) magnet.Draw(spriteBatch);
+                }
+
+                foreach (FakeWall fakeWall in map1.fakeWallList)
+                {
+                    if (fakeWall.texture != null) fakeWall.Draw(spriteBatch);
                 }
 
                 Player.drawPlayer(spriteBatch);

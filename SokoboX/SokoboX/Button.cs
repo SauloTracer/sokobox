@@ -10,14 +10,13 @@ namespace SokoboX
     class Button
     {
         public bool isRed, isPressed;
-        public Vector2 position, tilePosition;
-        Texture2D texture;
+        public Vector2 position;
+        public Texture2D texture;
 
-        public Button(bool _isRed, Vector2 _position, Texture2D _texture)
+        public Button(bool _isRed, Vector2 _position)
         {
             isRed = _isRed;
             position = _position;
-            texture = _texture;
         }
 
         public void Update(TileMap map1)
