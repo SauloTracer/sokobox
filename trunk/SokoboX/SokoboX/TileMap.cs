@@ -65,6 +65,7 @@ namespace SokoboX
                     sound.playSong();
                 }
             }
+
             #region Init_Tiles
             for (int row = 0; row < Rows.Count(); row++)
             {
@@ -150,6 +151,16 @@ namespace SokoboX
                         magnetList.Last().tilePosition = new Vector2(column, row);
                         magnetList.Last().position.X = magnetList.Last().tilePosition.X * 32;
                         magnetList.Last().position.Y = magnetList.Last().tilePosition.Y * 32;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                    if (Rows[row].Columns[column].TileID == 14)
+                    {
+                        buttonList.Add(new Button(true, new Vector2(column * 32, row * 32)));
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                    if (Rows[row].Columns[column].TileID == 16)
+                    {
+                        buttonList.Add(new Button(false, new Vector2(column * 32, row * 32)));
                         Rows[row].Columns[column].TileID = 3;
                     }
                 }
