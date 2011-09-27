@@ -12,7 +12,7 @@ namespace SokoboX
         public Vector2 position, tileCoordinates, offset = Vector2.Zero;
         public Texture2D boxTexture;
         public Rectangle area;
-        public bool movendo, slide;
+        public bool movendo, slide, icyBox;
 
         public Box(bool slide = false)
         {
@@ -27,9 +27,9 @@ namespace SokoboX
 
         public void moveUp(TileMap map)
         {
-            position.Y -= 2;
-            area.Y -= 2;
-            finalizaMovimento();
+                position.Y -= 2;
+                area.Y -= 2;
+                finalizaMovimento();   
         }
 
         public void moveDown(TileMap map)

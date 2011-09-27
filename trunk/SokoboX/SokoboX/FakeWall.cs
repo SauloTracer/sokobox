@@ -22,14 +22,41 @@ namespace SokoboX
             tilePosition.Y = position.Y / 32;
         }
 
-        public void Update()
+        public void Update(TileMap map1)
         {
-
+            if ((isRed) && (RedButtonIsPressed(map1)))
+            {
+                isPassable = true;;
+            }
+            if ((!isRed) && (BlueButtonIsPressed(map1)))
+            {
+                isPassable = true;
+                this.texture = null;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            if (!isPassable) spriteBatch.Draw(texture, position, Color.White);
         }
+
+        public bool RedButtonIsPressed(TileMap map)
+        {
+            foreach (Button button in map.buttonList)
+            {
+                if ((button.isPressed) && (button.isRed)) { return true; }
+            }
+            return false;
+        }
+
+        public bool BlueButtonIsPressed(TileMap map)
+        {
+            foreach (Button button in map.buttonList)
+            {
+                if ((button.isPressed) && (!button.isRed)) return true;
+            }
+            return false;
+        }
+
     }
 }
