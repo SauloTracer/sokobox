@@ -66,11 +66,19 @@ namespace SokoboX
                 }
             }
 
-            if (currentMap >= 18 && currentMap <= 25)
+            if (currentMap >= 18 && currentMap <= 26)
             {
                 if (sound.tema != "desert")
                 {
                     sound.soundLoad("desert");
+                    sound.playSong();
+                }
+            }
+            if (currentMap >= 27 && currentMap <= 35)
+            {
+                if (sound.tema != "ice")
+                {
+                    sound.soundLoad("ice");
                     sound.playSong();
                 }
             }
