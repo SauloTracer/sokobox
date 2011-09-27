@@ -203,7 +203,7 @@ namespace SokoboX
 
                 if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
-                if ((keyboardState.IsKeyDown(Keys.M)) && (previousState.IsKeyDown(Keys.M)))
+                if ((keyboardState.IsKeyDown(Keys.M)) && (previousState.IsKeyUp(Keys.M)))
                 {
                     if (sound.playing != true)
                     {
