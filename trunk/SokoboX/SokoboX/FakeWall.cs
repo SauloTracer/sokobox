@@ -24,14 +24,14 @@ namespace SokoboX
 
         public void Update(TileMap map1)
         {
+            isPassable = false;
             if ((isRed) && (RedButtonIsPressed(map1)))
             {
-                isPassable = true;;
+                isPassable = true;
             }
             if ((!isRed) && (BlueButtonIsPressed(map1)))
             {
                 isPassable = true;
-                this.texture = null;
             }
         }
 

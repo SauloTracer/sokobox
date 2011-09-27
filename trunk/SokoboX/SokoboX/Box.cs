@@ -29,7 +29,11 @@ namespace SokoboX
         {
                 position.Y -= 2;
                 area.Y -= 2;
-                finalizaMovimento();   
+                finalizaMovimento();
+            if ((podeMoverCaixa(map, 'N')) && (icyBox))
+            {
+                movendo = true;
+            }
         }
 
         public void moveDown(TileMap map)
@@ -37,6 +41,10 @@ namespace SokoboX
             position.Y += 2;
             area.Y += 2;
             finalizaMovimento();
+            if ((podeMoverCaixa(map, 'S')) && (icyBox))
+            {
+                movendo = true;
+            }
         }
 
         public void moveLeft(TileMap map)
@@ -44,6 +52,10 @@ namespace SokoboX
             position.X -= 2;
             area.X -= 2;
             finalizaMovimento();
+            if ((podeMoverCaixa(map, 'L')) && (icyBox))
+            {
+                movendo = true;
+            }
         }
 
         public void moveRight(TileMap map)
@@ -51,6 +63,10 @@ namespace SokoboX
             position.X += 2;
             area.X += 2;
             finalizaMovimento();
+            if ((podeMoverCaixa(map, 'O')) && (icyBox))
+            {
+                movendo = true;
+            }
         }
 
         public void finalizaMovimento()
@@ -69,7 +85,6 @@ namespace SokoboX
             }
             return true;
         }
-
 
         public bool podeMoverCaixa(TileMap map, char dir)
         {
