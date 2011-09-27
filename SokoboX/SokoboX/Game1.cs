@@ -26,7 +26,7 @@ namespace SokoboX
         KeyboardState keyboardState, previousState;
         SoundManager sound;
         enum Screens { MENU, GAME, OPTIONS };
-        enum World { FOREST, DESERT, ICE, CAVERN, INDUSTRY, DUNGEON };
+        enum World { FOREST, DESERT, ICE, CAVE, INDUSTRY, DUNGEON };
         World currentWorld;
         Screens currentScreen = Screens.MENU;
 
@@ -69,9 +69,9 @@ namespace SokoboX
             {
                 currentWorld = World.ICE;
             }
-            if ((map1.currentMap >= 36) && (map1.currentMap <= 44) && (currentWorld != World.CAVERN))
+            if ((map1.currentMap >= 36) && (map1.currentMap <= 44) && (currentWorld != World.CAVE))
             {
-                currentWorld = World.CAVERN;
+                currentWorld = World.CAVE;
             }
             if ((map1.currentMap >= 45) && (map1.currentMap <= 53) && (currentWorld != World.DUNGEON))
             {
@@ -91,7 +91,7 @@ namespace SokoboX
                     tileSet.texture = Content.Load<Texture2D>("Graphics/Desert/tileset");
                     break;
                 case World.ICE:
-                    tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Ice/tileset");
                     break;
             }
 
@@ -107,6 +107,10 @@ namespace SokoboX
                         break;
                     case World.DESERT:
                         box.boxTexture = Content.Load<Texture2D>("Graphics/Desert/box");
+                        break;
+                    case World.ICE:
+                        if (!box.icyBox) box.boxTexture = Content.Load<Texture2D>("Graphics/Ice/box");
+                        else { box.boxTexture = Content.Load<Texture2D>("Graphics/Ice/ice_box"); }
                         break;
                 }
             }
@@ -157,7 +161,7 @@ namespace SokoboX
             foreach (Button button in map1.buttonList)
             {
                 if (button.isRed) button.texture = Content.Load<Texture2D>("Graphics/General/Button_Red");
-                else button.texture = Content.Load<Texture2D>("Graphics/General/Button_Red");
+                else button.texture = Content.Load<Texture2D>("Graphics/General/Button_Blue");
             }
 
             foreach (FakeWall wall in map1.fakeWallList)
@@ -194,12 +198,12 @@ namespace SokoboX
 
             if (currentScreen == Screens.GAME)
             {
-                #region GameUpdate
 
+                #region GeneralFunctions
 
                 if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
-                if (keyboardState.IsKeyDown(Keys.M))
+                if ((keyboardState.IsKeyDown(Keys.M)) && (previousState.IsKeyDown(Keys.M)))
                 {
                     if (sound.playing != true)
                     {
@@ -219,19 +223,20 @@ namespace SokoboX
 
                 if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N)) && (currentMap <= MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
                 {
-                    currentMap++;
-                    if (currentMap <= MapArrays.limite())
-                    {
+
+                    if (currentMap < MapArrays.limite())
+                    {                    
+                        currentMap++;
                         map1 = new TileMap(currentMap);
                         map1.initializeMap(sound);
                         carregaTexturaCaixas();
 
                     }
-                    else
-                    {
-                        currentMap--;
-                    }
                 }
+
+                #endregion
+
+                #region MovementAndBoxes
 
                 if (!Player.caixa)
                 {
@@ -306,13 +311,26 @@ namespace SokoboX
                     }
                 }
 
+                #endregion
+
+                #region ObjectUpdates
+
                 foreach (Magnet magnet in map1.magnetList)
                 {
                     Player.podeMover = false;
                     magnet.UpdateMagnet(map1);
                 }
+                foreach (Button button in map1.buttonList)
+                {
+                    button.Update(map1);
+                }
+                foreach (FakeWall wall in map1.fakeWallList)
+                {
+                    wall.Update(map1);
+                }
 
                 #endregion
+
             }
 
             if (currentScreen == Screens.MENU)
@@ -409,16 +427,6 @@ namespace SokoboX
                             map1 = new TileMap(currentMap);
                             map1.initializeMap(sound);
                             carregaTexturaCaixas();
-                            if (currentMap >= 9)  //TESTE
-                            {
-                                //soundEffect = Content.Load<SoundEffect>("Sounds/Industrial/metal_drag");
-                                tileSet.texture = Content.Load<Texture2D>("Graphics/Industrial/tileset");
-                                foreach (Box box in map1.boxList)
-                                {
-                                    box.boxTexture = Content.Load<Texture2D>("Graphics/Industrial/box");
-                                }
-
-                            }
                         }
                         else 
                         { 

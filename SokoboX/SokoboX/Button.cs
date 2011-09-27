@@ -21,18 +21,12 @@ namespace SokoboX
 
         public void Update(TileMap map1)
         {
+            isPressed = false;
             foreach (Box box in map1.boxList)
             {
                 if (box.position == this.position) { isPressed = true; }
             }
 
-            if (isPressed == true)
-            {
-                foreach (FakeWall wall in map1.fakeWallList)
-                {
-                    if ((wall.isRed == this.isRed) && (!wall.isPassable)) { wall.isPassable = true; } 
-                }
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
