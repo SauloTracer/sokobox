@@ -25,11 +25,11 @@ namespace SokoboX
         public void Update(TileMap map1)
         {
             isPassable = false;
-            if ((isRed) && (RedButtonIsPressed(map1)))
+            if ((isRed) && (BlueButtonIsPressed(map1)))
             {
                 isPassable = true;
             }
-            if ((!isRed) && (BlueButtonIsPressed(map1)))
+            if ((!isRed) && (RedButtonIsPressed(map1)))
             {
                 isPassable = true;
             }
