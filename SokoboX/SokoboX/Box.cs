@@ -12,7 +12,7 @@ namespace SokoboX
         public Vector2 position, tileCoordinates, offset = Vector2.Zero;
         public Texture2D boxTexture;
         public Rectangle area;
-        public bool movendo, slide, icyBox;
+        public bool movendo, slide, icyBox, isStone;
 
         public Box(bool slide = false)
         {
@@ -27,9 +27,9 @@ namespace SokoboX
 
         public void moveUp(TileMap map)
         {
-                position.Y -= 2;
-                area.Y -= 2;
-                finalizaMovimento();
+            position.Y -= Player.speed;
+            area.Y -= Player.speed;
+            finalizaMovimento();
             if ((podeMoverCaixa(map, 'N')) && (icyBox))
             {
                 movendo = true;
@@ -38,8 +38,8 @@ namespace SokoboX
 
         public void moveDown(TileMap map)
         {
-            position.Y += 2;
-            area.Y += 2;
+            position.Y += Player.speed;
+            area.Y += Player.speed;
             finalizaMovimento();
             if ((podeMoverCaixa(map, 'S')) && (icyBox))
             {
@@ -49,8 +49,8 @@ namespace SokoboX
 
         public void moveLeft(TileMap map)
         {
-            position.X -= 2;
-            area.X -= 2;
+            position.X -= Player.speed;
+            area.X -= Player.speed;
             finalizaMovimento();
             if ((podeMoverCaixa(map, 'L')) && (icyBox))
             {
@@ -60,8 +60,8 @@ namespace SokoboX
 
         public void moveRight(TileMap map)
         {
-            position.X += 2;
-            area.X += 2;
+            position.X += Player.speed;
+            area.X += Player.speed;
             finalizaMovimento();
             if ((podeMoverCaixa(map, 'O')) && (icyBox))
             {
@@ -79,9 +79,12 @@ namespace SokoboX
             Point ponto = new Point();
             foreach(Box caixa in map.boxList)
             {
-                ponto.X = (int)caixa.position.X;
-                ponto.Y = (int)caixa.position.Y;
-                if (map.getTileId(ponto) != 4) return false;
+                if (caixa.isStone == false)
+                {
+                    ponto.X = (int)caixa.position.X;
+                    ponto.Y = (int)caixa.position.Y;
+                    if (map.getTileId(ponto) != 4) return false;
+                }
             }
             return true;
         }
@@ -105,6 +108,14 @@ namespace SokoboX
             }
 
             Box caixaSeguinte = map.getCaixaAtPonto(ponto);
+
+            foreach (FakeWall wall in map.fakeWallList)
+            {
+                if ((wall.isPassable == false) && (wall.area.Intersects(new Rectangle(ponto.X, ponto.Y, 1, 1))))
+                {
+                    return false;
+                }
+            }
 
             bool retorno = ((map.getTileId(ponto) != 2) && (caixaSeguinte == null));
 

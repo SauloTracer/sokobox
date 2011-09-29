@@ -16,6 +16,7 @@ namespace SokoboX
         static public bool caixa, movendo, podeMover;
         public enum facing { UP, DOWN, LEFT, RIGHT };
         static public Box caixaAtual;
+        public const int speed = 2;
 
         static public void drawPlayer(SpriteBatch spriteBatch)
         {
@@ -27,6 +28,7 @@ namespace SokoboX
             if (!podeMover) return true;
             if (((Player.position.X % 32) != 0) || ((Player.position.Y % 32) != 0)) return false;
 
+
             Point ponto = new Point();
             bool retorno = false;
 
@@ -35,18 +37,46 @@ namespace SokoboX
                 case facing.DOWN:
                     ponto.X = (int)position.X;
                     ponto.Y = (int)position.Y + 32;
+                    foreach (FakeWall wall in map.fakeWallList)
+                    {
+                        if ((wall.isPassable == false) && (wall.area.Intersects(new Rectangle(ponto.X, ponto.Y, 1, 1))))
+                        {
+                            return true;
+                        }
+                    }
                     return (map.getTileId(ponto) == 2);
                 case facing.UP:
                     ponto.X = (int)position.X;
                     ponto.Y = (int)position.Y - 32;
+                    foreach (FakeWall wall in map.fakeWallList)
+                    {
+                        if ((wall.isPassable == false) && (wall.area.Intersects(new Rectangle(ponto.X, ponto.Y, 1, 1))))
+                        {
+                            return true;
+                        }
+                    }
                     return (map.getTileId(ponto) == 2);
                 case facing.LEFT:
                     ponto.X = (int)position.X - 32;
                     ponto.Y = (int)position.Y;
+                    foreach (FakeWall wall in map.fakeWallList)
+                    {
+                        if ((wall.isPassable == false) && (wall.area.Intersects(new Rectangle(ponto.X, ponto.Y, 1, 1))))
+                        {
+                            return true;
+                        }
+                    }
                     return (map.getTileId(ponto) == 2);
                 case facing.RIGHT:
                     ponto.X = (int)position.X + 32;
                     ponto.Y = (int)position.Y;
+                    foreach (FakeWall wall in map.fakeWallList)
+                    {
+                        if ((wall.isPassable == false) && (wall.area.Intersects(new Rectangle(ponto.X, ponto.Y, 1, 1))))
+                        {
+                            return true;
+                        }
+                    }
                     return (map.getTileId(ponto) == 2);
             }
 
@@ -63,6 +93,7 @@ namespace SokoboX
                     return true;
                 } 
             }
+            
             return false;
         }
 
@@ -79,7 +110,7 @@ namespace SokoboX
                 }
                 else
                 {
-                    if (!colisaoParede(map)) position.Y -= 2;
+                    if (!colisaoParede(map)) position.Y -= speed;
                 }
                 finalizaMovimento();
             }
@@ -98,7 +129,7 @@ namespace SokoboX
                 }
                 else
                 {
-                    if (!Player.colisaoParede(map)) position.Y += 2;
+                    if (!Player.colisaoParede(map)) position.Y += speed;
                 }
                 finalizaMovimento();
             }
@@ -117,7 +148,7 @@ namespace SokoboX
                 }
                 else
                 {
-                    if (!Player.colisaoParede(map)) position.X -= 2;
+                    if (!Player.colisaoParede(map)) position.X -= speed;
                 }
                 finalizaMovimento();
             }
@@ -136,7 +167,7 @@ namespace SokoboX
                 }
                 else
                 {
-                    if (!colisaoParede(map)) position.X += 2;
+                    if (!colisaoParede(map)) position.X += speed;
                 }
                 finalizaMovimento();
             }
