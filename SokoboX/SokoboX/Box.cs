@@ -85,6 +85,7 @@ namespace SokoboX
                     ponto.Y = (int)caixa.position.Y;
                     if (map.getTileId(ponto) != 4) return false;
                 }
+                if ((caixa.position.X % 32 != 0) || (caixa.position.Y % 32 != 0)) return false;
             }
             return true;
         }

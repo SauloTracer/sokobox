@@ -16,7 +16,7 @@ namespace SokoboX
         static public bool caixa, movendo, podeMover;
         public enum facing { UP, DOWN, LEFT, RIGHT };
         static public Box caixaAtual;
-        public const int speed = 2;
+        static public int speed = 2;
 
         static public void drawPlayer(SpriteBatch spriteBatch)
         {
