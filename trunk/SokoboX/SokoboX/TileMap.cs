@@ -82,6 +82,14 @@ namespace SokoboX
                     sound.playSong();
                 }
             }
+            if (currentMap >= 36 && currentMap <= 44)
+            {
+                if (sound.tema != "cave")
+                {
+                    sound.soundLoad("cave");
+                    sound.playSong();
+                }
+            }
 
             #region Init_Tiles
             for (int row = 0; row < Rows.Count(); row++)
@@ -198,6 +206,16 @@ namespace SokoboX
                         boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
                         boxList.Last().area = new Rectangle((int)boxList.Last().position.X, (int)boxList.Last().position.Y, 32, 32);
                         boxList.Last().icyBox = true;
+                        Rows[row].Columns[column].TileID = 3;
+                    }
+                    if (Rows[row].Columns[column].TileID == 19)
+                    {
+                        boxList.Add(new Box());
+                        boxList.Last().tileCoordinates = new Vector2(column, row);
+                        boxList.Last().position.X = boxList.Last().tileCoordinates.X * 32;
+                        boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
+                        boxList.Last().area = new Rectangle((int)boxList.Last().position.X, (int)boxList.Last().position.Y, 32, 32);
+                        boxList.Last().isStone = true;
                         Rows[row].Columns[column].TileID = 3;
                     }
                 }

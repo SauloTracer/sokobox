@@ -93,6 +93,9 @@ namespace SokoboX
                 case World.ICE:
                     tileSet.texture = Content.Load<Texture2D>("Graphics/Ice/tileset");
                     break;
+                case World.CAVE:
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Cave/tileset");
+                    break;
             }
 
             foreach (Box box in map1.boxList)
@@ -111,6 +114,10 @@ namespace SokoboX
                     case World.ICE:
                         if (!box.icyBox) box.boxTexture = Content.Load<Texture2D>("Graphics/Ice/box");
                         else { box.boxTexture = Content.Load<Texture2D>("Graphics/Ice/ice_box"); }
+                        break;
+                    case World.CAVE:
+                        if (!box.isStone) box.boxTexture = Content.Load<Texture2D>("Graphics/Cave/box");
+                        else { box.boxTexture = Content.Load<Texture2D>("Graphics/Cave/rock"); }
                         break;
                 }
             }
@@ -223,12 +230,12 @@ namespace SokoboX
 
                 if (keyboardState.IsKeyDown(Keys.LeftShift))
                 {
-                    Player.speed = 4;
+                   if ((Player.position.X % 32 == 0) && (Player.position.Y % 32 == 0)) Player.speed = 4;
                 }
 
                 if (keyboardState.IsKeyUp(Keys.LeftShift))
                 {
-                    Player.speed = 2;
+                    if ((Player.position.X % 32 == 0) && (Player.position.Y % 32 == 0)) Player.speed = 2;
                 }
 
                 if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N)) && (currentMap <= MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
