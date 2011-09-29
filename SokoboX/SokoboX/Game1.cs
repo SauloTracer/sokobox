@@ -221,6 +221,16 @@ namespace SokoboX
                     carregaTexturaCaixas();
                 }
 
+                if (keyboardState.IsKeyDown(Keys.LeftShift))
+                {
+                    Player.speed = 4;
+                }
+
+                if (keyboardState.IsKeyUp(Keys.LeftShift))
+                {
+                    Player.speed = 2;
+                }
+
                 if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N)) && (currentMap <= MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O PRÓXIMO MAPA
                 {
 
