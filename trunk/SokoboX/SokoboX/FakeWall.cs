@@ -12,6 +12,7 @@ namespace SokoboX
         public bool isRed, isPassable;
         public Vector2 position, tilePosition;
         public Texture2D texture;
+        public Rectangle area;
 
         public FakeWall(bool _isRed, bool _isPassable, Vector2 _position)
         {
@@ -20,6 +21,7 @@ namespace SokoboX
             position = _position;
             tilePosition.X = position.X / 32;
             tilePosition.Y = position.Y / 32;
+            area = new Rectangle((int)position.X, (int)position.Y, 32, 32);
         }
 
         public void Update(TileMap map1)
