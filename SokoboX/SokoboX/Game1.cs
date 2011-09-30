@@ -22,6 +22,7 @@ namespace SokoboX
         int squaresAcross = 20;
         int squaresDown = 15;
         int currentMap = 0;
+        int currentInstructions = 0;
         SpriteFont font;
         KeyboardState keyboardState, previousState;
         SoundManager sound;
@@ -29,6 +30,7 @@ namespace SokoboX
         enum World { FOREST, DESERT, ICE, CAVE, INDUSTRY, DUNGEON };
         World currentWorld;
         Screens currentScreen = Screens.MENU;
+        Texture2D instructions;
 
         public Game1()
         {
@@ -188,7 +190,8 @@ namespace SokoboX
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
-            Player.texture = Content.Load<Texture2D>("player");
+            Player.texture = Content.Load<Texture2D>("Graphics/General/player");
+            instructions = Content.Load<Texture2D>("Graphics/Instructions/Instrucoes1");
             font = Content.Load<SpriteFont>("SpriteFont1");
             carregaTexturaCaixas();
             sound.soundLoad("menu");
@@ -201,12 +204,15 @@ namespace SokoboX
 
         protected override void Update(GameTime gameTime)
         {
+        
             keyboardState = Keyboard.GetState();
 
-            if (currentScreen == Screens.GAME)
+            switch (currentScreen)
             {
-
-                #region GeneralFunctions
+                case Screens.GAME:
+                    {
+                        
+                        #region GeneralFunctions
 
                 if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
@@ -252,8 +258,8 @@ namespace SokoboX
                 }
 
                 #endregion
-
-                #region MovementAndBoxes
+                        
+                        #region MovementAndBoxes
 
                 if (!Player.caixa)
                 {
@@ -329,8 +335,8 @@ namespace SokoboX
                 }
 
                 #endregion
-
-                #region ObjectUpdates
+                        
+                        #region ObjectUpdates
 
                 foreach (Magnet magnet in map1.magnetList)
                 {
@@ -347,32 +353,73 @@ namespace SokoboX
                 }
 
                 #endregion
+                        break;
+                    }
+                case Screens.OPTIONS:
+                    {
 
-            }
-
-            if (currentScreen == Screens.MENU)
-            {
-                menu.Update(keyboardState, previousState);
-                switch (menu.Selected)
-                {
-                    case Menu.Selection.START:
-                        currentScreen = Screens.GAME;
-                        sound.soundLoad("grass");
-                        sound.playSong();
+                        #region InstructionsScreen
+                        if (currentScreen == Screens.OPTIONS)
+                        {
+                            if ((keyboardState.IsKeyDown(Keys.Enter)) && (previousState.IsKeyUp(Keys.Enter)))
+                            {
+                                switch (currentInstructions)
+                                {
+                                    case 0:
+                                        {
+                                            currentInstructions = 1;
+                                            instructions = Content.Load<Texture2D>("Graphics/Instructions/Instrucoes2");
+                                            break;
+                                        }
+                                    case 1:
+                                        {
+                                            currentInstructions = 2;
+                                            instructions = Content.Load<Texture2D>("Graphics/Instructions/Instrucoes3");
+                                            break;
+                                        }
+                                    case 2:
+                                        {
+                                            currentInstructions = 0;
+                                            instructions = Content.Load<Texture2D>("Graphics/Instructions/Instrucoes1");
+                                            menu.Selected = Menu.Selection.NONE;
+                                            currentScreen = Screens.MENU;
+                                            break;
+                                        }
+                                }
+                            }
+                        }
+                        #endregion
                         break;
-                    case Menu.Selection.OPTIONS:
-                        currentScreen = Screens.OPTIONS;
+                    }
+                case Screens.MENU:
+                    {
+                        #region menuUpdate
+                        if (currentScreen == Screens.MENU)
+                        {
+                            menu.Update(keyboardState, previousState);
+                            switch (menu.Selected)
+                            {
+                                case Menu.Selection.START:
+                                    currentScreen = Screens.GAME;
+                                    sound.soundLoad("grass");
+                                    sound.playSong();
+                                    break;
+                                case Menu.Selection.OPTIONS:
+                                    currentScreen = Screens.OPTIONS;
+                                    break;
+                                case Menu.Selection.EXIT:
+                                    this.Exit();
+                                    break;
+                                case Menu.Selection.NONE:
+                                    break;
+                            }
+                        }
+                        #endregion
                         break;
-                    case Menu.Selection.EXIT:
-                        this.Exit();
-                        break;
-                    case Menu.Selection.NONE:
-                        break;
-                }
+                    }
             }
 
             previousState = keyboardState;
-
             
             base.Update(gameTime);
         }
@@ -459,7 +506,15 @@ namespace SokoboX
             {
                 menu.Draw(spriteBatch, font);
             }
+
+            if (currentScreen == Screens.OPTIONS)
+            {
+                spriteBatch.Draw(instructions, Vector2.Zero, Color.White);
+            }
+
             spriteBatch.End();
+
+
 
             base.Draw(gameTime);
         }
