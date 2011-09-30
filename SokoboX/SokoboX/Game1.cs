@@ -258,6 +258,12 @@ namespace SokoboX
                 }
 
                 #endregion
+
+                Player.emEspera = false;
+                foreach (Box box in map1.boxList)
+                {
+                    if (box.movendo) { Player.emEspera = true; }
+                }
                         
                         #region MovementAndBoxes
 
@@ -275,13 +281,16 @@ namespace SokoboX
                     }
                     else
                     {
-                        if (keyboardState.IsKeyDown(Keys.Up)) { Player.moveUp(map1); Player.movendo = true; }
-                        else
-                            if (keyboardState.IsKeyDown(Keys.Down)) { Player.moveDown(map1); Player.movendo = true; }
+                        if (!Player.emEspera)
+                        {
+                            if (keyboardState.IsKeyDown(Keys.Up)) { Player.moveUp(map1); Player.movendo = true; }
                             else
-                                if (keyboardState.IsKeyDown(Keys.Left)) { Player.moveLeft(map1); Player.movendo = true; }
+                                if (keyboardState.IsKeyDown(Keys.Down)) { Player.moveDown(map1); Player.movendo = true; }
                                 else
-                                    if (keyboardState.IsKeyDown(Keys.Right)) { Player.moveRight(map1); Player.movendo = true; }
+                                    if (keyboardState.IsKeyDown(Keys.Left)) { Player.moveLeft(map1); Player.movendo = true; }
+                                    else
+                                        if (keyboardState.IsKeyDown(Keys.Right)) { Player.moveRight(map1); Player.movendo = true; }
+                        }
                     }
                 }
                 else
@@ -353,6 +362,7 @@ namespace SokoboX
                 }
 
                 #endregion
+
                         break;
                     }
                 case Screens.OPTIONS:

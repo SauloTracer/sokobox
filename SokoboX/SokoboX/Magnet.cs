@@ -29,102 +29,107 @@ namespace SokoboX
 
             foreach (Box box in map1.boxList)
             {
-                switch (facing)
+                if (!box.isStone)
                 {
-                    case Facing.RIGHT:
+                    #region MagnetUpdate
+                    switch (facing)
+                    {
+                        case Facing.RIGHT:
 
-                        if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) > tilePosition.X) && (Player.movendo == false))
-                        {
-                            if (pushing)
+                            if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) > tilePosition.X) && (Player.movendo == false))
                             {
-                                if (box.podeMoverCaixa(map1, 'O'))
+                                if (pushing)
                                 {
-                                    Player.podeMover = liberaPlayer = false;
-                                    box.moveRight(map1);
+                                    if (box.podeMoverCaixa(map1, 'O'))
+                                    {
+                                        Player.podeMover = liberaPlayer = false;
+                                        box.moveRight(map1);
+                                    }
+                                }
+                                else
+                                {
+                                    if (box.podeMoverCaixa(map1, 'L'))
+                                    {
+                                        Player.podeMover = liberaPlayer = false;
+                                        box.moveLeft(map1);
+                                    }
                                 }
                             }
-                            else
+                            break;
+
+                        case Facing.LEFT:
+
+                            if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) < tilePosition.X) && (Player.movendo == false))
                             {
-                                if (box.podeMoverCaixa(map1, 'L'))
+                                if (!pushing)
                                 {
-                                    Player.podeMover = liberaPlayer = false;
-                                    box.moveLeft(map1);
+                                    if (box.podeMoverCaixa(map1, 'O'))
+                                    {
+                                        Player.podeMover = liberaPlayer = false;
+                                        box.moveRight(map1);
+                                    }
+                                }
+                                else
+                                {
+                                    if (box.podeMoverCaixa(map1, 'L'))
+                                    {
+                                        Player.podeMover = liberaPlayer = false;
+                                        box.moveLeft(map1);
+                                    }
                                 }
                             }
-                        }
-                        break;
 
-                    case Facing.LEFT:
+                            break;
 
-                        if (((box.position.Y / 32) == tilePosition.Y) && ((box.position.X / 32) < tilePosition.X) && (Player.movendo == false))
-                        {
-                            if (!pushing)
+                        case Facing.UP:
+
+                            if (((box.position.Y / 32) < tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
                             {
-                                if (box.podeMoverCaixa(map1, 'O'))
+                                if (pushing)
                                 {
-                                    Player.podeMover = liberaPlayer = false;
-                                    box.moveRight(map1);
+                                    if (box.podeMoverCaixa(map1, 'N'))
+                                    {
+                                        Player.podeMover = liberaPlayer = false;
+                                        box.moveUp(map1);
+                                    }
+                                }
+                                else
+                                {
+                                    if (box.podeMoverCaixa(map1, 'S'))
+                                    {
+                                        Player.podeMover = liberaPlayer = false;
+                                        box.moveDown(map1);
+                                    }
                                 }
                             }
-                            else
+
+                            break;
+
+                        case Facing.DOWN:
+
+                            if (((box.position.Y / 32) > tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
                             {
-                                if (box.podeMoverCaixa(map1, 'L'))
+                                if (!pushing)
                                 {
-                                    Player.podeMover = liberaPlayer = false;
-                                    box.moveLeft(map1);
+                                    if (box.podeMoverCaixa(map1, 'N'))
+                                    {
+                                        Player.podeMover = liberaPlayer = false;
+                                        box.moveUp(map1);
+                                    }
+                                }
+                                else
+                                {
+                                    if (box.podeMoverCaixa(map1, 'S'))
+                                    {
+                                        Player.podeMover = liberaPlayer = false;
+                                        box.moveDown(map1);
+                                    }
                                 }
                             }
-                        }
 
-                        break;
-
-                    case Facing.UP:
-
-                        if (((box.position.Y / 32) < tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
-                        {
-                            if (pushing)
-                            {
-                                if (box.podeMoverCaixa(map1, 'N'))
-                                {
-                                    Player.podeMover = liberaPlayer = false;
-                                    box.moveUp(map1);
-                                }
-                            }
-                            else
-                            {
-                                if (box.podeMoverCaixa(map1, 'S'))
-                                {
-                                    Player.podeMover = liberaPlayer = false;
-                                    box.moveDown(map1);
-                                }
-                            }
-                        }
-
-                        break;
-
-                    case Facing.DOWN:
-
-                        if (((box.position.Y / 32) > tilePosition.Y) && ((box.position.X / 32) == tilePosition.X) && (Player.movendo == false))
-                        {
-                            if (!pushing)
-                            {
-                                if (box.podeMoverCaixa(map1, 'N'))
-                                {
-                                    Player.podeMover = liberaPlayer = false;
-                                    box.moveUp(map1);
-                                }
-                            }
-                            else
-                            {
-                                if (box.podeMoverCaixa(map1, 'S'))
-                                {
-                                    Player.podeMover = liberaPlayer = false;
-                                    box.moveDown(map1);
-                                }
-                            }
-                        }
-
-                        break;
+                            break;
+                    }
+                    #endregion
                 }
             }
 

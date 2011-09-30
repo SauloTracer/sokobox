@@ -13,7 +13,7 @@ namespace SokoboX
         static public Vector2 position;
         static public Vector2 tileCoordinates = Vector2.Zero;
         static public facing playerFacing = facing.DOWN;
-        static public bool caixa, movendo, podeMover;
+        static public bool caixa, movendo, podeMover, emEspera;
         public enum facing { UP, DOWN, LEFT, RIGHT };
         static public Box caixaAtual;
         static public int speed = 2;
