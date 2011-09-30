@@ -95,7 +95,7 @@ namespace SokoboX
             {
                 if (sound.tema != "dungeon")
                 {
-                    sound.soundLoad("cave");
+                    sound.soundLoad("dungeon");
                     sound.playSong();
                 }
             }
