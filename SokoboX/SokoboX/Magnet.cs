@@ -29,7 +29,7 @@ namespace SokoboX
 
             foreach (Box box in map1.boxList)
             {
-                if (!box.isStone)
+                if ((!box.isStone) && (!box.icyBox))
                 {
                     #region MagnetUpdate
                     switch (facing)
