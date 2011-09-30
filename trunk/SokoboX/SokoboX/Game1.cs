@@ -98,7 +98,6 @@ namespace SokoboX
                 case World.CAVE:
                     tileSet.texture = Content.Load<Texture2D>("Graphics/Cave/tileset");
                     break;
-
                 case World.DUNGEON:
                     tileSet.texture = Content.Load<Texture2D>("Graphics/Dungeon/tileset");
                     break;
@@ -124,6 +123,11 @@ namespace SokoboX
                     case World.CAVE:
                         if (!box.isStone) box.boxTexture = Content.Load<Texture2D>("Graphics/Cave/box");
                         else { box.boxTexture = Content.Load<Texture2D>("Graphics/Cave/rock"); }
+                        break;
+                    case World.DUNGEON:
+                        if ((!box.isStone) && (!box.icyBox)) box.boxTexture = Content.Load<Texture2D>("Graphics/Dungeon/box");
+                        if (box.isStone) box.boxTexture = Content.Load<Texture2D>("Graphics/Cave/rock");
+                        if (box.icyBox) box.boxTexture = Content.Load<Texture2D>("Graphics/Ice/ice_box");
                         break;
                 }
             }
@@ -185,6 +189,7 @@ namespace SokoboX
                         wall.texture = Content.Load<Texture2D>("Graphics/Desert/wall");
                         break;
                     case World.DUNGEON:
+                        wall.texture = Content.Load<Texture2D>("Graphics/Dungeon/wall");
                         break;
                 }
             }
