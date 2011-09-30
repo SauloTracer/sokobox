@@ -98,6 +98,10 @@ namespace SokoboX
                 case World.CAVE:
                     tileSet.texture = Content.Load<Texture2D>("Graphics/Cave/tileset");
                     break;
+
+                case World.DUNGEON:
+                    tileSet.texture = Content.Load<Texture2D>("Graphics/Dungeon/tileset");
+                    break;
             }
 
             foreach (Box box in map1.boxList)

@@ -91,6 +91,14 @@ namespace SokoboX
                 }
             }
 
+            if (currentMap >= 45)
+            {
+                if (sound.tema != "dungeon")
+                {
+                    sound.soundLoad("cave");
+                    sound.playSong();
+                }
+            }
             #region Init_Tiles
             for (int row = 0; row < Rows.Count(); row++)
             {
