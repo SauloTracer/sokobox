@@ -23,6 +23,9 @@ namespace SokoboX
         int squaresDown = 15;
         int currentMap = 0;
         int currentInstructions = 0;
+        int score = 0;
+        TimeSpan tempoInicial, tempoFinal, tempoAtual;
+        TimeSpan levelTime = new TimeSpan(0, 5, 0);
         SpriteFont font;
         KeyboardState keyboardState, previousState;
         SoundManager sound;
@@ -30,7 +33,7 @@ namespace SokoboX
         enum World { FOREST, DESERT, ICE, CAVE, INDUSTRY, DUNGEON };
         World currentWorld;
         Screens currentScreen = Screens.MENU;
-        Texture2D instructions;
+        Texture2D instructions, barraEsplendida;
 
         public Game1()
         {
@@ -202,6 +205,7 @@ namespace SokoboX
             tileSet.texture = Content.Load<Texture2D>("Graphics/Forest/tileset");
             Player.texture = Content.Load<Texture2D>("Graphics/General/player");
             instructions = Content.Load<Texture2D>("Graphics/Instructions/Instrucoes1");
+            barraEsplendida = Content.Load<Texture2D>("Graphics/General/Barra_Esplendida");
             font = Content.Load<SpriteFont>("SpriteFont1");
             carregaTexturaCaixas();
             sound.soundLoad("menu");
@@ -221,7 +225,13 @@ namespace SokoboX
             {
                 case Screens.GAME:
                     {
-                        
+
+                        Player.emEspera = false;
+                        foreach (Box box in map1.boxList)
+                        {
+                            if (box.movendo) { Player.emEspera = true; }
+                        }
+
                         #region GeneralFunctions
 
                 if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
@@ -244,7 +254,7 @@ namespace SokoboX
                     carregaTexturaCaixas();
                 }
 
-                if (keyboardState.IsKeyDown(Keys.LeftShift))
+                if ((keyboardState.IsKeyDown(Keys.LeftShift) && (!Player.emEspera)))
                 {
                    if ((Player.position.X % 32 == 0) && (Player.position.Y % 32 == 0)) Player.speed = 4;
                 }
@@ -267,13 +277,20 @@ namespace SokoboX
                     }
                 }
 
-                #endregion
-
-                Player.emEspera = false;
-                foreach (Box box in map1.boxList)
+                if ((keyboardState.IsKeyDown(Keys.B)) && (previousState.IsKeyUp(Keys.B)) && (currentMap <= MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O MAPA ANTERIOR
                 {
-                    if (box.movendo) { Player.emEspera = true; }
+
+                    if (currentMap > 0)
+                    {
+                        currentMap--;
+                        map1 = new TileMap(currentMap);
+                        map1.initializeMap(sound);
+                        carregaTexturaCaixas();
+
+                    }
                 }
+
+                #endregion
                         
                         #region MovementAndBoxes
 
@@ -372,6 +389,9 @@ namespace SokoboX
                 }
 
                 #endregion
+
+                tempoAtual = gameTime.TotalGameTime - tempoInicial;
+                tempoFinal = levelTime - tempoAtual;
 
                         break;
                     }
@@ -500,11 +520,26 @@ namespace SokoboX
 
                 Player.drawPlayer(spriteBatch);
 
+                spriteBatch.Draw(barraEsplendida, Vector2.Zero, Color.White);
+                spriteBatch.DrawString(font, "LEVEL " + ((int)(currentMap / 9) + 1) + "-" + ((int)(currentMap % 9) + 1), new Vector2(10, 3), Color.Black);
+                spriteBatch.DrawString(font, "TEMPO " + (int)tempoFinal.TotalSeconds, new Vector2(270, 3), Color.Black);
+                spriteBatch.DrawString(font, "PONTOS: " , new Vector2(470, 3), Color.Black);
+
+                if (score == 0) spriteBatch.DrawString(font, "PONTOS: 000000", new Vector2(470, 3), Color.Black);
+
+               if((score >= 1000) && (score < 9999))
+                   spriteBatch.DrawString(font, "00" + score, new Vector2(557, 3), Color.Black);
+               if ((score >= 10000)&& (score < 999999))
+                   spriteBatch.DrawString(font, "0" + score, new Vector2(557, 3), Color.Black);
+              
+
                 if (Player.caixaAtual != null)
                 {
                     if (Player.caixaAtual.verificaFimDeJogo(map1))
                     {
-                        delay(3);
+                        delay(2);
+                        score += ((int)tempoFinal.TotalSeconds * 10);
+                        tempoInicial = gameTime.TotalGameTime;
                         currentMap++;
                         if (currentMap <= MapArrays.limite())
                         {
