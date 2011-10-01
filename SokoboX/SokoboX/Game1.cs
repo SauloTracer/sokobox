@@ -37,6 +37,7 @@ namespace SokoboX
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 480;
             graphics.PreferredBackBufferWidth = 640;
+            graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
             sound = new SoundManager(this);
         }
