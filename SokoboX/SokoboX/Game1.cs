@@ -24,7 +24,7 @@ namespace SokoboX
         int currentMap = 0;
         int currentInstructions = 0;
         int score = 0;
-        TimeSpan tempoInicial, tempoFinal, tempoAtual;
+        TimeSpan tempoInicial, tempoFinal;
         TimeSpan levelTime = new TimeSpan(0, 5, 0);
         SpriteFont font;
         KeyboardState keyboardState, previousState;
@@ -33,7 +33,7 @@ namespace SokoboX
         enum World { FOREST, DESERT, ICE, CAVE, INDUSTRY, DUNGEON };
         World currentWorld;
         Screens currentScreen = Screens.MENU;
-        Texture2D instructions, barraEsplendida;
+        Texture2D instructions, barraEsplendida, pauseScreen;
 
         public Game1()
         {
@@ -53,6 +53,8 @@ namespace SokoboX
             map1.initializeMap(sound);
             menu.Initialize(this.Content);
             Player.podeMover = true;
+            tempoInicial = new TimeSpan(0, 0, 301);
+            tempoFinal = tempoInicial;
             base.Initialize();
         }
 
@@ -206,6 +208,7 @@ namespace SokoboX
             Player.texture = Content.Load<Texture2D>("Graphics/General/player");
             instructions = Content.Load<Texture2D>("Graphics/Instructions/Instrucoes1");
             barraEsplendida = Content.Load<Texture2D>("Graphics/General/Barra_Esplendida");
+            pauseScreen = Content.Load<Texture2D>("Graphics/General/Pause_Screen");
             font = Content.Load<SpriteFont>("SpriteFont1");
             carregaTexturaCaixas();
             sound.soundLoad("menu");
@@ -275,6 +278,7 @@ namespace SokoboX
                     if (currentMap < MapArrays.limite())
                     {                    
                         currentMap++;
+                        tempoFinal = tempoInicial;
                         map1 = new TileMap(currentMap);
                         map1.initializeMap(sound);
                         carregaTexturaCaixas();
@@ -510,6 +514,7 @@ namespace SokoboX
 
                 #endregion
 
+                #region DrawObjects
                 foreach (Button button in map1.buttonList)
                 {
                     if (button.texture != null) button.Draw(spriteBatch);
@@ -529,10 +534,12 @@ namespace SokoboX
                 {
                     if (fakeWall.texture != null) fakeWall.Draw(spriteBatch);
                 }
+                #endregion
 
                 Player.drawPlayer(spriteBatch);
 
-                spriteBatch.Draw(barraEsplendida, Vector2.Zero, Color.White);
+                #region DrawHUD
+                spriteBatch.Draw(barraEsplendida, Vector2.Zero, Color.CornflowerBlue);
                 spriteBatch.DrawString(font, "LEVEL " + ((int)(currentMap / 9) + 1) + "-" + ((int)(currentMap % 9) + 1), new Vector2(10, 3), Color.Black);
                 spriteBatch.DrawString(font, "TEMPO " + (int)tempoFinal.TotalSeconds, new Vector2(270, 3), Color.Black);
                 spriteBatch.DrawString(font, "PONTOS: " , new Vector2(470, 3), Color.Black);
@@ -543,15 +550,16 @@ namespace SokoboX
                    spriteBatch.DrawString(font, "00" + score, new Vector2(557, 3), Color.Black);
                if ((score >= 10000)&& (score < 999999))
                    spriteBatch.DrawString(font, "0" + score, new Vector2(557, 3), Color.Black);
-              
+                #endregion
 
-                if (Player.caixaAtual != null)
+                #region VerifyEndGame
+               if (Player.caixaAtual != null)
                 {
                     if (Player.caixaAtual.verificaFimDeJogo(map1))
                     {
                         delay(2);
                         score += ((int)tempoFinal.TotalSeconds * 10);
-                        tempoInicial = gameTime.TotalGameTime;
+                        tempoFinal = tempoInicial;
                         currentMap++;
                         if (currentMap <= MapArrays.limite())
                         {
@@ -566,6 +574,8 @@ namespace SokoboX
                     }
 
                 }
+               #endregion
+
                 #endregion
             }
 
@@ -577,6 +587,11 @@ namespace SokoboX
             if (currentScreen == Screens.OPTIONS)
             {
                 spriteBatch.Draw(instructions, Vector2.Zero, Color.White);
+            }
+
+            if (currentScreen == Screens.PAUSE)
+            {
+                spriteBatch.Draw(pauseScreen, Vector2.Zero, Color.White);
             }
 
             spriteBatch.End();
