@@ -29,7 +29,7 @@ namespace SokoboX
         SpriteFont font;
         KeyboardState keyboardState, previousState;
         SoundManager sound;
-        enum Screens { MENU, GAME, OPTIONS };
+        enum Screens { MENU, GAME, OPTIONS, PAUSE };
         enum World { FOREST, DESERT, ICE, CAVE, INDUSTRY, DUNGEON };
         World currentWorld;
         Screens currentScreen = Screens.MENU;
@@ -236,6 +236,11 @@ namespace SokoboX
 
                 if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
 
+                if ((keyboardState.IsKeyDown(Keys.P)) && (previousState.IsKeyUp(Keys.P)))
+                {
+                    currentScreen = Screens.PAUSE;
+                }
+
                 if ((keyboardState.IsKeyDown(Keys.M)) && (previousState.IsKeyUp(Keys.M)))
                 {
                     if (sound.playing != true)
@@ -390,8 +395,10 @@ namespace SokoboX
 
                 #endregion
 
-                tempoAtual = gameTime.TotalGameTime - tempoInicial;
-                tempoFinal = levelTime - tempoAtual;
+                tempoFinal -= gameTime.ElapsedGameTime;
+
+                if (tempoFinal.TotalSeconds <= 0) { tempoFinal = TimeSpan.Zero; }
+
 
                         break;
                     }
@@ -455,6 +462,11 @@ namespace SokoboX
                             }
                         }
                         #endregion
+                        break;
+                    }
+                case Screens.PAUSE:
+                    {
+                        if ((keyboardState.IsKeyDown(Keys.P)) && (previousState.IsKeyUp(Keys.P))) currentScreen = Screens.GAME;
                         break;
                     }
             }
