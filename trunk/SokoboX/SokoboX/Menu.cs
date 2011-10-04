@@ -11,14 +11,14 @@ namespace SokoboX
 {
     class Menu
     {
-        public enum Selection { START, OPTIONS, EXIT, NONE }
+        public enum Selection { START, OPTIONS, EXIT, NONE, CONTINUE }
         Texture2D background, arrowTexture;
         int menuStartY = 300;
         int arrowSelectionIndex;
         Vector2 arrowPosition;
         public Selection arrowSelection;
         public Selection Selected = Selection.NONE;
-        public string[] strings = new string[3];
+        public string[] strings = new string[4];
 
         public void Initialize(ContentManager content)
         {
@@ -32,6 +32,9 @@ namespace SokoboX
 
             //EXIT
             strings[2] = "SAIR";
+
+            //CONTINUE
+            strings[3] = "CONTINUAR";
         }
 
         public void Update(KeyboardState keyboardState, KeyboardState previousState)
@@ -46,6 +49,9 @@ namespace SokoboX
                     break;
                 case Selection.EXIT:
                     if (keyboardState.IsKeyDown(Keys.Enter) && (previousState.IsKeyUp(Keys.Enter))) { Selected = Selection.EXIT; }
+                    break;
+                case Selection.CONTINUE:
+                    if (keyboardState.IsKeyDown(Keys.Enter) && (previousState.IsKeyUp(Keys.Enter))) { Selected = Selection.CONTINUE; }
                     break;
 
             }
@@ -72,6 +78,9 @@ namespace SokoboX
                     break;
                 case 2:
                     arrowSelection = Selection.EXIT;
+                    break;
+                case 3:
+                    arrowSelection = Selection.CONTINUE;
                     break;
             }
         }
