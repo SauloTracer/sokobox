@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Storage;
 
 namespace SokoboX
 {
@@ -34,6 +35,10 @@ namespace SokoboX
         World currentWorld;
         Screens currentScreen = Screens.MENU;
         Texture2D instructions, barraEsplendida, pauseScreen;
+        StorageContainer storageContainer;
+        SaveGame saveGame = new SaveGame();
+        string saveFile = "savegame.sav";
+        
 
         public Game1()
         {
@@ -230,6 +235,7 @@ namespace SokoboX
                     {
 
                         Player.emEspera = false;
+
                         foreach (Box box in map1.boxList)
                         {
                             if (box.movendo) { Player.emEspera = true; }
@@ -399,11 +405,12 @@ namespace SokoboX
 
                 #endregion
 
+                        #region TimeUpdate
                 tempoFinal -= gameTime.ElapsedGameTime;
 
                 if (tempoFinal.TotalSeconds <= 0) { tempoFinal = TimeSpan.Zero; }
-
-
+                #endregion
+                        
                         break;
                     }
                 case Screens.OPTIONS:
@@ -463,6 +470,12 @@ namespace SokoboX
                                     break;
                                 case Menu.Selection.NONE:
                                     break;
+                                case Menu.Selection.CONTINUE:
+                                    if (storageContainer.FileExists(saveFile))
+                                    {
+                                        //saveGame
+                                    }
+                                    break;
                             }
                         }
                         #endregion
@@ -485,7 +498,7 @@ namespace SokoboX
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
+ 
             if (currentScreen == Screens.GAME)
             {
                 #region DrawGame
