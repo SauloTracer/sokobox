@@ -2,71 +2,501 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>tileset1.png</Source>
-      <Name>tileset1</Name>
+      <Source>Graphics\General\player.png</Source>
+      <Name>Graphics\General\player</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\Content\tileset1.xnb</Output>
-      <Time>2011-09-13T23:02:36.0704-03:00</Time>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\player.xnb</Output>
+      <Time>2011-10-08T17:50:02.9679029-03:00</Time>
     </Item>
     <Item>
-      <Source>player.png</Source>
-      <Name>player</Name>
+      <Source>Graphics\Forest\tileset.png</Source>
+      <Name>Graphics\Forest\tileset</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\Content\player.xnb</Output>
-      <Time>2011-09-13T23:54:50.1044-03:00</Time>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Forest\tileset.xnb</Output>
+      <Time>2011-10-08T17:50:01.0907152-03:00</Time>
     </Item>
     <Item>
-      <Source>2tiles.png</Source>
-      <Name>2tiles</Name>
+      <Source>Graphics\Forest\box.png</Source>
+      <Name>Graphics\Forest\box</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\Content\2tiles.xnb</Output>
-      <Time>2011-09-14T01:00:10.3264-03:00</Time>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Forest\box.xnb</Output>
+      <Time>2011-10-08T17:50:01.0807142-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Industrial\tileset.png</Source>
+      <Name>Graphics\Industrial\tileset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Industrial\tileset.xnb</Output>
+      <Time>2011-10-08T17:50:03.3839445-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Industrial\box.png</Source>
+      <Name>Graphics\Industrial\box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Industrial\box.xnb</Output>
+      <Time>2011-10-08T17:50:03.3739435-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Magnet_Pull_Up.png</Source>
+      <Name>Graphics\General\Magnet_Pull_Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Magnet_Pull_Up.xnb</Output>
+      <Time>2011-10-08T17:50:03.0949156-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Magnet_Push_Up.png</Source>
+      <Name>Graphics\General\Magnet_Push_Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Magnet_Push_Up.xnb</Output>
+      <Time>2011-10-08T17:50:03.0019063-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\arrow.png</Source>
+      <Name>Graphics\General\arrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\arrow.xnb</Output>
+      <Time>2011-10-08T17:50:03.088915-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\menu_background.jpg</Source>
+      <Name>Graphics\General\menu_background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\menu_background.xnb</Output>
+      <Time>2011-10-08T17:50:03.0299091-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Magnet_Pull_Down.png</Source>
+      <Name>Graphics\General\Magnet_Pull_Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Magnet_Pull_Down.xnb</Output>
+      <Time>2011-10-08T17:50:03.0209082-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Magnet_Pull_Left.png</Source>
+      <Name>Graphics\General\Magnet_Pull_Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Magnet_Pull_Left.xnb</Output>
+      <Time>2011-10-08T17:50:03.0429104-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Magnet_Pull_Right.png</Source>
+      <Name>Graphics\General\Magnet_Pull_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Magnet_Pull_Right.xnb</Output>
+      <Time>2011-10-08T17:50:03.0619123-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Magnet_Push_Down.png</Source>
+      <Name>Graphics\General\Magnet_Push_Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Magnet_Push_Down.xnb</Output>
+      <Time>2011-10-08T17:50:03.048911-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Magnet_Push_Left.png</Source>
+      <Name>Graphics\General\Magnet_Push_Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Magnet_Push_Left.xnb</Output>
+      <Time>2011-10-08T17:50:03.068913-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Magnet_Push_Right.png</Source>
+      <Name>Graphics\General\Magnet_Push_Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Magnet_Push_Right.xnb</Output>
+      <Time>2011-10-08T17:50:03.0819143-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Button_Blue.png</Source>
+      <Name>Graphics\General\Button_Blue</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Button_Blue.xnb</Output>
+      <Time>2011-10-08T17:50:03.0559117-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Button_Red.png</Source>
+      <Name>Graphics\General\Button_Red</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Button_Red.xnb</Output>
+      <Time>2011-10-08T17:50:03.0759137-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Desert\tileset.png</Source>
+      <Name>Graphics\Desert\tileset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Desert\tileset.xnb</Output>
+      <Time>2011-10-08T17:50:02.6728734-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Desert\box.png</Source>
+      <Name>Graphics\Desert\box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Desert\box.xnb</Output>
+      <Time>2011-10-08T17:50:02.6598721-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Desert\wall.png</Source>
+      <Name>Graphics\Desert\wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Desert\wall.xnb</Output>
+      <Time>2011-10-08T17:50:02.6478709-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Ice\tileset.png</Source>
+      <Name>Graphics\Ice\tileset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Ice\tileset.xnb</Output>
+      <Time>2011-10-08T17:50:00.9457007-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Ice\box.png</Source>
+      <Name>Graphics\Ice\box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Ice\box.xnb</Output>
+      <Time>2011-10-08T17:50:00.9266988-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Ice\ice_box.png</Source>
+      <Name>Graphics\Ice\ice_box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Ice\ice_box.xnb</Output>
+      <Time>2011-10-08T17:50:00.9376999-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Cave\tileset.png</Source>
+      <Name>Graphics\Cave\tileset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Cave\tileset.xnb</Output>
+      <Time>2011-10-08T17:50:03.3239385-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Cave\box.png</Source>
+      <Name>Graphics\Cave\box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Cave\box.xnb</Output>
+      <Time>2011-10-08T17:50:03.3139375-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Cave\rock.png</Source>
+      <Name>Graphics\Cave\rock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Cave\rock.xnb</Output>
+      <Time>2011-10-08T17:50:03.3049366-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Instructions\Instrucoes1.png</Source>
+      <Name>Graphics\Instructions\Instrucoes1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Instructions\Instrucoes1.xnb</Output>
+      <Time>2011-10-08T17:50:02.4558517-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Instructions\Instrucoes2.png</Source>
+      <Name>Graphics\Instructions\Instrucoes2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Instructions\Instrucoes2.xnb</Output>
+      <Time>2011-10-08T17:50:02.4698531-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Instructions\instrucoes3.png</Source>
+      <Name>Graphics\Instructions\instrucoes3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Instructions\instrucoes3.xnb</Output>
+      <Time>2011-10-08T17:50:02.4908552-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Dungeon\box.png</Source>
+      <Name>Graphics\Dungeon\box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Dungeon\box.xnb</Output>
+      <Time>2011-10-08T17:50:00.5756637-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Dungeon\tileset.png</Source>
+      <Name>Graphics\Dungeon\tileset</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Dungeon\tileset.xnb</Output>
+      <Time>2011-10-08T17:50:00.5836645-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\Dungeon\wall.png</Source>
+      <Name>Graphics\Dungeon\wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\Dungeon\wall.xnb</Output>
+      <Time>2011-10-08T17:50:00.568663-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Barra_Esplendida.png</Source>
+      <Name>Graphics\General\Barra_Esplendida</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Barra_Esplendida.xnb</Output>
+      <Time>2011-10-08T17:50:03.0359097-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Graphics\General\Pause_Screen.png</Source>
+      <Name>Graphics\General\Pause_Screen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Graphics\General\Pause_Screen.xnb</Output>
+      <Time>2011-10-08T17:50:02.9759037-03:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2011-10-08T17:50:49.0645121-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Effects\grass_drag.wav</Source>
+      <Name>Sounds\Effects\grass_drag</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Effects\grass_drag.xnb</Output>
+      <Time>2011-10-08T17:50:04.9320993-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Effects\metal_drag.wav</Source>
+      <Name>Sounds\Effects\metal_drag</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Effects\metal_drag.xnb</Output>
+      <Time>2011-10-08T17:50:04.9641025-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Effects\normal_drag.wav</Source>
+      <Name>Sounds\Effects\normal_drag</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Effects\normal_drag.xnb</Output>
+      <Time>2011-10-08T17:50:04.7730834-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Effects\menu_drag.wav</Source>
+      <Name>Sounds\Effects\menu_drag</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Effects\menu_drag.xnb</Output>
+      <Time>2011-10-08T17:50:04.9721033-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Effects\desert_drag.wav</Source>
+      <Name>Sounds\Effects\desert_drag</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Effects\desert_drag.xnb</Output>
+      <Time>2011-10-08T17:50:04.7650826-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Effects\ice_drag.wav</Source>
+      <Name>Sounds\Effects\ice_drag</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Effects\ice_drag.xnb</Output>
+      <Time>2011-10-08T17:50:04.9561017-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Effects\cave_drag.wav</Source>
+      <Name>Sounds\Effects\cave_drag</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Effects\cave_drag.xnb</Output>
+      <Time>2011-10-08T17:50:04.8810942-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Effects\dungeon_drag.wav</Source>
+      <Name>Sounds\Effects\dungeon_drag</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Effects\dungeon_drag.xnb</Output>
+      <Time>2011-10-08T17:50:04.9441005-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Music\cave_theme.mp3</Source>
+      <Name>Sounds\Music\cave_theme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\cave_theme.xnb</Output>
+      <Extra>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\cave_theme.wma</Extra>
+      <Time>2011-10-08T17:50:48.7444801-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Music\desert_theme.mp3</Source>
+      <Name>Sounds\Music\desert_theme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\desert_theme.xnb</Output>
+      <Extra>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\desert_theme.wma</Extra>
+      <Time>2011-10-08T17:50:48.6784735-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Music\dungeon_theme.mp3</Source>
+      <Name>Sounds\Music\dungeon_theme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\dungeon_theme.xnb</Output>
+      <Extra>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\dungeon_theme.wma</Extra>
+      <Time>2011-10-08T17:50:48.2764333-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Music\grass_theme.mp3</Source>
+      <Name>Sounds\Music\grass_theme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\grass_theme.xnb</Output>
+      <Extra>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\grass_theme.wma</Extra>
+      <Time>2011-10-08T17:50:48.3644421-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Music\ice_theme.mp3</Source>
+      <Name>Sounds\Music\ice_theme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\ice_theme.xnb</Output>
+      <Extra>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\ice_theme.wma</Extra>
+      <Time>2011-10-08T17:50:48.5424599-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Music\menu_theme.mp3</Source>
+      <Name>Sounds\Music\menu_theme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\menu_theme.xnb</Output>
+      <Extra>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\menu_theme.wma</Extra>
+      <Time>2011-10-08T17:50:48.6564713-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Music\metal_theme.mp3</Source>
+      <Name>Sounds\Music\metal_theme</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\metal_theme.xnb</Output>
+      <Extra>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\Sounds\Music\metal_theme.wma</Extra>
+      <Time>2011-10-08T17:50:48.6374694-03:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
-      <TargetProfile>HiDef</TargetProfile>
+      <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboXContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboXContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboX\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboXContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboXContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboX\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T12:41:18-03:00</Value>
+        <Value>2010-08-23T11:41:18-03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T12:41:18-03:00</Value>
+        <Value>2010-08-23T11:41:18-03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T12:41:18-03:00</Value>
+        <Value>2010-08-23T11:41:18-03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T12:41:18-03:00</Value>
+        <Value>2010-08-23T11:41:18-03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T12:41:18-03:00</Value>
+        <Value>2010-08-23T11:41:18-03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T12:41:18-03:00</Value>
+        <Value>2010-08-23T11:41:18-03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-07-03T13:23:33.1768-03:00</Value>
+        <Value>2010-12-25T01:40:12.2122245-02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
