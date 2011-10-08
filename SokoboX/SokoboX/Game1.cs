@@ -22,9 +22,9 @@ namespace SokoboX
         Tile tileSet = new Tile();
         int squaresAcross = 20;
         int squaresDown = 15;
-        int currentMap = 0;
+        public int currentMap = 0;
         int currentInstructions = 0;
-        int score = 0;
+        public int score = 0;
         TimeSpan tempoInicial, tempoFinal;
         TimeSpan levelTime = new TimeSpan(0, 5, 0);
         SpriteFont font;
@@ -35,10 +35,7 @@ namespace SokoboX
         World currentWorld;
         Screens currentScreen = Screens.MENU;
         Texture2D instructions, barraEsplendida, pauseScreen;
-        StorageContainer storageContainer;
         SaveGame saveGame = new SaveGame();
-        string saveFile = "savegame.sav";
-        
 
         public Game1()
         {
@@ -243,7 +240,7 @@ namespace SokoboX
 
                         #region GeneralFunctions
 
-                if (keyboardState.IsKeyDown(Keys.Escape)) this.Exit();
+                        if (keyboardState.IsKeyDown(Keys.Escape)) { currentScreen = Screens.MENU; menu.Selected = Menu.Selection.NONE; }
 
                 if ((keyboardState.IsKeyDown(Keys.P)) && (previousState.IsKeyUp(Keys.P)))
                 {
@@ -466,15 +463,17 @@ namespace SokoboX
                                     currentScreen = Screens.OPTIONS;
                                     break;
                                 case Menu.Selection.EXIT:
+                                    saveGame.Save(score, currentMap);
                                     this.Exit();
                                     break;
                                 case Menu.Selection.NONE:
                                     break;
                                 case Menu.Selection.CONTINUE:
-                                    if (storageContainer.FileExists(saveFile))
-                                    {
-                                        //saveGame
-                                    }
+                                    saveGame.Load(this);
+                                    map1 = new TileMap(currentMap);
+                                    map1.initializeMap(sound);
+                                    carregaTexturaCaixas();
+                                    currentScreen = Screens.GAME;
                                     break;
                             }
                         }
