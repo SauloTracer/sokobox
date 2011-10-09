@@ -240,7 +240,7 @@ namespace SokoboX
 
                         #region GeneralFunctions
 
-                        if (keyboardState.IsKeyDown(Keys.Escape)) { currentScreen = Screens.MENU; menu.Selected = Menu.Selection.NONE; }
+                        if (keyboardState.IsKeyDown(Keys.Escape)) { currentScreen = Screens.MENU; menu.Selected = Menu.Selection.NONE; sound.soundLoad("menu"); sound.playSong(); }
 
                 if ((keyboardState.IsKeyDown(Keys.P)) && (previousState.IsKeyUp(Keys.P)))
                 {
