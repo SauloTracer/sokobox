@@ -29,6 +29,7 @@ namespace SokoboX
 
         public void Load(Game1 game)
         {
+            if (!File.Exists("savegame.sav")) return;
             reader = new StreamReader("savegame.sav");
             game.score = int.Parse(reader.ReadLine());
             game.currentMap = int.Parse(reader.ReadLine());

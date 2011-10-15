@@ -30,7 +30,7 @@ namespace SokoboX
         SpriteFont font;
         KeyboardState keyboardState, previousState;
         SoundManager sound;
-        enum Screens { MENU, GAME, OPTIONS, PAUSE };
+        enum Screens { MENU, GAME, OPTIONS, PAUSE, SAVE };
         enum World { FOREST, DESERT, ICE, CAVE, INDUSTRY, DUNGEON };
         World currentWorld;
         Screens currentScreen = Screens.MENU;
@@ -463,8 +463,7 @@ namespace SokoboX
                                     currentScreen = Screens.OPTIONS;
                                     break;
                                 case Menu.Selection.EXIT:
-                                    saveGame.Save(score, currentMap);
-                                    this.Exit();
+                                    currentScreen = Screens.SAVE;
                                     break;
                                 case Menu.Selection.NONE:
                                     break;
@@ -483,6 +482,19 @@ namespace SokoboX
                 case Screens.PAUSE:
                     {
                         if ((keyboardState.IsKeyDown(Keys.P)) && (previousState.IsKeyUp(Keys.P))) currentScreen = Screens.GAME;
+                        break;
+                    }
+                case Screens.SAVE:
+                    {
+                        if ((keyboardState.IsKeyDown(Keys.S)) && (previousState.IsKeyUp(Keys.S)))
+                        {
+                            saveGame.Save(score, currentMap);
+                            this.Exit();
+                        }
+                        if ((keyboardState.IsKeyDown(Keys.N)) && (previousState.IsKeyUp(Keys.N)))
+                        {
+                            this.Exit();
+                        }
                         break;
                     }
             }
@@ -604,6 +616,12 @@ namespace SokoboX
             if (currentScreen == Screens.PAUSE)
             {
                 spriteBatch.Draw(pauseScreen, Vector2.Zero, Color.White);
+            }
+
+            if (currentScreen == Screens.SAVE)
+            {
+                spriteBatch.Draw(menu.background, Vector2.Zero, Color.White);
+                spriteBatch.DrawString(font, "Deseja salvar o jogo? S/N", new Vector2(180, 360), Color.White);
             }
 
             spriteBatch.End();

@@ -12,7 +12,7 @@ namespace SokoboX
     class Menu
     {
         public enum Selection { START, OPTIONS, EXIT, NONE, CONTINUE }
-        Texture2D background, arrowTexture;
+        public Texture2D background, arrowTexture;
         int menuStartY = 300;
         int arrowSelectionIndex;
         Vector2 arrowPosition;
@@ -34,7 +34,7 @@ namespace SokoboX
             strings[2] = "SAIR";
 
             //CONTINUE
-            strings[3] = "CONTINUAR";
+            strings[3] = "CARREGAR JOGO";
         }
 
         public void Update(KeyboardState keyboardState, KeyboardState previousState)
