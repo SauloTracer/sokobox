@@ -27,15 +27,17 @@ namespace SokoboX
         public int score = 0;
         TimeSpan tempoInicial, tempoFinal;
         TimeSpan levelTime = new TimeSpan(0, 5, 0);
+        bool gameStarted = false;
         SpriteFont font;
         KeyboardState keyboardState, previousState;
         SoundManager sound;
-        enum Screens { MENU, GAME, OPTIONS, PAUSE, SAVE };
+        enum Screens { MENU, GAME, OPTIONS, PAUSE, SAVE, CREDITS };
         enum World { FOREST, DESERT, ICE, CAVE, INDUSTRY, DUNGEON };
         World currentWorld;
         Screens currentScreen = Screens.MENU;
-        Texture2D instructions, barraEsplendida, pauseScreen;
+        Texture2D instructions, barraEsplendida, pauseScreen, credits;
         SaveGame saveGame = new SaveGame();
+        int currentImage;
 
         public Game1()
         {
@@ -287,6 +289,18 @@ namespace SokoboX
                         carregaTexturaCaixas();
 
                     }
+
+                    if (currentMap == MapArrays.limite())
+                    {
+                        currentMap--;
+                        sound.soundLoad("menu");
+                        sound.playSong();
+                        currentScreen = Screens.CREDITS;
+                        menu.Selected = Menu.Selection.NONE;
+
+                       
+                    }
+
                 }
 
                 if ((keyboardState.IsKeyDown(Keys.B)) && (previousState.IsKeyUp(Keys.B)) && (currentMap <= MapArrays.limite())) //FUNÇÃO DE DEBUG - TROCA PARA O MAPA ANTERIOR
@@ -456,6 +470,7 @@ namespace SokoboX
                             {
                                 case Menu.Selection.START:
                                     currentScreen = Screens.GAME;
+                                    gameStarted = true;
                                     sound.soundLoad("grass");
                                     sound.playSong();
                                     break;
@@ -463,7 +478,8 @@ namespace SokoboX
                                     currentScreen = Screens.OPTIONS;
                                     break;
                                 case Menu.Selection.EXIT:
-                                    currentScreen = Screens.SAVE;
+                                    if (gameStarted == true) currentScreen = Screens.SAVE;
+                                    else this.Exit();
                                     break;
                                 case Menu.Selection.NONE:
                                     break;
@@ -497,6 +513,34 @@ namespace SokoboX
                         }
                         break;
                     }
+                case Screens.CREDITS:
+                    {
+                        if (credits == null) credits = Content.Load<Texture2D>("Graphics/Instructions/winrar");
+
+                        if ((Keyboard.GetState().IsKeyDown(Keys.Enter)) && (previousState.IsKeyUp(Keys.Enter)))
+                        {
+                            currentImage++;
+
+                            switch (currentImage)
+                            {
+                                case 1:
+                                    credits = Content.Load<Texture2D>("Graphics/Instructions/creditos1");
+                                    break;
+                                default:
+                                    credits = null;
+                                    currentScreen = Screens.MENU;
+                                    break;
+                            }
+
+                        }
+
+                        break;
+                    }
+            }
+
+            if (keyboardState.IsKeyDown(Keys.LeftAlt) && (keyboardState.IsKeyDown(Keys.Enter)) && (previousState.IsKeyUp(Keys.Enter)))
+            {
+                graphics.ToggleFullScreen();
             }
 
             previousState = keyboardState;
@@ -592,8 +636,12 @@ namespace SokoboX
                             carregaTexturaCaixas();
                         }
                         else 
-                        { 
-                            currentMap--; 
+                        {
+                            currentMap--;
+                            sound.soundLoad("menu");
+                            sound.playSong();
+                            currentScreen = Screens.CREDITS;
+                            menu.Selected = Menu.Selection.NONE;
                         }
                     }
 
@@ -622,6 +670,11 @@ namespace SokoboX
             {
                 spriteBatch.Draw(menu.background, Vector2.Zero, Color.White);
                 spriteBatch.DrawString(font, "Deseja salvar o jogo? S/N", new Vector2(180, 360), Color.White);
+            }
+
+            if (currentScreen == Screens.CREDITS)
+            {
+                if(credits != null) spriteBatch.Draw(credits, Vector2.Zero, Color.White);
             }
 
             spriteBatch.End();
