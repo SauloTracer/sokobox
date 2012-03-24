@@ -6,7 +6,6 @@ Content\Graphics\Industrial\box.xnb
 Content\Graphics\General\Magnet_Pull_Up.xnb
 Content\Graphics\General\Magnet_Push_Up.xnb
 Content\Graphics\General\arrow.xnb
-Content\Graphics\General\menu_background.xnb
 Content\Graphics\General\Magnet_Pull_Down.xnb
 Content\Graphics\General\Magnet_Pull_Left.xnb
 Content\Graphics\General\Magnet_Pull_Right.xnb
@@ -32,6 +31,9 @@ Content\Graphics\Dungeon\tileset.xnb
 Content\Graphics\Dungeon\wall.xnb
 Content\Graphics\General\Barra_Esplendida.xnb
 Content\Graphics\General\Pause_Screen.xnb
+Content\Graphics\General\menu_background.xnb
+Content\Graphics\Instructions\creditos1.xnb
+Content\Graphics\Instructions\winrar.xnb
 Content\SpriteFont1.xnb
 Content\Sounds\Effects\grass_drag.xnb
 Content\Sounds\Effects\metal_drag.xnb

@@ -37,13 +37,14 @@ namespace SokoboX
         Screens currentScreen = Screens.MENU;
         Texture2D instructions, barraEsplendida, pauseScreen, credits;
         SaveGame saveGame = new SaveGame();
+        RenderTarget2D renderTarget;
         int currentImage;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferHeight = 480;
-            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 768;
+            graphics.PreferredBackBufferWidth = 1024;
             graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
             sound = new SoundManager(this);
@@ -59,6 +60,7 @@ namespace SokoboX
             Player.podeMover = true;
             tempoInicial = new TimeSpan(0, 0, 301);
             tempoFinal = tempoInicial;
+            renderTarget = new RenderTarget2D(this.GraphicsDevice, 640, 480);
             base.Initialize();
         }
 
@@ -551,7 +553,7 @@ namespace SokoboX
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            GraphicsDevice.SetRenderTarget(renderTarget);
             spriteBatch.Begin();
  
             if (currentScreen == Screens.GAME)
@@ -679,6 +681,11 @@ namespace SokoboX
 
             spriteBatch.End();
 
+            Texture2D screen = (Texture2D)renderTarget;
+            GraphicsDevice.SetRenderTarget(null);
+            spriteBatch.Begin();
+            spriteBatch.Draw(screen, GraphicsDevice.Viewport.Bounds, Color.White);
+            spriteBatch.End();
 
 
             base.Draw(gameTime);
