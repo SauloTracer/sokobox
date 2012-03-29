@@ -14,7 +14,7 @@ namespace SokoboX
         public Rectangle area;
         public bool movendo, slide, icyBox, isStone;
 
-        public Box(bool slide = false)
+        public Box(bool slide)
         {
             movendo = false;
             this.slide = slide;

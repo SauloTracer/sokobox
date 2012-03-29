@@ -106,7 +106,7 @@ namespace SokoboX
                 {
                     if (Rows[row].Columns[column].TileID == 1)
                     {
-                        boxList.Add(new Box());
+                        boxList.Add(new Box(false));
                         boxList.Last().tileCoordinates = new Vector2(column, row);
                         boxList.Last().position.X = boxList.Last().tileCoordinates.X * 32;
                         boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
@@ -208,7 +208,7 @@ namespace SokoboX
                     }
                     if (Rows[row].Columns[column].TileID == 18)
                     {
-                        boxList.Add(new Box());
+                        boxList.Add(new Box(false));
                         boxList.Last().tileCoordinates = new Vector2(column, row);
                         boxList.Last().position.X = boxList.Last().tileCoordinates.X * 32;
                         boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
@@ -218,7 +218,7 @@ namespace SokoboX
                     }
                     if (Rows[row].Columns[column].TileID == 19)
                     {
-                        boxList.Add(new Box());
+                        boxList.Add(new Box(false));
                         boxList.Last().tileCoordinates = new Vector2(column, row);
                         boxList.Last().position.X = boxList.Last().tileCoordinates.X * 32;
                         boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
@@ -228,7 +228,7 @@ namespace SokoboX
                     }
                     if (Rows[row].Columns[column].TileID == 20)
                     {
-                        boxList.Add(new Box());
+                        boxList.Add(new Box(false));
                         boxList.Last().tileCoordinates = new Vector2(column, row);
                         boxList.Last().position.X = boxList.Last().tileCoordinates.X * 32;
                         boxList.Last().position.Y = boxList.Last().tileCoordinates.Y * 32;
