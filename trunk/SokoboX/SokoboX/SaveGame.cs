@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Storage;
 
+#if WINDOWS
+using Microsoft.Xna.Framework.Storage;
+#endif
 namespace SokoboX
 {
+    #if WINDOWS
     [Serializable]
+#endif
     class SaveGame
     {
         StreamWriter stream;

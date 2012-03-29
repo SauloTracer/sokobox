@@ -8,7 +8,16 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
+#if WINDOW
 using Microsoft.Xna.Framework.Storage;
+#endif
+
+#if WINDOWS_PHONE
+
+using Microsoft.Xna.Framework.Input.Touch;
+
+#endif
 
 namespace SokoboX
 {
@@ -35,7 +44,7 @@ namespace SokoboX
         enum World { FOREST, DESERT, ICE, CAVE, INDUSTRY, DUNGEON };
         World currentWorld;
         Screens currentScreen = Screens.MENU;
-        Texture2D instructions, barraEsplendida, pauseScreen, credits;
+        Texture2D instructions, barraEsplendida, pauseScreen, credits, HUD;
         SaveGame saveGame = new SaveGame();
         RenderTarget2D renderTarget;
         int currentImage;
@@ -60,7 +69,13 @@ namespace SokoboX
             Player.podeMover = true;
             tempoInicial = new TimeSpan(0, 0, 301);
             tempoFinal = tempoInicial;
+#if WINDOWS
             renderTarget = new RenderTarget2D(this.GraphicsDevice, 640, 480);
+#endif
+
+#if WINDOWS_PHONE
+            renderTarget = new RenderTarget2D(this.GraphicsDevice, 640, 480);
+#endif
             base.Initialize();
         }
 
@@ -219,6 +234,10 @@ namespace SokoboX
             carregaTexturaCaixas();
             sound.soundLoad("menu");
             sound.playSong();
+
+#if WINDOS_PHONE
+            HUD = Content.Load<Texture2D>("Graphics/General/HUD");
+#endif
         }
 
         protected override void UnloadContent()
@@ -229,6 +248,11 @@ namespace SokoboX
         {
         
             keyboardState = Keyboard.GetState();
+#if WINDOWS_PHONE
+
+           TouchCollection curTouches = TouchPanel.GetState();
+
+#endif
 
             switch (currentScreen)
             {
@@ -424,7 +448,48 @@ namespace SokoboX
                 if (tempoFinal.TotalSeconds <= 0) { tempoFinal = TimeSpan.Zero; }
                 #endregion
                         
-                        break;
+#if WINDOWS_PHONE
+                        if (!Player.emEspera)
+                        {
+                         foreach (TouchLocation location in curTouches)
+                            {
+
+                                if(location.State == TouchLocationState.Pressed &&
+                                    location.Position.Y >= GraphicsDevice.Viewport.Height / 2 - 20 &&
+                                    location.Position.Y <= GraphicsDevice.Viewport.Height / 2 + 20 &&
+                                    location.Position.X <= 20)
+                                    {
+                                        Player.moveLeft(map1); Player.movendo = true;
+                                    }
+
+                                 if(location.State == TouchLocationState.Pressed &&
+                                    location.Position.Y >= GraphicsDevice.Viewport.Height / 2 - 20 &&
+                                    location.Position.Y <= GraphicsDevice.Viewport.Height / 2 + 20 &&
+                                    location.Position.X >= 660)
+                                    {
+                                        Player.moveRight(map1); Player.movendo = true;
+                                    }
+
+                                  if(location.State == TouchLocationState.Pressed &&
+                                    location.Position.X >= GraphicsDevice.Viewport.Width / 2 - 20 &&
+                                    location.Position.X <= GraphicsDevice.Viewport.Width / 2 + 20 &&
+                                    location.Position.Y <= 20)
+                                    {
+                                        Player.moveUp(map1); Player.movendo = true;
+                                    }
+
+                                 if(location.State == TouchLocationState.Pressed &&
+                                    location.Position.X >= GraphicsDevice.Viewport.Width / 2 - 20 &&
+                                    location.Position.X <= GraphicsDevice.Viewport.Width / 2 + 20 &&
+                                    location.Position.Y >= 460)
+                                    {
+                                        Player.moveDown(map1); Player.movendo = true;
+                                    }
+                            }
+                        }
+
+#endif
+                break;
                     }
                 case Screens.OPTIONS:
                     {
@@ -494,6 +559,35 @@ namespace SokoboX
                                     break;
                             }
                         }
+
+#if WINDOWS_PHONE
+                          foreach (TouchLocation location in curTouches)
+                            {
+                                if(location.State == TouchLocationState.Pressed && location.Position.X >= 300 &&  location.Position.X <= 460
+                                    &&  location.Position.Y >= 300 &&  location.Position.Y <= 320)
+                                    {
+                                    currentScreen = Screens.GAME;
+                                    gameStarted = true;
+                                    sound.soundLoad("grass");
+                                    sound.playSong();
+                                    break;
+                                    }
+
+                                 else if(location.State == TouchLocationState.Pressed && location.Position.X >= 300 &&  location.Position.X <= 440
+                                    &&  location.Position.Y >= 335 &&  location.Position.Y <= 350)
+                                    {
+                                    currentScreen = Screens.OPTIONS;
+                                    }
+                        
+                                 else if(location.State == TouchLocationState.Pressed && location.Position.X >= 300 &&  location.Position.X <= 360
+                                    &&  location.Position.Y >= 365 &&  location.Position.Y <= 380)
+                                    {
+                                         this.Exit();
+                                    }
+
+
+                            }
+#endif
                         #endregion
                         break;
                     }
@@ -559,6 +653,10 @@ namespace SokoboX
             if (currentScreen == Screens.GAME)
             {
                 #region DrawGame
+
+#if WINDOWS_PHONE
+                //spriteBatch.Draw(HUD, New Vector2(0, 460), Color.White);
+#endif
 
                 #region DrawTileMap
 

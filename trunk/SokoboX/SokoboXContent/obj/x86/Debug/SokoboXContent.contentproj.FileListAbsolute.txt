@@ -1,3 +1,4 @@
 C:\Users\Marcos\Documents\Visual Studio 2010\Projects\SokoboX\SokoboX\SokoboXContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\devs173a\Desktop\Sokobox\SokoboX\SokoboXContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Marcos\Documents\Visual Studio 2010\Projects\Nova pasta (2)\SokoboX\SokoboXContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Nosyelg\Desktop\Projtos\Sokobox\SokoboX\SokoboXContent\obj\x86\Debug\ResolveAssemblyReference.cache
