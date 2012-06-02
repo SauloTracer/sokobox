@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010 Express for Windows Phone
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SokoboX", "SokoboX\SokoboX\SokoboX.csproj", "{C8F6A8ED-1D11-4C13-8F35-E412A7300B24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SokoboXContent", "SokoboX\SokoboXContent\SokoboXContent.contentproj", "{E29A3B75-D353-498B-B5E8-0E4FA1096CAE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows Phone Copy of SokoboX", "SokoboX\SokoboX\Windows Phone Copy of SokoboX.csproj", "{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,20 +33,6 @@ Global
 		{E29A3B75-D353-498B-B5E8-0E4FA1096CAE}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{E29A3B75-D353-498B-B5E8-0E4FA1096CAE}.Release|Windows Phone.ActiveCfg = Release|x86
 		{E29A3B75-D353-498B-B5E8-0E4FA1096CAE}.Release|x86.ActiveCfg = Release|x86
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Debug|Mixed Platforms.Build.0 = Debug|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Debug|Mixed Platforms.Deploy.0 = Debug|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Debug|Windows Phone.Deploy.0 = Debug|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Debug|x86.ActiveCfg = Debug|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Release|Mixed Platforms.ActiveCfg = Release|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Release|Mixed Platforms.Build.0 = Release|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Release|Mixed Platforms.Deploy.0 = Release|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Release|Windows Phone.Build.0 = Release|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
-		{941F6D60-B177-4FD1-A93B-B01AFA2C01A9}.Release|x86.ActiveCfg = Release|Windows Phone
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
